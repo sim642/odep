@@ -70,7 +70,8 @@ let g =
               ) g requires
           ) g names
         in
-        List.fold_left (fold_module (Executable "FAKE")) g modules
+        let name = String.concat ", " names in
+        List.fold_left (fold_module (Executable name)) g modules
       | _ ->
         g
     ) G.empty dune
