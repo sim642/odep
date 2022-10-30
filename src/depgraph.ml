@@ -103,5 +103,8 @@ end
 
 module D = Graph.Graphviz.Dot (DG)
 
+module GOper = Graph.Oper.P (G)
+
 let () =
+  let g = GOper.transitive_reduction g in
   D.output_graph stdout g
