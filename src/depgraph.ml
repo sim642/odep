@@ -80,7 +80,6 @@ struct
   module VV = V
   include G
 
-  let get_subgraph _ = None
   let graph_attributes _ = []
   let vertex_attributes = function
     | VV.Executable _ ->
@@ -98,6 +97,10 @@ struct
     | VV.Executable name -> name
     | Library {name; _} -> name
     | Module {name; _} -> name
+  let get_subgraph = function
+    | VV.Module {parent; _} ->
+      Some {Graph.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = None}
+    | _ -> None
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
 end
 
