@@ -1,6 +1,6 @@
 open Sexplib.Std
 
-type digest = string [@@deriving sexp]
+type digest = string [@@deriving eq, ord, sexp]
 
 type module_deps = {
   for_intf: string list;
