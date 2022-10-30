@@ -1,0 +1,3 @@
+(library
+ (name ocamlgraph_extra)
+ (libraries ocamlgraph))
