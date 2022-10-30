@@ -1,5 +1,5 @@
 (executable
  (name depgraph)
  ; (public_name depgraph)
- (libraries ocamlgraph sexplib parsexp_io opam-format opam-state)
+ (libraries ocamlgraph sexplib parsexp_io opam-format opam-state findlib)
  (preprocess (pps ppx_deriving.std ppx_sexp_conv)))

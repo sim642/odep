@@ -39,7 +39,7 @@ let () =
         ()
     ) dune
 
-let g =
+let _g =
   let fold_module parent g {name; module_deps} =
     let mod_: V.t = Module {parent; name} in
     let g = G.add_vertex g mod_ in
@@ -75,6 +75,17 @@ let g =
       | _ ->
         g
     ) G.empty dune
+
+let g =
+  let libs = Findlib.list_packages' () in
+  List.fold_left (fun g lib ->
+      let l: V.t = Library {name = lib; digest = ""; local = false} in
+      let g = G.add_vertex g l in
+      let deps = Findlib.package_ancestors ["native"] lib in
+      List.fold_left (fun g dep ->
+          G.add_edge g l (Library {name = dep; digest = ""; local = false})
+        ) g deps
+    ) G.empty libs
 
 let opam_index = Opam_index.create ()
 let opam_find s = match String.split_on_char '.' s with
