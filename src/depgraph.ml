@@ -15,6 +15,7 @@ struct
   type t =
     | Executable of string
     | Library of library
+    | Module of {parent: t; name: string}
   [@@deriving eq, ord]
 
   let hash = Hashtbl.hash
@@ -39,22 +40,37 @@ let () =
     ) dune
 
 let g =
+  let fold_module parent g {name; module_deps} =
+    let mod_: V.t = Module {parent; name} in
+    let g = G.add_vertex g mod_ in
+    let g = List.fold_left (fun g dep ->
+        G.add_edge g mod_ (Module {parent; name=dep})
+      ) g module_deps.for_intf
+    in
+    List.fold_left (fun g dep ->
+        G.add_edge g mod_ (Module {parent; name=dep})
+      ) g module_deps.for_impl
+  in
   List.fold_left (fun g entry ->
       match entry with
-      | Library {name; uid; local; requires; _} ->
+      | Library {name; uid; local; requires; modules} ->
         let lib: V.t = Library {name; digest = uid; local} in
         let g = G.add_vertex g lib in
-        List.fold_left (fun g require ->
+        let g = List.fold_left (fun g require ->
             G.add_edge g lib (Library (DH.find digest2library require))
           ) g requires
-      | Executables {names; requires; _} ->
-        List.fold_left (fun g name ->
+        in
+        List.fold_left (fold_module lib) g modules
+      | Executables {names; requires; modules} ->
+        let g = List.fold_left (fun g name ->
             let exe: V.t = Executable name in
             let g = G.add_vertex g exe in
             List.fold_left (fun g require ->
                 G.add_edge g exe (Library (DH.find digest2library require))
               ) g requires
           ) g names
+        in
+        List.fold_left (fold_module (Executable "FAKE")) g modules
       | _ ->
         g
     ) G.empty dune
@@ -73,12 +89,15 @@ struct
       []
     | Library {local = false; _} ->
       [`Style `Filled]
+    | Module _ ->
+      [`Shape `Box]
   let default_vertex_attributes _ = []
   let edge_attributes _ = []
   let default_edge_attributes _ = []
   let vertex_name = function
     | VV.Executable name -> name
     | Library {name; _} -> name
+    | Module {name; _} -> name
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
 end
 
