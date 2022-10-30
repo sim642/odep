@@ -1,0 +1,5 @@
+(executable
+ (name depgraph)
+ ; (public_name depgraph)
+ (libraries ocamlgraph sexplib parsexp_io)
+ (preprocess (pps ppx_deriving.std ppx_sexp_conv)))
