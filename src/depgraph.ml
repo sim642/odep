@@ -1,43 +1,6 @@
-open Sexplib.Std
+open Dune_describe
 
-type digest = string [@@deriving sexp]
-
-type module_deps = {
-  for_intf: string list;
-  for_impl: string list;
-}
-[@@deriving sexp] [@@sexp.allow_extra_fields]
-
-type module_ = {
-  name: string;
-  module_deps: module_deps;
-}
-[@@deriving sexp] [@@sexp.allow_extra_fields]
-
-type executable = {
-  names: string list;
-  requires: digest list;
-  modules: module_ list;
-}
-[@@deriving sexp] [@@sexp.allow_extra_fields]
-
-type library = {
-  name: string;
-  uid: digest;
-  requires: digest list;
-  local: bool;
-  modules: module_ list;
-}
-[@@deriving sexp] [@@sexp.allow_extra_fields]
-
-type entry =
-  | Library of library
-  | Executables of executable
-  | Root of string
-  | Build_context of string
-[@@deriving sexp]
-
-let dune = Parsexp_io.load_conv_exn Single (list_of_sexp entry_of_sexp) ~filename:"deps2.txt"
+let dune = Parsexp_io.load_conv_exn Single t_of_sexp ~filename:"deps2.txt"
 
 module V =
 struct
