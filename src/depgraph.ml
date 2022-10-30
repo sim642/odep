@@ -112,3 +112,25 @@ module GOper = Graph.Oper.P (G)
 let () =
   let g = GOper.transitive_reduction g in
   D.output_graph stdout g
+
+let () =
+  let index = Opam_index.create () in
+  let find s = match String.split_on_char '.' s with
+    | ("threads" | "unix" | "str" | "compiler-libs" | "bigarray" | "dynlink" | "ocamldoc" | "stdlib" | "bytes") :: _ -> Some "(compiler)"
+    | s :: _ ->
+      Opam_index.Owner.find_opt s index
+      |> Option.map (fun {OpamPackage.name; _} -> OpamPackage.Name.to_string name)
+    | [] -> assert false
+  in
+  List.iter (fun entry ->
+      match entry with
+      | Library {name; local = false; _} ->
+        let opam_package = find name in
+        let t = match opam_package with
+          | Some t -> t
+          | None -> "(not found)"
+        in
+        Printf.printf "%s -> %s\n" name t
+      | _ ->
+        ()
+    ) dune
