@@ -2,9 +2,22 @@ open Sexplib.Std
 
 type digest = string [@@deriving sexp]
 
+type module_deps = {
+  for_intf: string list;
+  for_impl: string list;
+}
+[@@deriving sexp] [@@sexp.allow_extra_fields]
+
+type module_ = {
+  name: string;
+  module_deps: module_deps;
+}
+[@@deriving sexp] [@@sexp.allow_extra_fields]
+
 type executable = {
   names: string list;
   requires: digest list;
+  modules: module_ list;
 }
 [@@deriving sexp] [@@sexp.allow_extra_fields]
 
@@ -13,6 +26,7 @@ type library = {
   uid: digest;
   requires: digest list;
   local: bool;
+  modules: module_ list;
 }
 [@@deriving sexp] [@@sexp.allow_extra_fields]
 
@@ -23,7 +37,7 @@ type entry =
   | Build_context of string
 [@@deriving sexp]
 
-let dune = Parsexp_io.load_conv_exn Single (list_of_sexp entry_of_sexp) ~filename:"deps.txt"
+let dune = Parsexp_io.load_conv_exn Single (list_of_sexp entry_of_sexp) ~filename:"deps2.txt"
 
 module V =
 struct
@@ -52,7 +66,7 @@ let g =
         List.fold_left (fun g require ->
             G.add_edge g name (SH.find digest2name require)
           ) g requires
-      | Executables {names; requires} ->
+      | Executables {names; requires; _} ->
         List.fold_left (fun g name ->
             let g = G.add_vertex g name in
             List.fold_left (fun g require ->
