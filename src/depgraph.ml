@@ -76,6 +76,14 @@ let g =
         g
     ) G.empty dune
 
+let opam_index = Opam_index.create ()
+let opam_find s = match String.split_on_char '.' s with
+  | ("threads" | "unix" | "str" | "compiler-libs" | "bigarray" | "dynlink" | "ocamldoc" | "stdlib" | "bytes") :: _ -> Some "(compiler)"
+  | s :: _ ->
+    Opam_index.Owner.find_opt s opam_index
+    |> Option.map (fun {OpamPackage.name; _} -> OpamPackage.Name.to_string name)
+  | [] -> assert false
+
 module DG =
 struct
   module VV = V
@@ -101,6 +109,12 @@ struct
   let get_subgraph = function
     | VV.Module {parent; _} ->
       Some {Graph.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = None}
+    | Library {name; local = false; _} ->
+      begin match opam_find name with
+        | Some package ->
+          Some {Graph.Graphviz.DotAttributes.sg_name = string_of_int (Hashtbl.hash package); sg_attributes = [`Label package]; sg_parent = None}
+        | None -> None
+      end
     | _ -> None
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
 end
@@ -110,27 +124,5 @@ module D = Graph.Graphviz.Dot (DG)
 module GOper = Graph.Oper.P (G)
 
 let () =
-  let g = GOper.transitive_reduction g in
+  let g = GOper.transitive_reduction g in (* TODO: only on modules, not libraries/packages *)
   D.output_graph stdout g
-
-let () =
-  let index = Opam_index.create () in
-  let find s = match String.split_on_char '.' s with
-    | ("threads" | "unix" | "str" | "compiler-libs" | "bigarray" | "dynlink" | "ocamldoc" | "stdlib" | "bytes") :: _ -> Some "(compiler)"
-    | s :: _ ->
-      Opam_index.Owner.find_opt s index
-      |> Option.map (fun {OpamPackage.name; _} -> OpamPackage.Name.to_string name)
-    | [] -> assert false
-  in
-  List.iter (fun entry ->
-      match entry with
-      | Library {name; local = false; _} ->
-        let opam_package = find name in
-        let t = match opam_package with
-          | Some t -> t
-          | None -> "(not found)"
-        in
-        Printf.printf "%s -> %s\n" name t
-      | _ ->
-        ()
-    ) dune
