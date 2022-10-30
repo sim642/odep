@@ -247,6 +247,7 @@ module DotAttributes : sig
         a transparency component. *)
     | `Comment of string
     (** Comment string. *)
+    | `Compound of bool
     | `Concentrate of bool
     (** If [true], enables edge concentrators.  Default value is [false]. *)
     | `Fontpath of string
@@ -343,6 +344,8 @@ module DotAttributes : sig
     | `Labelfloat of bool
     (** If [true], lessen constraints on edge label placement.
         Default value is [false]. *)
+    | `Lhead of string
+    | `Ltail of string
     | `Layer of string
     (** Overlay. *)
     | `Minlen of int

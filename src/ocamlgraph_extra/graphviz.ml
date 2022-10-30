@@ -609,6 +609,7 @@ module DotAttributes = struct
         a transparency component. *)
     | `Comment of string
     (** Comment string. *)
+    | `Compound of bool
     | `Concentrate of bool
     (** If [true], enables edge concentrators.  Default value is [false]. *)
     | `Fontpath of string
@@ -707,6 +708,8 @@ module DotAttributes = struct
     | `Labelfloat of bool
     (** If [true], lessen constraints on edge label placement.
         Default value is [false]. *)
+    | `Lhead of string
+    | `Ltail of string
     | `Layer of string
     (** Overlay. *)
     | `Minlen of int
@@ -753,6 +756,7 @@ module DotAttributes = struct
     | `BgcolorWithTransparency a ->
       fprintf ppf "bgcolor=%a" fprint_color_with_transparency a
     | `Comment s -> fprintf ppf "comment=%a" fprint_string s
+    | `Compound b -> fprintf ppf "compound=%b" b
     | `Concentrate b -> fprintf ppf "concentrate=%b" b
     | `Fontpath s -> fprintf ppf "fontpath=%a" fprint_string s
     | `Layers s -> fprintf ppf "layers=%a" fprint_string_list s
@@ -805,6 +809,8 @@ module DotAttributes = struct
     | `Labeldistance f -> fprintf ppf "labeldistance=%f" f
     | `Labelfloat b -> fprintf ppf "labelfloat=%b" b
     | `Layer s -> fprintf ppf "layer=%a" fprint_string s
+    | `Lhead s -> fprintf ppf "lhead=%a" fprint_string ("cluster_" ^ s)
+    | `Ltail s -> fprintf ppf "ltail=%a" fprint_string ("cluster_" ^ s)
     | `Minlen i -> fprintf ppf "minlen=%i" i
     | `Samehead s -> fprintf ppf "samehead=%a" fprint_string s
     | `Sametail s -> fprintf ppf "sametail=%a" fprint_string s
