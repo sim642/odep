@@ -2,6 +2,10 @@
 
 Dependency graphs for OCaml modules, libraries and packages.
 
+## Examples
+
+### This package
+![Dependency graph for ocaml-depgraph](img/ocaml-depgraph.svg)
 
 ## Other tools
 
