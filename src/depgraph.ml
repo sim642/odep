@@ -89,7 +89,7 @@ struct
   module VV = V
   include G
 
-  let graph_attributes _ = []
+  let graph_attributes _ = [`Compound true]
   let vertex_attributes = function
     | VV.Executable _ ->
       [`Shape `Diamond]
@@ -100,7 +100,6 @@ struct
     | Module _ ->
       [`Shape `Box]
   let default_vertex_attributes _ = []
-  let edge_attributes _ = []
   let default_edge_attributes _ = []
   let vertex_name = function
     | VV.Executable name -> name
@@ -108,18 +107,24 @@ struct
     | Module {name; _} -> name
   let get_subgraph = function
     | VV.Module {parent; _} ->
-      Some {Graph.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = None}
+      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = None}
+    | (Library {local = true; _} | Executable _) as v ->
+      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash v); sg_attributes = [`Label (vertex_name v)]; sg_parent = None}
     | Library {name; local = false; _} ->
       begin match opam_find name with
         | Some package ->
-          Some {Graph.Graphviz.DotAttributes.sg_name = string_of_int (Hashtbl.hash package); sg_attributes = [`Label package]; sg_parent = None}
+          Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (Hashtbl.hash package); sg_attributes = [`Label package]; sg_parent = None}
         | None -> None
       end
-    | _ -> None
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
+  let edge_attributes (u, v) =
+    match get_subgraph u, get_subgraph v with
+    | Some su, Some sv ->
+      [`Ltail su.sg_name; `Lhead sv.sg_name]
+    | _, _ -> []
 end
 
-module D = Graph.Graphviz.Dot (DG)
+module D = Ocamlgraph_extra.Graphviz.Dot (DG)
 
 module GOper = Graph.Oper.P (G)
 
