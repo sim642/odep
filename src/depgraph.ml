@@ -1,6 +1,6 @@
 open Dune_describe
 
-let dune = Parsexp_io.load_conv_exn Single t_of_sexp ~filename:"deps2.txt"
+let dune = Parsexp_io.load_conv_exn Single t_of_sexp ~filename:"deps4.txt"
 
 
 module V =
@@ -61,8 +61,19 @@ let g =
           ) g requires
         in
         let g = List.fold_left (fold_module lib) g modules in
-        if local then
-          G.add_edge g lib (Module {parent = lib; name = String.capitalize_ascii name})
+        if local then (
+          let cap_name = String.capitalize_ascii name in
+          let g = G.add_edge g lib (Module {parent = lib; name = cap_name}) in
+          if List.exists (fun (m: module_) -> m.name = cap_name ^ "__") modules then
+            G.remove_vertex g (Module {parent = lib; name = cap_name ^ "__"})
+          else
+            List.fold_left (fun g (m: module_) ->
+                if m.name <> cap_name then
+                  G.add_edge g (Module {parent = lib; name = cap_name}) (Module {parent = lib; name = m.name})
+                else
+                  g
+              ) g modules
+        )
         else
           g
       | Executables {names; requires; modules} ->
@@ -76,10 +87,12 @@ let g =
         in
         let name = String.concat ", " names in
         let g = List.fold_left (fold_module (Executable name)) g modules in
-        List.fold_left (fun g name ->
+        let g = List.fold_left (fun g name ->
             let exe: V.t = Executable name in
             G.add_edge g exe (Module {parent = exe; name = String.capitalize_ascii name})
           ) g names
+        in
+        G.remove_vertex g (Module {parent = Executable name; name = "Dune__exe"})
       | _ ->
         g
     ) G.empty dune
