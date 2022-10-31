@@ -60,7 +60,11 @@ let g =
             G.add_edge g lib (Library (DH.find digest2library require))
           ) g requires
         in
-        List.fold_left (fold_module lib) g modules
+        let g = List.fold_left (fold_module lib) g modules in
+        if local then
+          G.add_edge g lib (Module {parent = lib; name = String.capitalize_ascii name})
+        else
+          g
       | Executables {names; requires; modules} ->
         let g = List.fold_left (fun g name ->
             let exe: V.t = Executable name in
@@ -71,7 +75,11 @@ let g =
           ) g names
         in
         let name = String.concat ", " names in
-        List.fold_left (fold_module (Executable name)) g modules
+        let g = List.fold_left (fold_module (Executable name)) g modules in
+        List.fold_left (fun g name ->
+            let exe: V.t = Executable name in
+            G.add_edge g exe (Module {parent = exe; name = String.capitalize_ascii name})
+          ) g names
       | _ ->
         g
     ) G.empty dune
