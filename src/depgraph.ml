@@ -139,10 +139,21 @@ struct
       end
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
   let edge_attributes (u, v) =
-    match get_subgraph u, get_subgraph v with
-    | Some su, Some sv ->
-      [`Ltail su.sg_name; `Lhead sv.sg_name]
-    | _, _ -> []
+    let ltail =
+      match u with
+      | VV.Library {local = true; _} | Executable _ ->
+        let su = Option.get (get_subgraph u) in
+        [`Ltail su.sg_name]
+      | _ -> []
+    in
+    let lhead =
+      match v with
+      | VV.Library {local = true; _} | Executable _ ->
+        let sv = Option.get (get_subgraph v) in
+        [`Lhead sv.sg_name]
+      | _ -> []
+    in
+    ltail @ lhead
 end
 
 module D = Ocamlgraph_extra.Graphviz.Dot (DG)
