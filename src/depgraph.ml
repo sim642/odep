@@ -161,7 +161,13 @@ struct
         [`Lhead sv.sg_name]
       | _ -> []
     in
-    ltail @ lhead
+    let minlen =
+      match u, v with
+      | (VV.Library {local = true; _} | Executable _), (VV.Library {local = true; _} | Executable _) ->
+        [`Minlen 2]
+      | _ -> []
+    in
+    ltail @ lhead @ minlen
 end
 
 module D = Ocamlgraph_extra.Graphviz.Dot (DG)
