@@ -124,7 +124,7 @@ struct
     | Module _ ->
       [`Shape `Box]
     | LocalPackageCluster ->
-      [`Fixedsize true; `Width 0.; `Height 0.; `Style `Invis]
+      [`Fixedsize true; `Width 0.; `Height 0.; `Style `Invis; `Label ""]
   let default_vertex_attributes _ = []
   let default_edge_attributes _ = []
   let vertex_name = function
