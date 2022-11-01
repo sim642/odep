@@ -57,17 +57,17 @@ struct
               (List.iter (fun v ->
                   try
                     let a = X.vertex_attributes v in
-                    let (shape1, shape2) = match List.find_opt (function `Shape _ -> true | _ -> false) a with
-                      | Some (`Shape `Diamond) -> "{", "}"
-                      | Some (`Shape `Box) -> "(", ")"
-                      | _ -> "([", "])"
+                    let shape = match List.find_opt (function `Shape _ -> true | _ -> false) a with
+                      | Some (`Shape `Diamond) -> format_of_string "{%s}"
+                      | Some (`Shape `Box) -> format_of_string "(%s)"
+                      | _ -> format_of_string "([%s])"
                     in
                     let style = match List.find_opt (function `Style _ -> true | _ -> false) a with
                       | Some (`Style `Filled) -> fun ppf -> Format.fprintf ppf "@ style id%d fill:#BBB" (X.V.hash v)
                       | Some (`Style `Invis) -> raise Exit
                       | _ -> fun _ -> ()
                     in
-                    fprintf ppf "id%d%s%s%s%t@ " (X.V.hash v) shape1 (X.vertex_name v) shape2 style
+                    fprintf ppf "id%d%(%s%)%t@ " (X.V.hash v) shape (X.vertex_name v) style
                   with Exit ->
                     ()
                 ) nodes)
