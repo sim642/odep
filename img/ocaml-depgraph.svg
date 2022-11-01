@@ -51,13 +51,13 @@
 </g>
 <g id="clust9" class="cluster">
 <title>cluster_404884661</title>
-<polygon fill="none" stroke="black" points="266,-91 266,-166 388,-166 388,-91 266,-91"/>
-<text text-anchor="middle" x="327" y="-150.8" font-family="Times,serif" font-size="14.00">ocamlgraph</text>
+<polygon fill="none" stroke="black" points="436,-99 436,-174 558,-174 558,-99 436,-99"/>
+<text text-anchor="middle" x="497" y="-158.8" font-family="Times,serif" font-size="14.00">ocamlgraph</text>
 </g>
 <g id="clust10" class="cluster">
 <title>cluster_527026861</title>
-<polygon fill="none" stroke="black" points="613,-8 613,-166 709,-166 709,-8 613,-8"/>
-<text text-anchor="middle" x="661" y="-150.8" font-family="Times,serif" font-size="14.00">(compiler)</text>
+<polygon fill="none" stroke="black" points="667,-8 667,-174 763,-174 763,-8 667,-8"/>
+<text text-anchor="middle" x="715" y="-158.8" font-family="Times,serif" font-size="14.00">(compiler)</text>
 </g>
 <g id="clust11" class="cluster">
 <title>cluster_569010170</title>
@@ -66,18 +66,18 @@
 </g>
 <g id="clust12" class="cluster">
 <title>cluster_586469389</title>
-<polygon fill="none" stroke="black" points="458,-8 458,-83 528,-83 528,-8 458,-8"/>
-<text text-anchor="middle" x="493" y="-67.8" font-family="Times,serif" font-size="14.00">seq</text>
+<polygon fill="none" stroke="black" points="566,-8 566,-83 636,-83 636,-8 566,-8"/>
+<text text-anchor="middle" x="601" y="-67.8" font-family="Times,serif" font-size="14.00">seq</text>
 </g>
 <g id="clust13" class="cluster">
 <title>cluster_63636880</title>
-<polygon fill="none" stroke="black" points="913,-91 913,-340 1334,-340 1334,-91 913,-91"/>
+<polygon fill="none" stroke="black" points="913,-99 913,-340 1334,-340 1334,-99 913,-99"/>
 <text text-anchor="middle" x="1123.5" y="-324.8" font-family="Times,serif" font-size="14.00">base</text>
 </g>
 <g id="clust14" class="cluster">
 <title>cluster_69806535</title>
-<polygon fill="none" stroke="black" points="458,-91 458,-166 528,-166 528,-91 458,-91"/>
-<text text-anchor="middle" x="493" y="-150.8" font-family="Times,serif" font-size="14.00">re</text>
+<polygon fill="none" stroke="black" points="566,-99 566,-174 636,-174 636,-99 566,-99"/>
+<text text-anchor="middle" x="601" y="-158.8" font-family="Times,serif" font-size="14.00">re</text>
 </g>
 <g id="clust15" class="cluster">
 <title>cluster_763794292</title>
@@ -96,8 +96,8 @@
 </g>
 <g id="clust18" class="cluster">
 <title>cluster_869606110</title>
-<polygon fill="none" stroke="black" points="265,-8 265,-83 389,-83 389,-8 265,-8"/>
-<text text-anchor="middle" x="327" y="-67.8" font-family="Times,serif" font-size="14.00">stdlib&#45;shims</text>
+<polygon fill="none" stroke="black" points="434,-8 434,-83 558,-83 558,-8 434,-8"/>
+<text text-anchor="middle" x="496" y="-67.8" font-family="Times,serif" font-size="14.00">stdlib&#45;shims</text>
 </g>
 <g id="clust19" class="cluster">
 <title>cluster_930138589</title>
@@ -106,7 +106,7 @@
 </g>
 <g id="clust20" class="cluster">
 <title>cluster_local_package__</title>
-<polygon fill="none" stroke="black" points="8,-174 8,-612 428,-612 428,-174 8,-174"/>
+<polygon fill="none" stroke="black" points="8,-91 8,-612 428,-612 428,-91 8,-91"/>
 <text text-anchor="middle" x="218" y="-596.8" font-family="Times,serif" font-size="14.00">(local)</text>
 </g>
 <g id="clust21" class="cluster">
@@ -116,7 +116,7 @@
 </g>
 <g id="clust22" class="cluster">
 <title>cluster_651970772</title>
-<polygon fill="none" stroke="black" points="254,-182 254,-423 420,-423 420,-182 254,-182"/>
+<polygon fill="none" stroke="black" points="254,-99 254,-423 420,-423 420,-99 254,-99"/>
 <text text-anchor="middle" x="337" y="-407.8" font-family="Times,serif" font-size="14.00">ocamlgraph_extra</text>
 </g>
 <!-- depgraph -->
@@ -254,68 +254,68 @@
 <!-- base.caml -->
 <g id="node4" class="node">
 <title>base.caml</title>
-<ellipse fill="lightgrey" stroke="black" cx="1107" cy="-117" rx="46.29" ry="18"/>
-<text text-anchor="middle" x="1107" y="-113.3" font-family="Times,serif" font-size="14.00">base.caml</text>
+<ellipse fill="lightgrey" stroke="black" cx="1107" cy="-125" rx="46.29" ry="18"/>
+<text text-anchor="middle" x="1107" y="-121.3" font-family="Times,serif" font-size="14.00">base.caml</text>
 </g>
 <!-- base.shadow_stdlib&#45;&gt;base.caml -->
 <g id="edge11" class="edge">
 <title>base.shadow_stdlib&#45;&gt;base.caml</title>
-<path fill="none" stroke="black" d="M1221.65,-190.88C1198.39,-176.1 1163.84,-154.13 1138.75,-138.18"/>
-<polygon fill="black" stroke="black" points="1140.62,-135.23 1130.3,-132.81 1136.86,-141.13 1140.62,-135.23"/>
+<path fill="none" stroke="black" d="M1219.34,-191C1196.73,-177.91 1164.68,-159.37 1140.59,-145.44"/>
+<polygon fill="black" stroke="black" points="1142.2,-142.32 1131.79,-140.34 1138.69,-148.38 1142.2,-142.32"/>
 </g>
 <!-- bigarray -->
 <g id="node6" class="node">
 <title>bigarray</title>
-<ellipse fill="lightgrey" stroke="black" cx="661" cy="-117" rx="40.09" ry="18"/>
-<text text-anchor="middle" x="661" y="-113.3" font-family="Times,serif" font-size="14.00">bigarray</text>
+<ellipse fill="lightgrey" stroke="black" cx="715" cy="-125" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="715" y="-121.3" font-family="Times,serif" font-size="14.00">bigarray</text>
 </g>
 <!-- unix -->
 <g id="node25" class="node">
 <title>unix</title>
-<ellipse fill="lightgrey" stroke="black" cx="661" cy="-34" rx="27" ry="18"/>
-<text text-anchor="middle" x="661" y="-30.3" font-family="Times,serif" font-size="14.00">unix</text>
+<ellipse fill="lightgrey" stroke="black" cx="715" cy="-34" rx="27" ry="18"/>
+<text text-anchor="middle" x="715" y="-30.3" font-family="Times,serif" font-size="14.00">unix</text>
 </g>
 <!-- bigarray&#45;&gt;unix -->
 <g id="edge12" class="edge">
 <title>bigarray&#45;&gt;unix</title>
-<path fill="none" stroke="black" d="M661,-98.82C661,-88.19 661,-74.31 661,-62.2"/>
-<polygon fill="black" stroke="black" points="664.5,-62.15 661,-52.15 657.5,-62.15 664.5,-62.15"/>
+<path fill="none" stroke="black" d="M715,-106.84C715,-94.28 715,-76.98 715,-62.5"/>
+<polygon fill="black" stroke="black" points="718.5,-62.11 715,-52.11 711.5,-62.11 718.5,-62.11"/>
 </g>
 <!-- ocamlgraph -->
 <g id="node7" class="node">
 <title>ocamlgraph</title>
-<ellipse fill="lightgrey" stroke="black" cx="327" cy="-117" rx="52.79" ry="18"/>
-<text text-anchor="middle" x="327" y="-113.3" font-family="Times,serif" font-size="14.00">ocamlgraph</text>
+<ellipse fill="lightgrey" stroke="black" cx="497" cy="-125" rx="52.79" ry="18"/>
+<text text-anchor="middle" x="497" y="-121.3" font-family="Times,serif" font-size="14.00">ocamlgraph</text>
 </g>
 <!-- stdlib&#45;shims -->
 <g id="node24" class="node">
 <title>stdlib&#45;shims</title>
-<ellipse fill="lightgrey" stroke="black" cx="327" cy="-34" rx="53.89" ry="18"/>
-<text text-anchor="middle" x="327" y="-30.3" font-family="Times,serif" font-size="14.00">stdlib&#45;shims</text>
+<ellipse fill="lightgrey" stroke="black" cx="496" cy="-34" rx="53.89" ry="18"/>
+<text text-anchor="middle" x="496" y="-30.3" font-family="Times,serif" font-size="14.00">stdlib&#45;shims</text>
 </g>
 <!-- ocamlgraph&#45;&gt;stdlib&#45;shims -->
 <g id="edge13" class="edge">
 <title>ocamlgraph&#45;&gt;stdlib&#45;shims</title>
-<path fill="none" stroke="black" d="M327,-98.82C327,-88.19 327,-74.31 327,-62.2"/>
-<polygon fill="black" stroke="black" points="330.5,-62.15 327,-52.15 323.5,-62.15 330.5,-62.15"/>
+<path fill="none" stroke="black" d="M496.81,-106.84C496.67,-94.28 496.47,-76.98 496.31,-62.5"/>
+<polygon fill="black" stroke="black" points="499.8,-62.07 496.19,-52.11 492.8,-62.15 499.8,-62.07"/>
 </g>
 <!-- ocamlgraph_extra&#45;&gt;ocamlgraph -->
 <g id="edge14" class="edge">
 <title>ocamlgraph_extra&#45;&gt;ocamlgraph</title>
-<path fill="none" stroke="black" d="M293.39,-182C299.56,-167.27 306.09,-154.2 311.74,-143.77"/>
-<polygon fill="black" stroke="black" points="314.95,-145.21 316.76,-134.77 308.83,-141.8 314.95,-145.21"/>
+<path fill="none" stroke="black" d="M420,-209.61C422.41,-200.87 426.19,-191.72 432,-182 440.14,-168.39 452.74,-156.42 464.7,-147.07"/>
+<polygon fill="black" stroke="black" points="466.87,-149.82 472.8,-141.04 462.69,-144.2 466.87,-149.82"/>
 </g>
 <!-- Ocamlgraph_extra -->
-<g id="node30" class="node">
+<g id="node31" class="node">
 <title>Ocamlgraph_extra</title>
-<polygon fill="none" stroke="black" points="412,-309 294,-309 294,-273 412,-273 412,-309"/>
-<text text-anchor="middle" x="353" y="-287.3" font-family="Times,serif" font-size="14.00">Ocamlgraph_extra</text>
+<polygon fill="none" stroke="black" points="388,-309 270,-309 270,-273 388,-273 388,-309"/>
+<text text-anchor="middle" x="329" y="-287.3" font-family="Times,serif" font-size="14.00">Ocamlgraph_extra</text>
 </g>
 <!-- ocamlgraph_extra&#45;&gt;Ocamlgraph_extra -->
 <g id="edge15" class="edge">
 <title>ocamlgraph_extra&#45;&gt;Ocamlgraph_extra</title>
-<path fill="none" stroke="black" d="M340.39,-355.82C342.49,-345.19 345.24,-331.31 347.63,-319.2"/>
-<polygon fill="black" stroke="black" points="351.11,-319.64 349.61,-309.15 344.24,-318.29 351.11,-319.64"/>
+<path fill="none" stroke="black" d="M335.3,-355.82C334.25,-345.19 332.88,-331.31 331.69,-319.2"/>
+<polygon fill="black" stroke="black" points="335.16,-318.76 330.69,-309.15 328.19,-319.45 335.16,-318.76"/>
 </g>
 <!-- opam&#45;core -->
 <g id="node9" class="node">
@@ -326,26 +326,26 @@
 <!-- opam&#45;core&#45;&gt;bigarray -->
 <g id="edge16" class="edge">
 <title>opam&#45;core&#45;&gt;bigarray</title>
-<path fill="none" stroke="black" d="M519.08,-192.79C529.87,-186.94 542.52,-180.11 554,-174 578.18,-161.13 605.56,-146.81 626.56,-135.87"/>
-<polygon fill="black" stroke="black" points="628.18,-138.97 635.44,-131.25 624.95,-132.76 628.18,-138.97"/>
+<path fill="none" stroke="black" d="M521.58,-193.24C531.62,-188.97 543.11,-184.68 554,-182 591.28,-172.84 603.7,-186.48 640,-174 657.56,-167.97 675.14,-157.03 688.87,-147.12"/>
+<polygon fill="black" stroke="black" points="690.97,-149.93 696.88,-141.14 686.78,-144.32 690.97,-149.93"/>
 </g>
 <!-- opam&#45;core&#45;&gt;ocamlgraph -->
 <g id="edge17" class="edge">
 <title>opam&#45;core&#45;&gt;ocamlgraph</title>
-<path fill="none" stroke="black" d="M466.33,-192.7C438.42,-177.74 394.43,-154.15 363.35,-137.49"/>
-<polygon fill="black" stroke="black" points="364.62,-134.2 354.16,-132.56 361.32,-140.37 364.62,-134.2"/>
+<path fill="none" stroke="black" d="M493.85,-189.82C494.37,-179.19 495.06,-165.31 495.66,-153.2"/>
+<polygon fill="black" stroke="black" points="499.16,-153.31 496.15,-143.15 492.16,-152.97 499.16,-153.31"/>
 </g>
 <!-- re -->
 <g id="node18" class="node">
 <title>re</title>
-<ellipse fill="lightgrey" stroke="black" cx="493" cy="-117" rx="27" ry="18"/>
-<text text-anchor="middle" x="493" y="-113.3" font-family="Times,serif" font-size="14.00">re</text>
+<ellipse fill="lightgrey" stroke="black" cx="601" cy="-125" rx="27" ry="18"/>
+<text text-anchor="middle" x="601" y="-121.3" font-family="Times,serif" font-size="14.00">re</text>
 </g>
 <!-- opam&#45;core&#45;&gt;re -->
 <g id="edge18" class="edge">
 <title>opam&#45;core&#45;&gt;re</title>
-<path fill="none" stroke="black" d="M493,-189.84C493,-177.28 493,-159.98 493,-145.5"/>
-<polygon fill="black" stroke="black" points="496.5,-145.11 493,-135.11 489.5,-145.11 496.5,-145.11"/>
+<path fill="none" stroke="black" d="M526.32,-194.64C538.25,-189.32 551.36,-182.38 562,-174 570.51,-167.29 578.38,-158.41 584.78,-150.12"/>
+<polygon fill="black" stroke="black" points="587.79,-151.93 590.89,-141.8 582.15,-147.78 587.79,-151.93"/>
 </g>
 <!-- opam&#45;file&#45;format -->
 <g id="node10" class="node">
@@ -398,8 +398,8 @@
 <!-- parsexp&#45;&gt;base.caml -->
 <g id="edge23" class="edge">
 <title>parsexp&#45;&gt;base.caml</title>
-<path fill="none" stroke="black" d="M797.35,-273.13C790.2,-248.29 781.45,-201.83 805,-174 835.99,-137.38 972.59,-124.57 1051.05,-120.2"/>
-<polygon fill="black" stroke="black" points="1051.45,-123.68 1061.25,-119.66 1051.08,-116.69 1051.45,-123.68"/>
+<path fill="none" stroke="black" d="M797.43,-273.12C790.88,-249.73 783.42,-207.47 805,-182 836.01,-145.4 972.61,-132.59 1051.05,-128.2"/>
+<polygon fill="black" stroke="black" points="1051.45,-131.68 1061.25,-127.66 1051.08,-124.69 1051.45,-131.68"/>
 </g>
 <!-- parsexp&#45;&gt;sexplib0 -->
 <g id="edge24" class="edge">
@@ -446,20 +446,20 @@
 <!-- seq -->
 <g id="node20" class="node">
 <title>seq</title>
-<ellipse fill="lightgrey" stroke="black" cx="493" cy="-34" rx="27" ry="18"/>
-<text text-anchor="middle" x="493" y="-30.3" font-family="Times,serif" font-size="14.00">seq</text>
+<ellipse fill="lightgrey" stroke="black" cx="601" cy="-34" rx="27" ry="18"/>
+<text text-anchor="middle" x="601" y="-30.3" font-family="Times,serif" font-size="14.00">seq</text>
 </g>
 <!-- re&#45;&gt;seq -->
 <g id="edge29" class="edge">
 <title>re&#45;&gt;seq</title>
-<path fill="none" stroke="black" d="M493,-98.82C493,-88.19 493,-74.31 493,-62.2"/>
-<polygon fill="black" stroke="black" points="496.5,-62.15 493,-52.15 489.5,-62.15 496.5,-62.15"/>
+<path fill="none" stroke="black" d="M601,-106.84C601,-94.28 601,-76.98 601,-62.5"/>
+<polygon fill="black" stroke="black" points="604.5,-62.11 601,-52.11 597.5,-62.11 604.5,-62.11"/>
 </g>
 <!-- sexplib&#45;&gt;bigarray -->
 <g id="edge30" class="edge">
 <title>sexplib&#45;&gt;bigarray</title>
-<path fill="none" stroke="black" d="M739.72,-355.95C744.61,-320.15 751.79,-235.41 722,-174 715.18,-159.95 703.17,-147.74 691.59,-138.34"/>
-<polygon fill="black" stroke="black" points="693.39,-135.31 683.32,-132 689.13,-140.86 693.39,-135.31"/>
+<path fill="none" stroke="black" d="M735.92,-355.86C733.75,-322.39 728.51,-246.03 722,-182 721.05,-172.61 719.82,-162.36 718.66,-153.23"/>
+<polygon fill="black" stroke="black" points="722.11,-152.6 717.35,-143.13 715.16,-153.5 722.11,-152.6"/>
 </g>
 <!-- sexplib&#45;&gt;parsexp -->
 <g id="edge31" class="edge">
@@ -500,14 +500,26 @@
 <!-- Graphviz -->
 <g id="node29" class="node">
 <title>Graphviz</title>
-<polygon fill="none" stroke="black" points="386.5,-226 319.5,-226 319.5,-190 386.5,-190 386.5,-226"/>
-<text text-anchor="middle" x="353" y="-204.3" font-family="Times,serif" font-size="14.00">Graphviz</text>
+<polygon fill="none" stroke="black" points="362.5,-143 295.5,-143 295.5,-107 362.5,-107 362.5,-143"/>
+<text text-anchor="middle" x="329" y="-121.3" font-family="Times,serif" font-size="14.00">Graphviz</text>
 </g>
-<!-- Ocamlgraph_extra&#45;&gt;Graphviz -->
+<!-- Mermaid -->
+<g id="node30" class="node">
+<title>Mermaid</title>
+<polygon fill="none" stroke="black" points="363,-226 295,-226 295,-190 363,-190 363,-226"/>
+<text text-anchor="middle" x="329" y="-204.3" font-family="Times,serif" font-size="14.00">Mermaid</text>
+</g>
+<!-- Mermaid&#45;&gt;Graphviz -->
 <g id="edge35" class="edge">
-<title>Ocamlgraph_extra&#45;&gt;Graphviz</title>
-<path fill="none" stroke="black" d="M353,-272.82C353,-262.19 353,-248.31 353,-236.2"/>
-<polygon fill="black" stroke="black" points="356.5,-236.15 353,-226.15 349.5,-236.15 356.5,-236.15"/>
+<title>Mermaid&#45;&gt;Graphviz</title>
+<path fill="none" stroke="black" d="M329,-189.82C329,-179.19 329,-165.31 329,-153.2"/>
+<polygon fill="black" stroke="black" points="332.5,-153.15 329,-143.15 325.5,-153.15 332.5,-153.15"/>
+</g>
+<!-- Ocamlgraph_extra&#45;&gt;Mermaid -->
+<g id="edge36" class="edge">
+<title>Ocamlgraph_extra&#45;&gt;Mermaid</title>
+<path fill="none" stroke="black" d="M329,-272.82C329,-262.19 329,-248.31 329,-236.2"/>
+<polygon fill="black" stroke="black" points="332.5,-236.15 329,-226.15 325.5,-236.15 332.5,-236.15"/>
 </g>
 <!-- local_package__ -->
 </g>
