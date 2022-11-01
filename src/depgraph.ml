@@ -171,9 +171,11 @@ struct
 end
 
 module D = Ocamlgraph_extra.Graphviz.Dot (DG)
+module M = Ocamlgraph_extra.Mermaid.Make (DG)
 
 module GOper = Graph.Oper.P (G)
 
 let () =
   let g = GOper.transitive_reduction g in (* TODO: only on modules, not libraries/packages *)
-  D.output_graph stdout g
+  (* D.output_graph stdout g *)
+  M.fprint_graph Format.std_formatter g
