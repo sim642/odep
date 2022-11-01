@@ -33,7 +33,7 @@ struct
           subgraphs := SG.add sg.sg_name (sg, node :: nodes) !subgraphs
       ) g;
 
-    fprintf ppf "graph TD\n";
+    fprintf ppf "@[<v 2>graph TD@ ";
 
     (* X.iter_vertex (fun v ->
         fprintf ppf "id%d(%s)\n" (X.V.hash v) (X.vertex_name v)
@@ -50,7 +50,7 @@ struct
           | Some (`Label label) -> label
           | _ -> name
         in
-        fprintf ppf "subgraph %s [\"%s\"]\n%t%tend\n"
+        fprintf ppf "@[<v 2>subgraph %s [\"%s\"]@ %t%t@]@ end@ "
           name
           label
           (fun ppf ->
@@ -63,11 +63,11 @@ struct
                       | _ -> "([", "])"
                     in
                     let style = match List.find_opt (function `Style _ -> true | _ -> false) a with
-                      | Some (`Style `Filled) -> Printf.sprintf "\nstyle id%d fill:#BBB" (X.V.hash v)
+                      | Some (`Style `Filled) -> fun ppf -> Format.fprintf ppf "@ style id%d fill:#BBB" (X.V.hash v)
                       | Some (`Style `Invis) -> raise Exit
-                      | _ -> ""
+                      | _ -> fun _ -> ()
                     in
-                    fprintf ppf "id%d%s%s%s%s\n" (X.V.hash v) shape1 (X.vertex_name v) shape2 style
+                    fprintf ppf "id%d%s%s%s%t@ " (X.V.hash v) shape1 (X.vertex_name v) shape2 style
                   with Exit ->
                     ()
                 ) nodes)
@@ -98,6 +98,8 @@ struct
           | Some (`Lhead x) -> x
           | _ -> "id" ^ string_of_int (X.V.hash v)
         in
-        fprintf ppf "%s-->%s\n" uu vv
-      ) g
+        fprintf ppf "%s-->%s@ " uu vv
+      ) g;
+
+    fprintf ppf "@]"
 end
