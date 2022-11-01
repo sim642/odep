@@ -106,7 +106,16 @@
    (requires (0d795e4f8b0b5925c69c21e02cc9103d))
    (source_dir _build/default/src/ocamlgraph_extra)
    (modules
-    (((name Graphviz)
+    (((name Mermaid)
+      (impl (_build/default/src/ocamlgraph_extra/mermaid.ml))
+      (intf ())
+      (cmt
+       (_build/default/src/ocamlgraph_extra/.ocamlgraph_extra.objs/byte/ocamlgraph_extra__Mermaid.cmt))
+      (cmti ())
+      (module_deps
+       ((for_intf ())
+        (for_impl (Graphviz)))))
+     ((name Graphviz)
       (impl (_build/default/src/ocamlgraph_extra/graphviz.ml))
       (intf (_build/default/src/ocamlgraph_extra/graphviz.mli))
       (cmt

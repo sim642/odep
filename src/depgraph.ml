@@ -134,7 +134,7 @@ struct
     | LocalPackageCluster -> "local_package__"
   let get_subgraph = function
     | VV.Module {parent; _} ->
-      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = None}
+      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = Some "local_package__"}
     | (Library {local = true; _} | Executable _) as v ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash v); sg_attributes = [`Label (vertex_name v)]; sg_parent = Some "local_package__"}
     | Library {name; local = false; _} ->
@@ -167,7 +167,9 @@ struct
         [`Minlen 2]
       | _ -> []
     in
-    ltail @ lhead @ minlen
+    match get_subgraph u, get_subgraph v with
+    | Some su, Some sv when su = sv -> minlen
+    | _, _ -> ltail @ lhead @ minlen
 end
 
 module D = Ocamlgraph_extra.Graphviz.Dot (DG)
