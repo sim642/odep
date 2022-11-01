@@ -22,7 +22,7 @@ struct
     let subgraphs = ref SG.empty in
     X.iter_vertex (function node ->
         match X.get_subgraph node with
-        | None -> ()
+        | None -> () (* TODO: print also *)
         | Some sg ->
           let (sg, nodes) =
             if SG.mem sg.sg_name !subgraphs then
@@ -33,73 +33,71 @@ struct
           subgraphs := SG.add sg.sg_name (sg, node :: nodes) !subgraphs
       ) g;
 
-    fprintf ppf "@[<v 2>graph TD@ ";
-
-    (* X.iter_vertex (fun v ->
-        fprintf ppf "id%d(%s)\n" (X.V.hash v) (X.vertex_name v)
-      ) g; *)
-
-    let rec print_nested_subgraphs ppf = function
-      | [] ->
-        () (* no more work to do, so terminate *)
-      | name :: worklist ->
-        let sg, nodes = SG.find name !subgraphs in
-        let children = SG.filter (fun _ (sg, _) -> sg.Graphviz.DotAttributes.sg_parent = Some name) !subgraphs in
-        let label_opt = List.find_opt (function `Label _ -> true | _ -> false) sg.sg_attributes in
-        let label = match label_opt with
-          | Some (`Label label) -> label
-          | _ -> name
+    let print_vertex ppf v =
+      try
+        let a = X.vertex_attributes v in
+        let shape = match List.find_opt (function `Shape _ -> true | _ -> false) a with
+          | Some (`Shape `Diamond) -> format_of_string "{%s}"
+          | Some (`Shape `Box) -> format_of_string "(%s)"
+          | _ -> format_of_string "([%s])"
         in
-        fprintf ppf "@[<v 2>subgraph %s [\"%s\"]@ %t%t@]@ end@ "
-          name
-          label
-          (fun ppf ->
-              (List.iter (fun v ->
-                  try
-                    let a = X.vertex_attributes v in
-                    let shape = match List.find_opt (function `Shape _ -> true | _ -> false) a with
-                      | Some (`Shape `Diamond) -> format_of_string "{%s}"
-                      | Some (`Shape `Box) -> format_of_string "(%s)"
-                      | _ -> format_of_string "([%s])"
-                    in
-                    let style = match List.find_opt (function `Style _ -> true | _ -> false) a with
-                      | Some (`Style `Filled) -> fun ppf -> Format.fprintf ppf "@ style id%d fill:#BBB" (X.V.hash v)
-                      | Some (`Style `Invis) -> raise Exit
-                      | _ -> fun _ -> ()
-                    in
-                    fprintf ppf "id%d%(%s%)%t@ " (X.V.hash v) shape (X.vertex_name v) style
-                  with Exit ->
-                    ()
-                ) nodes)
-          )
-          (fun ppf ->
-              print_nested_subgraphs ppf (List.map fst (SG.bindings children))
-          );
+        let style = match List.find_opt (function `Style _ -> true | _ -> false) a with
+          | Some (`Style `Filled) -> fun ppf -> Format.fprintf ppf "@ style id%d fill:#BBB" (X.V.hash v)
+          | Some (`Style `Invis) -> raise Exit (* TODO: filter beforehand *)
+          | _ -> fun _ -> ()
+        in
+        fprintf ppf "id%d%(%s%)%t" (X.V.hash v) shape (X.vertex_name v) style
+      with Exit ->
+        ()
+    in
 
-        print_nested_subgraphs ppf worklist
+    let rec print_subgraph ppf name =
+      let sg, nodes = SG.find name !subgraphs in
+      let children = SG.filter (fun _ (sg, _) -> sg.Graphviz.DotAttributes.sg_parent = Some name) !subgraphs in
+      let label_opt = List.find_opt (function `Label _ -> true | _ -> false) sg.sg_attributes in
+      let label = match label_opt with
+        | Some (`Label label) -> label
+        | _ -> name
+      in
+      let subs = List.map fst (SG.bindings children) in
+      let mid ppf = match nodes, subs with
+        | _ :: _, _ :: _ -> pp_print_space ppf ()
+        | _, _ -> ()
+      in
+      fprintf ppf "@[<v 2>subgraph %s [\"%s\"]@ %a%t%a@]@ end"
+        name
+        label
+        (pp_print_list print_vertex) nodes
+        mid
+        print_nested_subgraphs subs
+    and print_nested_subgraphs ppf =
+      pp_print_list print_subgraph ppf
     in
     let print_subgraphs ppf =
       let root_worklist = SG.filter (fun _ (sg, _) -> sg.Graphviz.DotAttributes.sg_parent = None) !subgraphs in
       print_nested_subgraphs ppf (List.map fst (SG.bindings root_worklist))
     in
-    print_subgraphs ppf;
 
-    X.iter_edges_e (fun e ->
-        let a = X.edge_attributes e in
-        let u = X.E.src e in
-        let v = X.E.dst e in
-        let uu =
-          match List.find_opt (function `Ltail _ -> true | _ -> false) a with
-          | Some (`Ltail x) -> x
-          | _ -> "id" ^ string_of_int (X.V.hash u)
-        in
-        let vv =
-          match List.find_opt (function `Lhead _ -> true | _ -> false) a with
-          | Some (`Lhead x) -> x
-          | _ -> "id" ^ string_of_int (X.V.hash v)
-        in
-        fprintf ppf "%s-->%s@ " uu vv
-      ) g;
+    let print_edges ppf =
+      X.iter_edges_e (fun e ->
+          let a = X.edge_attributes e in
+          let u = X.E.src e in
+          let v = X.E.dst e in
+          let uu =
+            match List.find_opt (function `Ltail _ -> true | _ -> false) a with
+            | Some (`Ltail x) -> x
+            | _ -> "id" ^ string_of_int (X.V.hash u)
+          in
+          let vv =
+            match List.find_opt (function `Lhead _ -> true | _ -> false) a with
+            | Some (`Lhead x) -> x
+            | _ -> "id" ^ string_of_int (X.V.hash v)
+          in
+          fprintf ppf "%s-->%s@ " uu vv
+        ) g
+    in
 
-    fprintf ppf "@]"
+    fprintf ppf "@[<v 2>graph TD@ %t@ %t@]"
+      print_subgraphs
+      print_edges
 end
