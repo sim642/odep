@@ -12,6 +12,7 @@ sig
   val vertex_name : V.t -> string
   val get_subgraph : V.t -> Graphviz.DotAttributes.subgraph option
   val edge_attributes: E.t -> Graphviz.DotAttributes.edge list
+  val vertex_attributes: V.t -> Graphviz.DotAttributes.vertex list
 end
 
 module Make (X: Arg) =
@@ -53,7 +54,23 @@ struct
           name
           label
           (fun ppf ->
-              (List.iter (fun v -> fprintf ppf "id%d(%s)\n" (X.V.hash v) (X.vertex_name v)) nodes)
+              (List.iter (fun v ->
+                  try
+                    let a = X.vertex_attributes v in
+                    let (shape1, shape2) = match List.find_opt (function `Shape _ -> true | _ -> false) a with
+                      | Some (`Shape `Diamond) -> "{", "}"
+                      | Some (`Shape `Box) -> "(", ")"
+                      | _ -> "([", "])"
+                    in
+                    let style = match List.find_opt (function `Style _ -> true | _ -> false) a with
+                      | Some (`Style `Filled) -> Printf.sprintf "\nstyle id%d fill:#BBB" (X.V.hash v)
+                      | Some (`Style `Invis) -> raise Exit
+                      | _ -> ""
+                    in
+                    fprintf ppf "id%d%s%s%s%s\n" (X.V.hash v) shape1 (X.vertex_name v) shape2 style
+                  with Exit ->
+                    ()
+                ) nodes)
           )
           (fun ppf ->
               print_nested_subgraphs ppf (List.map fst (SG.bindings children))
