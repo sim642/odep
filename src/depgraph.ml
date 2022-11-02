@@ -192,4 +192,15 @@ let dune_describe_file f =
   D.output_graph stdout g
   (* M.fprint_graph Format.std_formatter g *)
 
-let () = dune_describe_file "deps3.txt"
+
+open Cmdliner
+
+let dune_describe_file_a =
+  Arg.(required & pos 0 (some file) None & info [])
+let dune_describe_file_t =
+  Term.(const dune_describe_file $ dune_describe_file_a)
+
+let cmd =
+  Cmd.v (Cmd.info "depgraph") dune_describe_file_t
+
+let () = exit (Cmd.eval cmd)

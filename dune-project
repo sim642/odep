@@ -18,5 +18,6 @@
   parsexp
   opam-state
   opam-format
+  cmdliner
   bos
   ppx_deriving))

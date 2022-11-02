@@ -4,9 +4,11 @@
     (0d795e4f8b0b5925c69c21e02cc9103d
      b189f983487830cf14bdf171903b62da
      0bfbf12b36f339f0ba0e4c06ce88d48e
-     25d6d8ad0cd9c6a8ff12d45211b130ec
+     b5f1ee68ba5bd9694aa0f66e022e50fe
      796cca509a5209af5a4a7fbdb4ba773c
      79dff1087e8ac06d99e3c542f1e29fa7
+     c480a7c584d174c22d86dbdb79515d7d
+     544ea0d9efd3c7a64c143afe7d1e17f9
      475f353b2705e034b0287d7ffe9e5225
      449445be7a24ce51e119d57e9e255d3f
      52603f9930efcca61c8e7216acb48efa))
@@ -48,25 +50,13 @@
         (for_impl ()))))))
    (include_dirs (_build/default/src/.depgraph.eobjs/byte))))
  (library
-  ((name base)
-   (uid 46774e2b7a404647f12956126bd28f95)
-   (local false)
-   (requires
-    (3803213fe04d38cea3157f466b9a8747
-     ce20dcd0c4bae81524a96662594adde2
-     449445be7a24ce51e119d57e9e255d3f
-     b91de1a8b6b882f5b4726d5b1f2ece6e))
-   (source_dir /home/simmo/.opam/4.14.0/lib/base)
-   (modules ())
-   (include_dirs (/home/simmo/.opam/4.14.0/lib/base))))
- (library
-  ((name base.base_internalhash_types)
-   (uid 3803213fe04d38cea3157f466b9a8747)
+  ((name astring)
+   (uid 5a95678ac1f03a0ac7c00991ad1e2686)
    (local false)
    (requires ())
-   (source_dir /home/simmo/.opam/4.14.0/lib/base/base_internalhash_types)
+   (source_dir /home/simmo/.opam/4.14.0/lib/astring)
    (modules ())
-   (include_dirs (/home/simmo/.opam/4.14.0/lib/base/base_internalhash_types))))
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/astring))))
  (library
   ((name base.caml)
    (uid ce20dcd0c4bae81524a96662594adde2)
@@ -76,14 +66,6 @@
    (modules ())
    (include_dirs (/home/simmo/.opam/4.14.0/lib/base/caml))))
  (library
-  ((name base.shadow_stdlib)
-   (uid b91de1a8b6b882f5b4726d5b1f2ece6e)
-   (local false)
-   (requires (ce20dcd0c4bae81524a96662594adde2))
-   (source_dir /home/simmo/.opam/4.14.0/lib/base/shadow_stdlib)
-   (modules ())
-   (include_dirs (/home/simmo/.opam/4.14.0/lib/base/shadow_stdlib))))
- (library
   ((name bigarray)
    (uid 6760ceddf5017d0210b5d3e2eed22191)
    (local false)
@@ -91,6 +73,52 @@
    (source_dir /home/simmo/.opam/4.14.0/lib/ocaml)
    (modules ())
    (include_dirs (/home/simmo/.opam/4.14.0/lib/ocaml))))
+ (library
+  ((name bos)
+   (uid 544ea0d9efd3c7a64c143afe7d1e17f9)
+   (local false)
+   (requires
+    (efb90b03ee741e7d2bb821b2c395b799
+     5a95678ac1f03a0ac7c00991ad1e2686
+     e8ae26164630a0adddebdc6c1d7d6950
+     e513e0e7f6de491e7321010ddbbc9fc8
+     7c82c98fd32b5f392f3ad8c940ef1e9e
+     6f7186adbc64b83bab803daac023f331))
+   (source_dir /home/simmo/.opam/4.14.0/lib/bos)
+   (modules ())
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/bos))))
+ (library
+  ((name cmdliner)
+   (uid c480a7c584d174c22d86dbdb79515d7d)
+   (local false)
+   (requires ())
+   (source_dir /home/simmo/.opam/4.14.0/lib/cmdliner)
+   (modules ())
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/cmdliner))))
+ (library
+  ((name fmt)
+   (uid e513e0e7f6de491e7321010ddbbc9fc8)
+   (local false)
+   (requires ())
+   (source_dir /home/simmo/.opam/4.14.0/lib/fmt)
+   (modules ())
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/fmt))))
+ (library
+  ((name fpath)
+   (uid e8ae26164630a0adddebdc6c1d7d6950)
+   (local false)
+   (requires (5a95678ac1f03a0ac7c00991ad1e2686))
+   (source_dir /home/simmo/.opam/4.14.0/lib/fpath)
+   (modules ())
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/fpath))))
+ (library
+  ((name logs)
+   (uid 6f7186adbc64b83bab803daac023f331)
+   (local false)
+   (requires ())
+   (source_dir /home/simmo/.opam/4.14.0/lib/logs)
+   (modules ())
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/logs))))
  (library
   ((name ocamlgraph)
    (uid 0d795e4f8b0b5925c69c21e02cc9103d)
@@ -193,17 +221,6 @@
    (modules ())
    (include_dirs (/home/simmo/.opam/4.14.0/lib/parsexp))))
  (library
-  ((name parsexp_io)
-   (uid 25d6d8ad0cd9c6a8ff12d45211b130ec)
-   (local false)
-   (requires
-    (46774e2b7a404647f12956126bd28f95
-     bcb18d7853239debd574c26458c62db7
-     b5f1ee68ba5bd9694aa0f66e022e50fe))
-   (source_dir /home/simmo/.opam/4.14.0/lib/parsexp_io)
-   (modules ())
-   (include_dirs (/home/simmo/.opam/4.14.0/lib/parsexp_io))))
- (library
   ((name ppx_deriving.runtime)
    (uid 52603f9930efcca61c8e7216acb48efa)
    (local false)
@@ -236,6 +253,14 @@
    (modules ())
    (include_dirs (/home/simmo/.opam/4.14.0/lib/result))))
  (library
+  ((name rresult)
+   (uid efb90b03ee741e7d2bb821b2c395b799)
+   (local false)
+   (requires ())
+   (source_dir /home/simmo/.opam/4.14.0/lib/rresult)
+   (modules ())
+   (include_dirs (/home/simmo/.opam/4.14.0/lib/rresult))))
+ (library
   ((name seq)
    (uid 092c274fe179bf76244efc6236abbb42)
    (local false)
@@ -262,15 +287,6 @@
    (source_dir /home/simmo/.opam/4.14.0/lib/sexplib0)
    (modules ())
    (include_dirs (/home/simmo/.opam/4.14.0/lib/sexplib0))))
- (library
-  ((name stdio)
-   (uid bcb18d7853239debd574c26458c62db7)
-   (local false)
-   (requires
-    (46774e2b7a404647f12956126bd28f95 ce20dcd0c4bae81524a96662594adde2))
-   (source_dir /home/simmo/.opam/4.14.0/lib/stdio)
-   (modules ())
-   (include_dirs (/home/simmo/.opam/4.14.0/lib/stdio))))
  (library
   ((name stdlib-shims)
    (uid 249b2edaf3cc552a247667041bb5f015)
