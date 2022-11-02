@@ -15,7 +15,8 @@
  (depends
   sexplib
   ppx_sexp_conv
-  parsexp_io
+  parsexp
   opam-state
   opam-format
+  bos
   ppx_deriving))

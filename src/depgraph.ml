@@ -1,6 +1,15 @@
+open Bos
+
 open Dune_describe
 
-let dune = Parsexp_io.load_conv_exn Single t_of_sexp ~filename:"deps4.txt"
+let dune =
+  let s = OS.File.read (Fpath.v "deps3.txt") |> Result.get_ok in
+  Parsexp.Conv_single.parse_string_exn s t_of_sexp
+
+(* let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps")
+let dune =
+  let s = Result.get_ok OS.Cmd.(run_out dune_describe |> out_string |> success) in
+  Parsexp.Conv_single.parse_string_exn s t_of_sexp *)
 
 
 module V =
@@ -179,5 +188,5 @@ module GOper = Graph.Oper.P (G)
 
 let () =
   let g = GOper.transitive_reduction g in (* TODO: only on modules, not libraries/packages *)
-  (* D.output_graph stdout g *)
-  M.fprint_graph Format.std_formatter g
+  D.output_graph stdout g
+  (* M.fprint_graph Format.std_formatter g *)
