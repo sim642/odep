@@ -107,16 +107,8 @@ module M = Ocamlgraph_extra.Mermaid.Make (DG)
 
 module GOper = Graph.Oper.P (G)
 
-let dune_describe_file f =
-  let dune =
-    let s = OS.File.read (Fpath.v f) |> Result.get_ok in
-    Parsexp.Conv_single.parse_string_exn s t_of_sexp
-  in
-
-  (* let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps")
-  let dune =
-    let s = Result.get_ok OS.Cmd.(run_out dune_describe |> out_string |> success) in
-    Parsexp.Conv_single.parse_string_exn s t_of_sexp *)
+let dune_describe_s s =
+  let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
   let digest2library: V.library DH.t = DH.create 100 in
   List.iter (fun entry ->
@@ -192,6 +184,14 @@ let dune_describe_file f =
   D.output_graph stdout g
   (* M.fprint_graph Format.std_formatter g *)
 
+let dune_describe_file f =
+  let s = OS.File.read (Fpath.v f) |> Result.get_ok in
+  dune_describe_s s
+
+let dune_describe () =
+  let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps") in
+  let s = Result.get_ok OS.Cmd.(run_out dune_describe |> out_string |> success) in
+  dune_describe_s s
 
 open Cmdliner
 
@@ -199,8 +199,18 @@ let dune_describe_file_a =
   Arg.(required & pos 0 (some file) None & info [])
 let dune_describe_file_t =
   Term.(const dune_describe_file $ dune_describe_file_a)
+let dune_describe_file_c =
+  Cmd.v (Cmd.info "dune-describe-file") dune_describe_file_t
+
+(* let dune_describe_a =
+  Arg.(value & pos 0 file "" & info []) *)
+let dune_describe_t =
+  Term.(const dune_describe $ const ())
+let dune_describe_c =
+  Cmd.v (Cmd.info "dune") dune_describe_t
+
 
 let cmd =
-  Cmd.v (Cmd.info "depgraph") dune_describe_file_t
+  Cmd.group (Cmd.info "depgraph") [dune_describe_c; dune_describe_file_c]
 
 let () = exit (Cmd.eval cmd)
