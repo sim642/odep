@@ -97,7 +97,7 @@ struct
         ) g
     in
 
-    fprintf ppf "@[<v 2>graph TD@ %t@ %t@]"
+    fprintf ppf "@[<v 2>flowchart TD@ %t@ %t@]"
       print_subgraphs
       print_edges
 end
