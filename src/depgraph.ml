@@ -188,26 +188,38 @@ let dune_describe_file f =
   let s = OS.File.read (Fpath.v f) |> Result.get_ok in
   dune_describe_s s
 
-let dune_describe () =
-  let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps") in
-  let s = Result.get_ok OS.Cmd.(run_out dune_describe |> out_string |> success) in
+let dune_describe f =
+  let f = Fpath.v f in
+  let dir =
+    if OS.Dir.exists f |> Result.get_ok then
+      f
+    else
+      Fpath.parent f
+  in
+  let s = OS.Dir.with_current dir (fun () ->
+      let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps") in
+      Result.get_ok OS.Cmd.(run_out dune_describe |> out_string |> success)
+    ) ()
+    |> Result.get_ok
+  in
   dune_describe_s s
 
 open Cmdliner
 
 let dune_describe_file_a =
   let doc = Format.sprintf "File containing %s output." Arg.(doc_quote "dune describe workspace") in
-  Arg.(required & pos 0 (some file) None & info [] ~docv:"FILE" ~doc)
+  Arg.(required & pos 0 (some non_dir_file) None & info [] ~docv:"FILE" ~doc)
 let dune_describe_file_t =
   Term.(const dune_describe_file $ dune_describe_file_a)
 let dune_describe_file_c =
   let doc = Format.sprintf "Generate dependency graph from 'dune describe workspace' output." in
   Cmd.v (Cmd.info "dune-describe-file" ~doc) dune_describe_file_t
 
-(* let dune_describe_a =
-  Arg.(value & pos 0 file "" & info []) *)
+let dune_describe_a =
+  let doc = "Dune project location." in
+  Arg.(value & pos 0 file "." & info [] ~docv:"PATH" ~doc)
 let dune_describe_t =
-  Term.(const dune_describe $ const ())
+  Term.(const dune_describe $ dune_describe_a)
 let dune_describe_c =
   let doc = "Generate dependency graph from dune project." in
   Cmd.v (Cmd.info "dune" ~doc) dune_describe_t
