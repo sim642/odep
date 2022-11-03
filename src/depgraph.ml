@@ -107,7 +107,11 @@ module M = Ocamlgraph_extra.Mermaid.Make (DG)
 
 module GOper = Graph.Oper.P (G)
 
-let dune_describe_s s =
+type output_type =
+  | Dot
+  | Mermaid
+
+let dune_describe_s s t =
   let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
   let digest2library: V.library DH.t = DH.create 100 in
@@ -181,16 +185,18 @@ let dune_describe_s s =
   in
 
   let g = GOper.transitive_reduction g in (* TODO: only on modules, not libraries/packages *)
-  D.output_graph stdout g
-  (* M.fprint_graph Format.std_formatter g *)
+
+  match t with
+  | Dot -> D.output_graph stdout g
+  | Mermaid -> M.fprint_graph Format.std_formatter g
 
 open Result_syntax
 
-let dune_describe_file f =
+let dune_describe_file f t =
   let+ s = OS.File.read (Fpath.v f) in
-  dune_describe_s s
+  dune_describe_s s t
 
-let dune_describe f =
+let dune_describe f t =
   let f = Fpath.v f in
   let* dir =
     let+ is_dir = OS.Dir.exists f in
@@ -205,15 +211,20 @@ let dune_describe f =
     ) ()
     |> Result.join
   in
-  dune_describe_s s
+  dune_describe_s s t
 
 open Cmdliner
+
+let type_a =
+  let alts = [("dot", Dot); ("mermaid", Mermaid)] in
+  let doc = Format.sprintf "Output type, %s." (Arg.doc_alts_enum alts) in
+  Arg.(value & opt (enum alts) Dot & info ["t"; "type"] ~docv:"TYPE" ~doc)
 
 let dune_describe_file_a =
   let doc = Format.sprintf "File containing %s output." Arg.(doc_quote "dune describe workspace") in
   Arg.(required & pos 0 (some non_dir_file) None & info [] ~docv:"FILE" ~doc)
 let dune_describe_file_t =
-  Term.cli_parse_result Term.(const dune_describe_file $ dune_describe_file_a)
+  Term.cli_parse_result Term.(const dune_describe_file $ dune_describe_file_a $ type_a)
 let dune_describe_file_c =
   let doc = Format.sprintf "Generate dependency graph from 'dune describe workspace' output." in
   Cmd.v (Cmd.info "dune-describe-file" ~doc) dune_describe_file_t
@@ -222,7 +233,7 @@ let dune_describe_a =
   let doc = "Dune project location." in
   Arg.(value & pos 0 file "." & info [] ~docv:"PATH" ~doc)
 let dune_describe_t =
-  Term.cli_parse_result Term.(const dune_describe $ dune_describe_a)
+  Term.cli_parse_result Term.(const dune_describe $ dune_describe_a $ type_a)
 let dune_describe_c =
   let doc = "Generate dependency graph from dune project." in
   Cmd.v (Cmd.info "dune" ~doc) dune_describe_t
