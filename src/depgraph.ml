@@ -196,21 +196,26 @@ let dune_describe () =
 open Cmdliner
 
 let dune_describe_file_a =
-  Arg.(required & pos 0 (some file) None & info [])
+  let doc = Format.sprintf "File containing %s output." Arg.(doc_quote "dune describe workspace") in
+  Arg.(required & pos 0 (some file) None & info [] ~docv:"FILE" ~doc)
 let dune_describe_file_t =
   Term.(const dune_describe_file $ dune_describe_file_a)
 let dune_describe_file_c =
-  Cmd.v (Cmd.info "dune-describe-file") dune_describe_file_t
+  let doc = Format.sprintf "Generate dependency graph from 'dune describe workspace' output." in
+  Cmd.v (Cmd.info "dune-describe-file" ~doc) dune_describe_file_t
 
 (* let dune_describe_a =
   Arg.(value & pos 0 file "" & info []) *)
 let dune_describe_t =
   Term.(const dune_describe $ const ())
 let dune_describe_c =
-  Cmd.v (Cmd.info "dune") dune_describe_t
+  let doc = "Generate dependency graph from dune project." in
+  Cmd.v (Cmd.info "dune" ~doc) dune_describe_t
 
 
 let cmd =
-  Cmd.group (Cmd.info "depgraph") [dune_describe_c; dune_describe_file_c]
+  let doc = "Generate dependency graphs for OCaml modules, libraries and packages." in
+  let info = Cmd.info "depgraph" ~version:"%%VERSION%%" ~doc in
+  Cmd.group info [dune_describe_c; dune_describe_file_c]
 
 let () = exit (Cmd.eval cmd)
