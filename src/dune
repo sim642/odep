@@ -10,5 +10,6 @@
   opam-format
   opam-state
   cmdliner
-  bos)
+  bos
+  std)
  (preprocess (pps ppx_deriving.std)))
