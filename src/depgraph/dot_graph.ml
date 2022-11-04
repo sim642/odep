@@ -16,16 +16,16 @@ struct
       []
     | Library {local = false; _} ->
       [`Style `Filled]
-    | Module _ ->
-      [`Shape `Box]
+    | Module {name; _} ->
+      [`Shape `Box; `Label name]
     | LocalPackageCluster ->
       [`Fixedsize true; `Width 0.; `Height 0.; `Style `Invis; `Label ""]
   let default_vertex_attributes _ = []
   let default_edge_attributes _ = []
-  let vertex_name = function
+  let rec vertex_name = function
     | VV.Executable name -> name
     | Library {name; _} -> name
-    | Module {name; _} -> name
+    | Module {name; parent} -> vertex_name parent ^ "__" ^ name
     | LocalPackageCluster -> "local_package__"
   let get_subgraph = function
     | VV.Module {parent; _} ->
