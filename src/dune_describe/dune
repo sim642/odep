@@ -1,0 +1,4 @@
+(library
+ (name dune_describe)
+ (libraries sexplib)
+ (preprocess (pps ppx_deriving.std ppx_sexp_conv)))
