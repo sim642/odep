@@ -1,8 +1,13 @@
 open Cmdliner
 
+let cmds = [
+  Dune.cmd;
+  Dune_describe_file.cmd;
+]
+
 let cmd =
   let doc = "Generate dependency graphs for OCaml modules, libraries and packages." in
   let info = Cmd.info "depgraph" ~version:"%%VERSION%%" ~doc in
-  Cmd.group info [Dune.dune_describe_c; Dune_describe_file.dune_describe_file_c]
+  Cmd.group info cmds
 
 let () = exit (Cmd.eval cmd)

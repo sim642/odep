@@ -2,8 +2,8 @@ open Bos
 
 open Std.Result_syntax
 
-let dune_describe f t =
-  let f = Fpath.v f in
+let run path type_ =
+  let f = Fpath.v path in
   let* dir =
     let+ is_dir = OS.Dir.exists f in
     if is_dir then
@@ -17,15 +17,17 @@ let dune_describe f t =
     ) ()
     |> Result.join
   in
-  Depgraph.dune_describe_s s t
+  Depgraph.dune_describe_s s type_
 
 open Cmdliner
 
-let dune_describe_a =
+let path =
   let doc = "Dune project location." in
   Arg.(value & pos 0 file "." & info [] ~docv:"PATH" ~doc)
-let dune_describe_t =
-  Term.cli_parse_result Term.(const dune_describe $ dune_describe_a $ Common.type_a)
-let dune_describe_c =
+
+let term =
+  Term.cli_parse_result Term.(const run $ path $ Common.type_)
+
+let cmd =
   let doc = "Generate dependency graph from dune project." in
-  Cmd.v (Cmd.info "dune" ~doc) dune_describe_t
+  Cmd.v (Cmd.info "dune" ~doc) term
