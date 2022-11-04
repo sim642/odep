@@ -1,0 +1,8 @@
+(executable
+ (name main)
+ (public_name depgraph)
+ (libraries
+  depgraph
+  std
+  cmdliner
+  bos))
