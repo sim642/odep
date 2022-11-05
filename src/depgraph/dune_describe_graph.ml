@@ -48,7 +48,7 @@ let g_of_modules parent modules =
   in
   List.fold_left fold_module G.empty modules
 
-let g_of_library_modules library modules =
+let g_of_library_modules ~tred_modules library modules =
   let parent: V.t = Library library in
   let g = g_of_modules parent modules in
   let g =
@@ -64,13 +64,19 @@ let g_of_library_modules library modules =
             g
         ) g modules
   in
-  GOper.transitive_reduction g
+  if tred_modules then
+    GOper.transitive_reduction g
+  else
+    g
 
-let g_of_executable_modules executable modules =
+let g_of_executable_modules ~tred_modules executable modules =
   let parent: V.t = Executable executable in
   let g = g_of_modules parent modules in
   let g = G.remove_vertex g (Module {parent; name = "Dune__exe"}) in
-  GOper.transitive_reduction g
+  if tred_modules then
+    GOper.transitive_reduction g
+  else
+    g
 
 let g_of_libraries dune_describe =
   let digest_map = digest_map_of_dune_describe dune_describe in
@@ -97,7 +103,7 @@ let g_of_libraries dune_describe =
         g
     ) G.empty dune_describe
 
-let dune_describe_s s =
+let dune_describe_s ~tred_modules s =
   let dune_describe = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
   let g = g_of_libraries dune_describe in
@@ -107,7 +113,7 @@ let dune_describe_s s =
       | Library ({name; uid; local; modules; _} as library) ->
         let package = find_library_package library in
         let library: V.library = {package; name; digest = uid; local} in
-        let g = GOper.union g (g_of_library_modules library modules) in
+        let g = GOper.union g (g_of_library_modules ~tred_modules library modules) in
         (* library-module edges *)
         let parent: V.t = Library library in
         if local then (
@@ -120,7 +126,7 @@ let dune_describe_s s =
         let package = Some Local in
         let name = String.concat ", " names in
         let executable: V.executable = {package; name} in
-        let g = GOper.union g (g_of_executable_modules executable modules) in
+        let g = GOper.union g (g_of_executable_modules ~tred_modules executable modules) in
         (* executable-module edges *)
         List.fold_left (fun g name ->
             let parent: V.t = Executable {package; name} in
