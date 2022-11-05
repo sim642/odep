@@ -51,22 +51,26 @@ let g_of_modules parent modules =
 let g_of_library_modules library modules =
   let parent: V.t = Library library in
   let g = g_of_modules parent modules in
-  let library_module_name = String.capitalize_ascii library.name in
-  let dune_module_name = library_module_name ^ "__" in
-  if List.exists (fun (m: module_) -> m.name = dune_module_name) modules then
-    G.remove_vertex g (Module {parent; name = dune_module_name})
-  else
-    List.fold_left (fun g (m: module_) ->
-        if m.name <> library_module_name then
-          G.add_edge g (Module {parent; name = library_module_name}) (Module {parent; name = m.name})
-        else
-          g
-      ) g modules
+  let g =
+    let library_module_name = String.capitalize_ascii library.name in
+    let dune_module_name = library_module_name ^ "__" in
+    if List.exists (fun (m: module_) -> m.name = dune_module_name) modules then
+      G.remove_vertex g (Module {parent; name = dune_module_name})
+    else
+      List.fold_left (fun g (m: module_) ->
+          if m.name <> library_module_name then
+            G.add_edge g (Module {parent; name = library_module_name}) (Module {parent; name = m.name})
+          else
+            g
+        ) g modules
+  in
+  GOper.transitive_reduction g
 
 let g_of_executable_modules executable modules =
   let parent: V.t = Executable executable in
   let g = g_of_modules parent modules in
-  G.remove_vertex g (Module {parent; name = "Dune__exe"})
+  let g = G.remove_vertex g (Module {parent; name = "Dune__exe"}) in
+  GOper.transitive_reduction g
 
 let g_of_libraries dune_describe =
   let digest_map = digest_map_of_dune_describe dune_describe in
@@ -94,9 +98,9 @@ let g_of_libraries dune_describe =
     ) G.empty dune_describe
 
 let dune_describe_s s =
-  let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
+  let dune_describe = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
-  let g = g_of_libraries dune in
+  let g = g_of_libraries dune_describe in
 
   let g = List.fold_left (fun g entry ->
       match entry with
@@ -104,6 +108,7 @@ let dune_describe_s s =
         let package = find_library_package library in
         let library: V.library = {package; name; digest = uid; local} in
         let g = GOper.union g (g_of_library_modules library modules) in
+        (* library-module edges *)
         let parent: V.t = Library library in
         if local then (
           let library_module_name = String.capitalize_ascii name in
@@ -116,6 +121,7 @@ let dune_describe_s s =
         let name = String.concat ", " names in
         let executable: V.executable = {package; name} in
         let g = GOper.union g (g_of_executable_modules executable modules) in
+        (* executable-module edges *)
         List.fold_left (fun g name ->
             let parent: V.t = Executable {package; name} in
             let executable_module_name = String.capitalize_ascii name in
@@ -123,9 +129,7 @@ let dune_describe_s s =
           ) g names
       | _ ->
         g
-    ) g dune
+    ) g dune_describe
   in
-  let g = G.add_vertex g LocalPackageCluster in
 
-  let g = GOper.transitive_reduction g in (* TODO: only on modules, not libraries/packages *)
-  g
+  G.add_vertex g LocalPackageCluster
