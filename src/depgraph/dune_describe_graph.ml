@@ -1,7 +1,7 @@
 open Common
 open Dune_describe
 
-module DH = Hashtbl.Make (Digest)
+module Digest_map = Map.Make (Digest)
 
 module GOper = Graph.Oper.P (G)
 
@@ -26,18 +26,19 @@ let find_library_package = function
       Opam_index.Owner.find_opt s opam_index
       |> Option.map (fun {OpamPackage.name; _} -> Opam (OpamPackage.Name.to_string name))
 
-let dune_describe_s s =
-  let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
-
-  let digest2library: V.library DH.t = DH.create 100 in
-  List.iter (fun entry ->
+let digest_map_of_dune_describe dune_describe =
+  List.fold_left (fun digest_map entry ->
       match entry with
       | Library ({name; uid; local; _} as library) ->
-        let package = find_library_package library in
-        DH.replace digest2library uid {package; name; digest = uid; local}
+        let package = find_library_package library in (* TODO: extract *)
+        Digest_map.add uid {V.package; name; digest = uid; local} digest_map
       | _ ->
-        ()
-    ) dune;
+        digest_map
+    ) Digest_map.empty dune_describe
+
+let dune_describe_s s =
+  let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
+  let digest_map = digest_map_of_dune_describe dune in
 
   let g =
     let fold_module parent g {name; module_deps} =
@@ -58,7 +59,7 @@ let dune_describe_s s =
           let lib: V.t = Library {package; name; digest = uid; local} in
           let g = G.add_vertex g lib in
           let g = List.fold_left (fun g require ->
-              G.add_edge g lib (Library (DH.find digest2library require))
+              G.add_edge g lib (Library (Digest_map.find require digest_map))
             ) g requires
           in
           let g = List.fold_left (fold_module lib) g modules in
@@ -83,7 +84,7 @@ let dune_describe_s s =
               let exe: V.t = Executable {package; name} in
               let g = G.add_vertex g exe in
               List.fold_left (fun g require ->
-                  G.add_edge g exe (Library (DH.find digest2library require))
+                  G.add_edge g exe (Library (Digest_map.find require digest_map))
                 ) g requires
             ) g names
           in
