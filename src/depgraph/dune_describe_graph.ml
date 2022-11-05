@@ -98,36 +98,34 @@ let dune_describe_s s =
 
   let g = g_of_libraries dune in
 
-  let g =
-    let g = List.fold_left (fun g entry ->
-        match entry with
-        | Library ({name; uid; local; modules; _} as library) ->
-          let package = find_library_package library in
-          let library: V.library = {package; name; digest = uid; local} in
-          let g = GOper.union g (g_of_library_modules library modules) in
-          let parent: V.t = Library library in
-          if local then (
-            let library_module_name = String.capitalize_ascii name in
-            G.add_edge g parent (Module {parent; name = library_module_name})
-          )
-          else
-            g
-        | Executables {names; modules; _} ->
-          let package = Some Local in
-          let name = String.concat ", " names in
-          let executable: V.executable = {package; name} in
-          let g = GOper.union g (g_of_executable_modules executable modules) in
-          List.fold_left (fun g name ->
-              let parent: V.t = Executable {package; name} in
-              let executable_module_name = String.capitalize_ascii name in
-              G.add_edge g parent (Module {parent; name = executable_module_name})
-            ) g names
-        | _ ->
+  let g = List.fold_left (fun g entry ->
+      match entry with
+      | Library ({name; uid; local; modules; _} as library) ->
+        let package = find_library_package library in
+        let library: V.library = {package; name; digest = uid; local} in
+        let g = GOper.union g (g_of_library_modules library modules) in
+        let parent: V.t = Library library in
+        if local then (
+          let library_module_name = String.capitalize_ascii name in
+          G.add_edge g parent (Module {parent; name = library_module_name})
+        )
+        else
           g
-      ) g dune
-    in
-    G.add_vertex g LocalPackageCluster
+      | Executables {names; modules; _} ->
+        let package = Some Local in
+        let name = String.concat ", " names in
+        let executable: V.executable = {package; name} in
+        let g = GOper.union g (g_of_executable_modules executable modules) in
+        List.fold_left (fun g name ->
+            let parent: V.t = Executable {package; name} in
+            let executable_module_name = String.capitalize_ascii name in
+            G.add_edge g parent (Module {parent; name = executable_module_name})
+          ) g names
+      | _ ->
+        g
+    ) g dune
   in
+  let g = G.add_vertex g LocalPackageCluster in
 
   let g = GOper.transitive_reduction g in (* TODO: only on modules, not libraries/packages *)
   g
