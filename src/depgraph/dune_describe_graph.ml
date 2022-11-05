@@ -48,6 +48,26 @@ let g_of_modules parent modules =
   in
   List.fold_left fold_module G.empty modules
 
+let g_of_library_modules library modules =
+  let parent: V.t = Library library in
+  let g = g_of_modules parent modules in
+  let library_module_name = String.capitalize_ascii library.name in
+  let dune_module_name = library_module_name ^ "__" in
+  if List.exists (fun (m: module_) -> m.name = dune_module_name) modules then
+    G.remove_vertex g (Module {parent; name = dune_module_name})
+  else
+    List.fold_left (fun g (m: module_) ->
+        if m.name <> library_module_name then
+          G.add_edge g (Module {parent; name = library_module_name}) (Module {parent; name = m.name})
+        else
+          g
+      ) g modules
+
+let g_of_executable_modules executable modules =
+  let parent: V.t = Executable executable in
+  let g = g_of_modules parent modules in
+  G.remove_vertex g (Module {parent; name = "Dune__exe"})
+
 let g_of_libraries dune_describe =
   let digest_map = digest_map_of_dune_describe dune_describe in
 
@@ -83,34 +103,25 @@ let dune_describe_s s =
         match entry with
         | Library ({name; uid; local; modules; _} as library) ->
           let package = find_library_package library in
-          let lib: V.t = Library {package; name; digest = uid; local} in
-          let g = GOper.union g (g_of_modules lib modules) in
+          let library: V.library = {package; name; digest = uid; local} in
+          let g = GOper.union g (g_of_library_modules library modules) in
+          let parent: V.t = Library library in
           if local then (
-            let cap_name = String.capitalize_ascii name in
-            let g = G.add_edge g lib (Module {parent = lib; name = cap_name}) in
-            if List.exists (fun (m: module_) -> m.name = cap_name ^ "__") modules then
-              G.remove_vertex g (Module {parent = lib; name = cap_name ^ "__"})
-            else
-              (* TODO: move to g_of_modules *)
-              List.fold_left (fun g (m: module_) ->
-                  if m.name <> cap_name then
-                    G.add_edge g (Module {parent = lib; name = cap_name}) (Module {parent = lib; name = m.name})
-                  else
-                    g
-                ) g modules
+            let library_module_name = String.capitalize_ascii name in
+            G.add_edge g parent (Module {parent; name = library_module_name})
           )
           else
             g
         | Executables {names; modules; _} ->
           let package = Some Local in
           let name = String.concat ", " names in
-          let g = GOper.union g (g_of_modules (Executable {package; name}) modules) in
-          let g = List.fold_left (fun g name ->
-              let exe: V.t = Executable {package; name} in
-              G.add_edge g exe (Module {parent = exe; name = String.capitalize_ascii name})
+          let executable: V.executable = {package; name} in
+          let g = GOper.union g (g_of_executable_modules executable modules) in
+          List.fold_left (fun g name ->
+              let parent: V.t = Executable {package; name} in
+              let executable_module_name = String.capitalize_ascii name in
+              G.add_edge g parent (Module {parent; name = executable_module_name})
             ) g names
-          in
-          G.remove_vertex g (Module {parent = Executable {package; name}; name = "Dune__exe"})
         | _ ->
           g
       ) g dune
