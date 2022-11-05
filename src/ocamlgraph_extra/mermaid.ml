@@ -36,6 +36,10 @@ struct
     let print_vertex ppf v =
       try
         let a = X.vertex_attributes v in
+        let label = match List.find_opt (function `Label _ -> true | _ -> false) a with
+          | Some (`Label label) -> label
+          | _ -> X.vertex_name v
+        in
         let shape = match List.find_opt (function `Shape _ -> true | _ -> false) a with
           | Some (`Shape `Diamond) -> format_of_string "{%s}"
           | Some (`Shape `Box) -> format_of_string "(%s)"
@@ -46,7 +50,7 @@ struct
           | Some (`Style `Invis) -> raise Exit (* TODO: filter beforehand *)
           | _ -> fun _ -> ()
         in
-        fprintf ppf "id%d%(%s%)%t" (X.V.hash v) shape (X.vertex_name v) style
+        fprintf ppf "id%d%(%s%)%t" (X.V.hash v) shape label style
       with Exit ->
         ()
     in

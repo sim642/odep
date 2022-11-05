@@ -155,33 +155,33 @@ flowchart TD
   subgraph 902546259 ["(local)"]
 
     subgraph 122612022 ["depgraph"]
-      id331440415("depgraph__Opam_index")
-      id130907115("depgraph__Dune_describe_graph")
-      id658580835("depgraph__Dot_graph")
-      id593996496("depgraph__Depgraph")
-      id175675044("depgraph__Common")
+      id331440415(Opam_index)
+      id130907115(Dune_describe_graph)
+      id658580835(Dot_graph)
+      id593996496(Depgraph)
+      id175675044(Common)
       id122612022(["depgraph"])
     end
     subgraph 158492278 ["std"]
-      id1008512934("std__Std")
-      id916334710("std__Result_syntax")
+      id1008512934(Std)
+      id916334710(Result_syntax)
       id158492278(["std"])
     end
     subgraph 189591663 ["main"]
-      id725600054("main__Main")
-      id8714191("main__Dune_describe_file")
-      id952370123("main__Dune")
-      id326418831("main__Common")
+      id725600054(Main)
+      id8714191(Dune_describe_file)
+      id952370123(Dune)
+      id326418831(Common)
       id189591663{"main"}
     end
     subgraph 312718400 ["ocamlgraph_extra"]
-      id872997936("ocamlgraph_extra__Ocamlgraph_extra")
-      id157893572("ocamlgraph_extra__Mermaid")
-      id383119909("ocamlgraph_extra__Graphviz")
+      id872997936(Ocamlgraph_extra)
+      id157893572(Mermaid)
+      id383119909(Graphviz)
       id312718400(["ocamlgraph_extra"])
     end
     subgraph 557698697 ["dune_describe"]
-      id15495529("dune_describe__Dune_describe")
+      id15495529(Dune_describe)
       id557698697(["dune_describe"])
     end
   end
