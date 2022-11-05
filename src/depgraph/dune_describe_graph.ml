@@ -48,21 +48,42 @@ let g_of_modules parent modules =
   in
   List.fold_left fold_module G.empty modules
 
+let g_of_libraries dune_describe =
+  let digest_map = digest_map_of_dune_describe dune_describe in
+
+  List.fold_left (fun g entry ->
+      match entry with
+      | Library ({name; uid; local; requires; _} as library) ->
+        let package = find_library_package library in
+        let lib: V.t = Library {package; name; digest = uid; local} in
+        let g = G.add_vertex g lib in
+        List.fold_left (fun g require ->
+            G.add_edge g lib (Library (Digest_map.find require digest_map))
+          ) g requires
+      | Executables {names; requires; _} ->
+        let package = Some Local in
+        List.fold_left (fun g name ->
+            let exe: V.t = Executable {package; name} in
+            let g = G.add_vertex g exe in
+            List.fold_left (fun g require ->
+                G.add_edge g exe (Library (Digest_map.find require digest_map))
+              ) g requires
+          ) g names
+      | _ ->
+        g
+    ) G.empty dune_describe
+
 let dune_describe_s s =
   let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
-  let digest_map = digest_map_of_dune_describe dune in
+
+  let g = g_of_libraries dune in
 
   let g =
     let g = List.fold_left (fun g entry ->
         match entry with
-        | Library ({name; uid; local; requires; modules} as library) ->
+        | Library ({name; uid; local; modules; _} as library) ->
           let package = find_library_package library in
           let lib: V.t = Library {package; name; digest = uid; local} in
-          let g = G.add_vertex g lib in
-          let g = List.fold_left (fun g require ->
-              G.add_edge g lib (Library (Digest_map.find require digest_map))
-            ) g requires
-          in
           let g = GOper.union g (g_of_modules lib modules) in
           if local then (
             let cap_name = String.capitalize_ascii name in
@@ -70,6 +91,7 @@ let dune_describe_s s =
             if List.exists (fun (m: module_) -> m.name = cap_name ^ "__") modules then
               G.remove_vertex g (Module {parent = lib; name = cap_name ^ "__"})
             else
+              (* TODO: move to g_of_modules *)
               List.fold_left (fun g (m: module_) ->
                   if m.name <> cap_name then
                     G.add_edge g (Module {parent = lib; name = cap_name}) (Module {parent = lib; name = m.name})
@@ -79,16 +101,8 @@ let dune_describe_s s =
           )
           else
             g
-        | Executables {names; requires; modules} ->
+        | Executables {names; modules; _} ->
           let package = Some Local in
-          let g = List.fold_left (fun g name ->
-              let exe: V.t = Executable {package; name} in
-              let g = G.add_vertex g exe in
-              List.fold_left (fun g require ->
-                  G.add_edge g exe (Library (Digest_map.find require digest_map))
-                ) g requires
-            ) g names
-          in
           let name = String.concat ", " names in
           let g = GOper.union g (g_of_modules (Executable {package; name}) modules) in
           let g = List.fold_left (fun g name ->
@@ -99,7 +113,7 @@ let dune_describe_s s =
           G.remove_vertex g (Module {parent = Executable {package; name}; name = "Dune__exe"})
         | _ ->
           g
-      ) G.empty dune
+      ) g dune
     in
     G.add_vertex g LocalPackageCluster
   in
