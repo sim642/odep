@@ -1,6 +1,13 @@
 module V =
 struct
+  type executable = {
+    package: string option;
+    name: string;
+  }
+  [@@deriving eq, ord]
+
   type library = {
+    package: string option;
     name: string;
     digest: Dune_describe.digest;
     local: bool;
@@ -8,7 +15,7 @@ struct
   [@@deriving eq, ord]
 
   type t =
-    | Executable of string
+    | Executable of executable
     | Library of library
     | Module of {parent: t; name: string}
     | LocalPackageCluster
