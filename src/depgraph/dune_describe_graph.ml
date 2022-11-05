@@ -36,22 +36,23 @@ let digest_map_of_dune_describe dune_describe =
         digest_map
     ) Digest_map.empty dune_describe
 
+let g_of_modules parent modules =
+  let fold_module g {name; module_deps} =
+    let mod_: V.t = Module {parent; name} in
+    let fold_dep g dep =
+      G.add_edge g mod_ (Module {parent; name=dep})
+    in
+    let g = G.add_vertex g mod_ in
+    let g = List.fold_left fold_dep g module_deps.for_intf in
+    List.fold_left fold_dep g module_deps.for_impl
+  in
+  List.fold_left fold_module G.empty modules
+
 let dune_describe_s s =
   let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
   let digest_map = digest_map_of_dune_describe dune in
 
   let g =
-    let fold_module parent g {name; module_deps} =
-      let mod_: V.t = Module {parent; name} in
-      let g = G.add_vertex g mod_ in
-      let g = List.fold_left (fun g dep ->
-          G.add_edge g mod_ (Module {parent; name=dep})
-        ) g module_deps.for_intf
-      in
-      List.fold_left (fun g dep ->
-          G.add_edge g mod_ (Module {parent; name=dep})
-        ) g module_deps.for_impl
-    in
     let g = List.fold_left (fun g entry ->
         match entry with
         | Library ({name; uid; local; requires; modules} as library) ->
@@ -62,7 +63,7 @@ let dune_describe_s s =
               G.add_edge g lib (Library (Digest_map.find require digest_map))
             ) g requires
           in
-          let g = List.fold_left (fold_module lib) g modules in
+          let g = GOper.union g (g_of_modules lib modules) in
           if local then (
             let cap_name = String.capitalize_ascii name in
             let g = G.add_edge g lib (Module {parent = lib; name = cap_name}) in
@@ -89,7 +90,7 @@ let dune_describe_s s =
             ) g names
           in
           let name = String.concat ", " names in
-          let g = List.fold_left (fold_module (Executable {package; name})) g modules in
+          let g = GOper.union g (g_of_modules (Executable {package; name}) modules) in
           let g = List.fold_left (fun g name ->
               let exe: V.t = Executable {package; name} in
               G.add_edge g exe (Module {parent = exe; name = String.capitalize_ascii name})
