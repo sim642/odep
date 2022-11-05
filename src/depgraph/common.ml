@@ -20,7 +20,7 @@ struct
   type library = {
     package: package option;
     name: string;
-    digest: Dune_describe.digest;
+    digest: Dune_describe.Digest.t;
     local: bool;
   }
   [@@deriving eq, ord]

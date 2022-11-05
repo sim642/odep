@@ -1,11 +1,6 @@
 open Common
 open Dune_describe
 
-module Digest =
-struct
-  include String
-  let hash = Hashtbl.hash
-end
 module DH = Hashtbl.Make (Digest)
 
 module GOper = Graph.Oper.P (G)
