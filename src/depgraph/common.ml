@@ -1,13 +1,24 @@
+type package =
+  | Opam of string
+  | Compiler
+  | Local
+[@@deriving eq, ord]
+
+let show_package = function
+  | Opam package -> package
+  | Compiler -> "(compiler)"
+  | Local -> "(local)"
+
 module V =
 struct
   type executable = {
-    package: string option;
+    package: package option;
     name: string;
   }
   [@@deriving eq, ord]
 
   type library = {
-    package: string option;
+    package: package option;
     name: string;
     digest: Dune_describe.digest;
     local: bool;

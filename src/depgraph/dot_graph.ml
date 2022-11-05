@@ -1,7 +1,9 @@
+open Common
+
 module G =
 struct
-  module VV = Common.V
-  include Common.G
+  module VV = V
+  include G
 
   let graph_attributes _ = [`Compound true]
   let vertex_attributes = function
@@ -22,7 +24,7 @@ struct
     | Library {name; _} -> name
     | Module {name; parent} -> vertex_name parent ^ "__" ^ name
     | LocalPackageCluster -> "local_package__"
-  let local_package_subgraph = string_of_int (Hashtbl.hash "(local)")
+  let local_package_subgraph = string_of_int (Hashtbl.hash (show_package Local))
   let get_subgraph = function
     | VV.Module {parent; _} ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = Some local_package_subgraph}
@@ -31,11 +33,11 @@ struct
     | Library {local = false; package; _} ->
       begin match package with
         | Some package ->
-          Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (Hashtbl.hash package); sg_attributes = [`Label package]; sg_parent = None}
+          Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (Hashtbl.hash package); sg_attributes = [`Label (show_package package)]; sg_parent = None}
         | None -> None
       end
     | LocalPackageCluster ->
-      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = local_package_subgraph; sg_attributes = [`Label "(local)"]; sg_parent = None}
+      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = local_package_subgraph; sg_attributes = [`Label (show_package Local)]; sg_parent = None}
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
   let edge_attributes (u, v) =
     let ltail =

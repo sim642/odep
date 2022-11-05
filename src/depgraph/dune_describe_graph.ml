@@ -10,22 +10,26 @@ module DH = Hashtbl.Make (Digest)
 
 module GOper = Graph.Oper.P (G)
 
-module Opam_find =
-struct
-  let opam_index = Opam_index.create ()
-  let opam_find s = match String.split_on_char '.' s with
-    | ("threads" | "unix" | "str" | "compiler-libs" | "bigarray" | "dynlink" | "ocamldoc" | "stdlib" | "bytes") :: _ -> Some "(compiler)"
-    | s :: _ ->
-      Opam_index.Owner.find_opt s opam_index
-      |> Option.map (fun {OpamPackage.name; _} -> OpamPackage.Name.to_string name)
-    | [] -> assert false
-end
-
-let local_package = "(local)"
+let opam_index = Opam_index.create ()
 
 let find_library_package = function
-  | {local = true; _} -> Some local_package
-  | {name; local = false; _} -> Opam_find.opam_find name
+  | {local = true; _} -> Some Local
+  | {name; local = false; _} ->
+    let main_name = List.hd (String.split_on_char '.' name) in
+    match main_name with
+    | "threads"
+    | "unix"
+    | "str"
+    | "compiler-libs"
+    | "bigarray"
+    | "dynlink"
+    | "ocamldoc"
+    | "stdlib"
+    | "bytes" ->
+      Some Compiler
+    | s ->
+      Opam_index.Owner.find_opt s opam_index
+      |> Option.map (fun {OpamPackage.name; _} -> Opam (OpamPackage.Name.to_string name))
 
 let dune_describe_s s =
   let dune = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
@@ -79,7 +83,7 @@ let dune_describe_s s =
           else
             g
         | Executables {names; requires; modules} ->
-          let package = Some local_package in
+          let package = Some Local in
           let g = List.fold_left (fun g name ->
               let exe: V.t = Executable {package; name} in
               let g = G.add_vertex g exe in
