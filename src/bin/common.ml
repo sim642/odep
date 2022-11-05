@@ -13,3 +13,7 @@ let type_ =
 let tred_modules =
   let doc = "Transitively reduce module dependencies." in
   Arg.(term_map (fun b -> `Tred_modules b) & value & opt bool true & info ["tred-modules"] ~docv:"BOOL" ~doc)
+
+let tred_libraries =
+  let doc = "Transitively reduce library dependencies." in
+  Arg.(term_map (fun b -> `Tred_libraries b) & value & opt bool true & info ["tred-libraries"] ~docv:"BOOL" ~doc)

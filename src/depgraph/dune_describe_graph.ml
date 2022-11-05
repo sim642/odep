@@ -78,10 +78,10 @@ let g_of_executable_modules ~tred_modules executable modules =
   else
     g
 
-let g_of_libraries dune_describe =
+let g_of_libraries ~tred_libraries dune_describe =
   let digest_map = digest_map_of_dune_describe dune_describe in
 
-  List.fold_left (fun g entry ->
+  let g = List.fold_left (fun g entry ->
       match entry with
       | Library ({name; uid; local; requires; _} as library) ->
         let package = find_library_package library in
@@ -102,11 +102,17 @@ let g_of_libraries dune_describe =
       | _ ->
         g
     ) G.empty dune_describe
+  in
 
-let dune_describe_s ~tred_modules s =
+  if tred_libraries then
+    GOper.transitive_reduction g
+  else
+    g
+
+let dune_describe_s ~tred_modules ~tred_libraries s =
   let dune_describe = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
-  let g = g_of_libraries dune_describe in
+  let g = g_of_libraries ~tred_libraries dune_describe in
 
   let g = List.fold_left (fun g entry ->
       match entry with

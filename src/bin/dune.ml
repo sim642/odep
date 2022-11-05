@@ -2,7 +2,7 @@ open Bos
 
 open Std.Result_syntax
 
-let run path (`Type type_) (`Tred_modules tred_modules) =
+let run path (`Type type_) (`Tred_modules tred_modules) (`Tred_libraries tred_libraries) =
   let f = Fpath.v path in
   let* dir =
     let+ is_dir = OS.Dir.exists f in
@@ -17,7 +17,7 @@ let run path (`Type type_) (`Tred_modules tred_modules) =
     ) ()
     |> Result.join
   in
-  Depgraph.dune_describe_s ~tred_modules s type_
+  Depgraph.dune_describe_s ~tred_modules ~tred_libraries s type_
 
 open Cmdliner
 
@@ -26,7 +26,7 @@ let path =
   Arg.(value & pos 0 file "." & info [] ~docv:"PATH" ~doc)
 
 let term =
-  Term.cli_parse_result Term.(const run $ path $ Common.type_ $ Common.tred_modules)
+  Term.cli_parse_result Term.(const run $ path $ Common.type_ $ Common.tred_modules $ Common.tred_libraries)
 
 let cmd =
   let doc = "Generate dependency graph from dune project." in
