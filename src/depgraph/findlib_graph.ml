@@ -62,7 +62,8 @@ let g_of_findlib ~tred_libraries ?depends ?rdepends () =
     match depends, rdepends with
     | depends, None -> g_of_depends depends
     | None, Some rdepends -> g_of_rdepends rdepends
-    | Some _, Some _ -> failwith "TODO both"
+    | depends, Some rdepends ->
+      GOper.intersect (g_of_depends depends) (g_of_rdepends rdepends)
   in
 
   if tred_libraries then
