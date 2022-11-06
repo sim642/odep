@@ -18,7 +18,8 @@ let g_of_depends depends =
       let g = G.add_vertex g lib in
       let deps = Findlib.package_ancestors [] library in
       List.fold_left (fun g dep ->
-          G.add_edge g lib (Library {name = dep; digest = ""; local = false; package = None})
+          let package = Dune_describe_graph.find_library_package {Dune_describe.name = dep; uid = ""; requires = []; local = false; modules = []} in
+          G.add_edge g lib (Library {name = dep; digest = ""; local = false; package})
         ) g deps
     ) G.empty libraries
 
@@ -50,7 +51,8 @@ let g_of_rdepends rdepends =
     in
     String_set.fold (fun rdep g ->
         let g = fold_rdeps g rdep in
-        G.add_edge g (Library {name = rdep; digest = ""; local = false; package = None}) lib
+        let package = Dune_describe_graph.find_library_package {Dune_describe.name = rdep; uid = ""; requires = []; local = false; modules = []} in
+        G.add_edge g (Library {name = rdep; digest = ""; local = false; package}) lib
       ) rdeps g
   in
   fold_rdeps G.empty rdepends
