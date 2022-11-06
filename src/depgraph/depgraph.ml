@@ -19,3 +19,9 @@ let findlib ~tred_libraries ?depends ?rdepends t =
   match t with
   | Dot -> Dot.output_graph stdout g
   | Mermaid -> Mermaid.fprint_graph Format.std_formatter g
+
+let opam_installed ~tred_packages ?depends ?rdepends t =
+  let g = Opam_installed_graph.g_of_installed ~tred_packages ?depends ?rdepends () in
+  match t with
+  | Dot -> Dot.output_graph stdout g
+  | Mermaid -> Mermaid.fprint_graph Format.std_formatter g

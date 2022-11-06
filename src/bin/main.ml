@@ -4,6 +4,7 @@ let cmds = [
   Dune.cmd;
   Dune_describe_file.cmd;
   Findlib.cmd;
+  Opam_installed.cmd;
 ]
 
 let cmd =
