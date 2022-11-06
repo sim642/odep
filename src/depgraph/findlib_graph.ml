@@ -2,8 +2,12 @@ open Common
 
 module GOper = Graph.Oper.P (G)
 
-let g_of_findlib ~tred_libraries =
-  let libraries = Findlib.list_packages' () in
+let g_of_findlib ~tred_libraries ?depends () =
+  let libraries =
+    match depends with
+    | Some depends -> Findlib.package_deep_ancestors [] [depends]
+    | None -> Findlib.list_packages' ()
+  in
 
   let g = List.fold_left (fun g library ->
       let package = Dune_describe_graph.find_library_package {Dune_describe.name = library; uid = ""; requires = []; local = false; modules = []} in
