@@ -18,6 +18,7 @@
   parsexp
   opam-state
   opam-format
+  ocamlfind
   cmdliner
   bos
   ppx_deriving))

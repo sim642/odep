@@ -13,3 +13,9 @@ let dune_describe_s ~tred_modules ~tred_libraries s t =
   match t with
   | Dot -> Dot.output_graph stdout g
   | Mermaid -> Mermaid.fprint_graph Format.std_formatter g
+
+let findlib ~tred_libraries t =
+  let g = Findlib_graph.g_of_findlib ~tred_libraries in
+  match t with
+  | Dot -> Dot.output_graph stdout g
+  | Mermaid -> Mermaid.fprint_graph Format.std_formatter g

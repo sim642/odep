@@ -3,6 +3,7 @@ open Cmdliner
 let cmds = [
   Dune.cmd;
   Dune_describe_file.cmd;
+  Findlib.cmd;
 ]
 
 let cmd =

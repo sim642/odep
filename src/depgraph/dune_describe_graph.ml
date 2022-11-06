@@ -7,6 +7,7 @@ module GOper = Graph.Oper.P (G)
 
 let opam_index = Opam_index.create ()
 
+(* TODO: extract *)
 let find_library_package = function
   | {local = true; _} -> Some Local
   | {name; local = false; _} ->
