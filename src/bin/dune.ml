@@ -1,5 +1,6 @@
 open Bos
 
+open Depgraph
 open Std.Result_syntax
 
 let run path (`Type type_) (`Tred_modules tred_modules) (`Tred_libraries tred_libraries) =
@@ -17,8 +18,8 @@ let run path (`Type type_) (`Tred_modules tred_modules) (`Tred_libraries tred_li
     ) ()
     |> Result.join
   in
-  Depgraph.Dune_describe_graph.dune_describe_s ~tred_modules ~tred_libraries s
-  |> Depgraph.output type_
+  Dune_describe_graph.dune_describe_s ~tred_modules ~tred_libraries s
+  |> output type_
 
 open Cmdliner
 

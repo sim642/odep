@@ -1,8 +1,9 @@
+open Depgraph
 open Common
 
 let run (`Type type_) (`Tred_libraries tred_libraries) (`Depends depends) (`Rdepends rdepends) =
-  Depgraph.Findlib_graph.g_of_findlib ~tred_libraries ?depends ?rdepends ()
-  |> Depgraph.output type_
+  Findlib_graph.g_of_findlib ~tred_libraries ?depends ?rdepends ()
+  |> output type_
 
 open Cmdliner
 

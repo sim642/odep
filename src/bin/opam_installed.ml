@@ -1,8 +1,9 @@
+open Depgraph
 open Common
 
 let run (`Type type_) (`Tred_packages tred_packages) (`Depends depends) (`Rdepends rdepends) =
-  Depgraph.Opam_installed_graph.g_of_installed ~tred_packages ?depends ?rdepends ()
-  |> Depgraph.output type_
+  Opam_installed_graph.g_of_installed ~tred_packages ?depends ?rdepends ()
+  |> output type_
 
 open Cmdliner
 
