@@ -1,5 +1,6 @@
 let run (`Type type_) (`Tred_libraries tred_libraries) depends rdepends =
-  Depgraph.findlib ~tred_libraries ?depends ?rdepends type_
+  Depgraph.Findlib_graph.g_of_findlib ~tred_libraries ?depends ?rdepends ()
+  |> Depgraph.output type_
 
 open Cmdliner
 

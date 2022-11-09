@@ -1,27 +1,16 @@
+module Dune_describe_graph = Dune_describe_graph
+module Findlib_graph = Findlib_graph
+module Opam_installed_graph = Opam_installed_graph
+
+
 type output_type =
   | Dot
   | Mermaid
 
-module DotG = Dot_graph.G
+module Dot = Ocamlgraph_extra.Graphviz.Dot (Dot_graph.G)
+module Mermaid = Ocamlgraph_extra.Mermaid.Make (Dot_graph.G)
 
-module Dot = Ocamlgraph_extra.Graphviz.Dot (DotG)
-module Mermaid = Ocamlgraph_extra.Mermaid.Make (DotG)
-
-
-let dune_describe_s ~tred_modules ~tred_libraries s t =
-  let g = Dune_describe_graph.dune_describe_s ~tred_modules ~tred_libraries s in
-  match t with
-  | Dot -> Dot.output_graph stdout g
-  | Mermaid -> Mermaid.fprint_graph Format.std_formatter g
-
-let findlib ~tred_libraries ?depends ?rdepends t =
-  let g = Findlib_graph.g_of_findlib ~tred_libraries ?depends ?rdepends () in
-  match t with
-  | Dot -> Dot.output_graph stdout g
-  | Mermaid -> Mermaid.fprint_graph Format.std_formatter g
-
-let opam_installed ~tred_packages ?depends ?rdepends t =
-  let g = Opam_installed_graph.g_of_installed ~tred_packages ?depends ?rdepends () in
+let output t g =
   match t with
   | Dot -> Dot.output_graph stdout g
   | Mermaid -> Mermaid.fprint_graph Format.std_formatter g

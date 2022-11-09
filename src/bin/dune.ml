@@ -17,7 +17,8 @@ let run path (`Type type_) (`Tred_modules tred_modules) (`Tred_libraries tred_li
     ) ()
     |> Result.join
   in
-  Depgraph.dune_describe_s ~tred_modules ~tred_libraries s type_
+  Depgraph.Dune_describe_graph.dune_describe_s ~tred_modules ~tred_libraries s
+  |> Depgraph.output type_
 
 open Cmdliner
 
