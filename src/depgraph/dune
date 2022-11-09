@@ -1,6 +1,7 @@
 (library
  (name depgraph)
  (libraries
+  std
   dune_describe
   ocamlgraph
   ocamlgraph_extra

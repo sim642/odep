@@ -1,5 +1,6 @@
 (* From https://github.com/ocurrent/opam-dune-lint/blob/master/index.ml *)
 open Common
+open Std.Option_syntax
 
 module String_map = Map.Make (String)
 
@@ -45,5 +46,5 @@ let find_library_package name =
   | "bytes" ->
     Some Compiler
   | s ->
-    String_map.find_opt s (Lazy.force findlib_map)
-    |> Option.map (fun {OpamPackage.name; _} -> Opam (OpamPackage.Name.to_string name))
+    let+ {name; _} = String_map.find_opt s (Lazy.force findlib_map) in
+    Opam (OpamPackage.Name.to_string name)
