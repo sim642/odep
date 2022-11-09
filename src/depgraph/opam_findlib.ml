@@ -1,3 +1,5 @@
+open Common
+
 (* From https://github.com/ocurrent/opam-dune-lint/blob/master/index.ml *)
 module Owner = Map.Make(String)
 
@@ -27,3 +29,22 @@ let create () =
       | None -> acc
       | Some changes -> update_index acc changes ~pkg
     ) installed Owner.empty
+
+let opam_index = create ()
+
+let find_library_package name =
+  let main_name = List.hd (String.split_on_char '.' name) in
+  match main_name with
+  | "threads"
+  | "unix"
+  | "str"
+  | "compiler-libs"
+  | "bigarray"
+  | "dynlink"
+  | "ocamldoc"
+  | "stdlib"
+  | "bytes" ->
+    Some Compiler
+  | s ->
+    Owner.find_opt s opam_index
+    |> Option.map (fun {OpamPackage.name; _} -> Opam (OpamPackage.Name.to_string name))

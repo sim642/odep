@@ -6,7 +6,7 @@ module String_map = Map.Make (String)
 module GOper = Graph.Oper.P (G)
 
 let v_of_library library: V.t =
-  let package = Dune_describe_graph.find_library_package {Dune_describe.name = library; uid = ""; requires = []; local = false; modules = []} in
+  let package = Opam_findlib.find_library_package library in
   Library {name = library; digest = ""; local = false; package}
 
 let g_of_depends depends =

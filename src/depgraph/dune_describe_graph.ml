@@ -5,33 +5,15 @@ module Digest_map = Map.Make (Digest)
 
 module GOper = Graph.Oper.P (G)
 
-let opam_index = Opam_index.create ()
-
-(* TODO: extract *)
-let find_library_package = function
+let find_dune_library_package = function
   | {local = true; _} -> Some Local
-  | {name; local = false; _} ->
-    let main_name = List.hd (String.split_on_char '.' name) in
-    match main_name with
-    | "threads"
-    | "unix"
-    | "str"
-    | "compiler-libs"
-    | "bigarray"
-    | "dynlink"
-    | "ocamldoc"
-    | "stdlib"
-    | "bytes" ->
-      Some Compiler
-    | s ->
-      Opam_index.Owner.find_opt s opam_index
-      |> Option.map (fun {OpamPackage.name; _} -> Opam (OpamPackage.Name.to_string name))
+  | {name; local = false; _} -> Opam_findlib.find_library_package name
 
 let digest_map_of_dune_describe dune_describe =
   List.fold_left (fun digest_map entry ->
       match entry with
       | Library ({name; uid; local; _} as library) ->
-        let package = find_library_package library in (* TODO: extract *)
+        let package = find_dune_library_package library in (* TODO: extract *)
         Digest_map.add uid {V.package; name; digest = uid; local} digest_map
       | _ ->
         digest_map
@@ -85,7 +67,7 @@ let g_of_libraries ~tred_libraries dune_describe =
   let g = List.fold_left (fun g entry ->
       match entry with
       | Library ({name; uid; local; requires; _} as library) ->
-        let package = find_library_package library in
+        let package = find_dune_library_package library in
         let lib: V.t = Library {package; name; digest = uid; local} in
         let g = G.add_vertex g lib in
         List.fold_left (fun g require ->
@@ -118,7 +100,7 @@ let dune_describe_s ~tred_modules ~tred_libraries s =
   let g = List.fold_left (fun g entry ->
       match entry with
       | Library ({name; uid; local; modules; _} as library) ->
-        let package = find_library_package library in
+        let package = find_dune_library_package library in
         let library: V.library = {package; name; digest = uid; local} in
         let g = GOper.union g (g_of_library_modules ~tred_modules library modules) in
         (* library-module edges *)
