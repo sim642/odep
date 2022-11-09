@@ -8,8 +8,15 @@ let extract_changes_libraries findlib_map changes ~pkg =
   OpamStd.String.Map.fold (fun file op findlib_map ->
       match op with
       | OpamDirTrack.Added _ ->
+        (* http://projects.camlcity.org/projects/dl/findlib-1.9.6/doc/ref-html/r759.html#AEN780 *)
         begin match String.split_on_char '/' file with
           | ["lib"; lib; "META"] -> String_map.add lib pkg findlib_map
+          | ["lib"; path] ->
+            (* https://github.com/ocurrent/opam-dune-lint/issues/22 *)
+            begin match String.split_on_char '.' path with
+              | ["META"; lib] -> String_map.add lib pkg findlib_map
+              | _ -> findlib_map
+            end
           | _ -> findlib_map
         end
       | _ -> findlib_map
