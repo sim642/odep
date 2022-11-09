@@ -1,6 +1,6 @@
 open Common
 
-let run (`Type type_) (`Tred_packages tred_packages) depends rdepends =
+let run (`Type type_) (`Tred_packages tred_packages) (`Depends depends) (`Rdepends rdepends) =
   Depgraph.Opam_installed_graph.g_of_installed ~tred_packages ?depends ?rdepends ()
   |> Depgraph.output type_
 
@@ -12,11 +12,11 @@ let tred_packages =
 
 let depends =
   let doc = "Opam package whose dependencies to include." in
-  Arg.(value & opt (some string) None & info ["d"; "depends"] ~docv:"PACKAGE" ~doc)
+  Arg.(term_map (fun b -> `Depends b) & value & opt (some string) None & info ["d"; "depends"] ~docv:"PACKAGE" ~doc)
 
 let rdepends =
   let doc = "Opam package whose reverse dependencies to include." in
-  Arg.(value & opt (some string) None & info ["rdepends"] ~docv:"PACKAGE" ~doc)
+  Arg.(term_map (fun b -> `Rdepends b) & value & opt (some string) None & info ["rdepends"] ~docv:"PACKAGE" ~doc)
 
 let term =
   Term.(const run $ Common.type_ $ tred_packages $ depends $ rdepends)
