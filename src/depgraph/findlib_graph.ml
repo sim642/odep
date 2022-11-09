@@ -5,6 +5,10 @@ module String_map = Map.Make (String)
 
 module GOper = Graph.Oper.P (G)
 
+let v_of_library library: V.t =
+  let package = Dune_describe_graph.find_library_package {Dune_describe.name = library; uid = ""; requires = []; local = false; modules = []} in
+  Library {name = library; digest = ""; local = false; package}
+
 let g_of_depends depends =
   let libraries =
     match depends with
@@ -13,13 +17,11 @@ let g_of_depends depends =
   in
 
   List.fold_left (fun g library ->
-      let package = Dune_describe_graph.find_library_package {Dune_describe.name = library; uid = ""; requires = []; local = false; modules = []} in
-      let lib: V.t = Library {name = library; digest = ""; local = false; package} in
+      let lib = v_of_library library in
       let g = G.add_vertex g lib in
       let deps = Findlib.package_ancestors [] library in
       List.fold_left (fun g dep ->
-          let package = Dune_describe_graph.find_library_package {Dune_describe.name = dep; uid = ""; requires = []; local = false; modules = []} in
-          G.add_edge g lib (Library {name = dep; digest = ""; local = false; package})
+          G.add_edge g lib (v_of_library dep)
         ) g deps
     ) G.empty libraries
 
@@ -41,8 +43,7 @@ let g_of_rdepends rdepends =
   in
 
   let rec fold_rdeps g library =
-    let package = Dune_describe_graph.find_library_package {Dune_describe.name = library; uid = ""; requires = []; local = false; modules = []} in
-    let lib: V.t = Library {name = library; digest = ""; local = false; package} in
+    let lib = v_of_library library in
     let g = G.add_vertex g lib in
     let rdeps =
       match String_map.find_opt library rdeps_map with
@@ -51,8 +52,7 @@ let g_of_rdepends rdepends =
     in
     String_set.fold (fun rdep g ->
         let g = fold_rdeps g rdep in
-        let package = Dune_describe_graph.find_library_package {Dune_describe.name = rdep; uid = ""; requires = []; local = false; modules = []} in
-        G.add_edge g (Library {name = rdep; digest = ""; local = false; package}) lib
+        G.add_edge g (v_of_library rdep) lib
       ) rdeps g
   in
   fold_rdeps G.empty rdepends
