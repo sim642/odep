@@ -1,0 +1,725 @@
+digraph G {
+  compound=true;
+  "bench_finger_tree_enum" [shape=diamond, ];
+  "bench_int" [shape=diamond, ];
+  "bench_kahan" [shape=diamond, ];
+  "bench_map" [shape=diamond, ];
+  "bench_nreplace" [shape=diamond, ];
+  "bench_num" [shape=diamond, ];
+  "bench_set" [shape=diamond, ];
+  "bench_set_to_seq" [shape=diamond, ];
+  "bitset" [shape=diamond, ];
+  "deque" [shape=diamond, ];
+  "dynarray_iter" [shape=diamond, ];
+  "euler001" [shape=diamond, ];
+  "euler008" [shape=diamond, ];
+  "euler009" [shape=diamond, ];
+  "euler010" [shape=diamond, ];
+  "euler011" [shape=diamond, ];
+  "euler012" [shape=diamond, ];
+  "euler013" [shape=diamond, ];
+  "euler014" [shape=diamond, ];
+  "euler018" [shape=diamond, ];
+  "euler019" [shape=diamond, ];
+  "euler021" [shape=diamond, ];
+  "euler022" [shape=diamond, ];
+  "euler023" [shape=diamond, ];
+  "euler024" [shape=diamond, ];
+  "euler067" [shape=diamond, ];
+  "flip" [shape=diamond, ];
+  "fsum" [shape=diamond, ];
+  "grouping" [shape=diamond, ];
+  "lazylist" [shape=diamond, ];
+  "lines_of" [shape=diamond, ];
+  "main" [shape=diamond, ];
+  "mid" [shape=diamond, ];
+  "mkconf" [shape=diamond, ];
+  "popcount" [shape=diamond, ];
+  "prefilter" [shape=diamond, ];
+  "rand_choice" [shape=diamond, ];
+  "sequence" [shape=diamond, ];
+  "benchmark" [style="filled", ];
+  "camlp-streams" [style="filled", ];
+  "num" [style="filled", ];
+  "num.core" [style="filled", ];
+  "oUnit" [style="filled", ];
+  "ounit2" [style="filled", ];
+  "ounit2.advanced" [style="filled", ];
+  "seq" [style="filled", ];
+  "stdlib-shims" [style="filled", ];
+  "bytes" [style="filled", ];
+  "compiler-libs" [style="filled", ];
+  "str" [style="filled", ];
+  "threads" [style="filled", ];
+  "unix" [style="filled", ];
+  "batteries.inner.threaded";
+  "batteries.inner.toplevel";
+  "batteries.inner.unthreaded";
+  "bench";
+  "qtest_batteries";
+  "bench_finger_tree_enum__Bench_finger_tree_enum" [label="Bench_finger_tree_enum",
+                                                    shape=box, ];
+  "bench_int__Bench_int" [label="Bench_int", shape=box, ];
+  "bench_kahan__Bench_kahan" [label="Bench_kahan", shape=box, ];
+  "bench_map__Bench_map" [label="Bench_map", shape=box, ];
+  "bench_nreplace__Bench_nreplace" [label="Bench_nreplace", shape=box, ];
+  "bench_num__Bench_num" [label="Bench_num", shape=box, ];
+  "bench_set__Bench_set" [label="Bench_set", shape=box, ];
+  "bench_set_to_seq__Bench_set_to_seq" [label="Bench_set_to_seq", shape=box, ];
+  "bitset__Bitset" [label="Bitset", shape=box, ];
+  "deque__Deque" [label="Deque", shape=box, ];
+  "dynarray_iter__Dynarray_iter" [label="Dynarray_iter", shape=box, ];
+  "euler001__Euler001" [label="Euler001", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler001" [
+  label="Euler001", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler008" [
+  label="Euler008", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler009" [
+  label="Euler009", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler010" [
+  label="Euler010", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler011" [
+  label="Euler011", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler012" [
+  label="Euler012", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler013" [
+  label="Euler013", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler014" [
+  label="Euler014", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler018" [
+  label="Euler018", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler019" [
+  label="Euler019", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler021" [
+  label="Euler021", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler022" [
+  label="Euler022", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler023" [
+  label="Euler023", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler024" [
+  label="Euler024", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler067" [
+  label="Euler067", shape=box, ];
+  "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Mathlib" [
+  label="Mathlib", shape=box, ];
+  "euler008__Euler008" [label="Euler008", shape=box, ];
+  "euler009__Euler009" [label="Euler009", shape=box, ];
+  "euler010__Euler010" [label="Euler010", shape=box, ];
+  "euler011__Euler011" [label="Euler011", shape=box, ];
+  "euler012__Euler012" [label="Euler012", shape=box, ];
+  "euler013__Euler013" [label="Euler013", shape=box, ];
+  "euler014__Euler014" [label="Euler014", shape=box, ];
+  "euler018__Euler018" [label="Euler018", shape=box, ];
+  "euler019__Euler019" [label="Euler019", shape=box, ];
+  "euler021__Euler021" [label="Euler021", shape=box, ];
+  "euler022__Euler022" [label="Euler022", shape=box, ];
+  "euler023__Euler023" [label="Euler023", shape=box, ];
+  "euler024__Euler024" [label="Euler024", shape=box, ];
+  "euler067__Euler067" [label="Euler067", shape=box, ];
+  "flip__Flip" [label="Flip", shape=box, ];
+  "fsum__Fsum" [label="Fsum", shape=box, ];
+  "grouping__Grouping" [label="Grouping", shape=box, ];
+  "lazylist__Lazylist" [label="Lazylist", shape=box, ];
+  "lines_of__Lines_of" [label="Lines_of", shape=box, ];
+  "main__Main" [label="Main", shape=box, ];
+  "main__Myocamlbuild" [label="Myocamlbuild", shape=box, ];
+  "main__Test_base64" [label="Test_base64", shape=box, ];
+  "main__Test_bitset" [label="Test_bitset", shape=box, ];
+  "main__Test_bounded" [label="Test_bounded", shape=box, ];
+  "main__Test_container" [label="Test_container", shape=box, ];
+  "main__Test_digest" [label="Test_digest", shape=box, ];
+  "main__Test_dynarray" [label="Test_dynarray", shape=box, ];
+  "main__Test_enum" [label="Test_enum", shape=box, ];
+  "main__Test_file" [label="Test_file", shape=box, ];
+  "main__Test_hashcons" [label="Test_hashcons", shape=box, ];
+  "main__Test_hashtbl" [label="Test_hashtbl", shape=box, ];
+  "main__Test_map" [label="Test_map", shape=box, ];
+  "main__Test_mapfunctors" [label="Test_mapfunctors", shape=box, ];
+  "main__Test_mappable" [label="Test_mappable", shape=box, ];
+  "main__Test_modifiable" [label="Test_modifiable", shape=box, ];
+  "main__Test_multipmap" [label="Test_multipmap", shape=box, ];
+  "main__Test_num" [label="Test_num", shape=box, ];
+  "main__Test_optparse" [label="Test_optparse", shape=box, ];
+  "main__Test_pervasives" [label="Test_pervasives", shape=box, ];
+  "main__Test_pmap" [label="Test_pmap", shape=box, ];
+  "main__Test_print" [label="Test_print", shape=box, ];
+  "main__Test_random" [label="Test_random", shape=box, ];
+  "main__Test_set" [label="Test_set", shape=box, ];
+  "main__Test_stack" [label="Test_stack", shape=box, ];
+  "main__Test_string" [label="Test_string", shape=box, ];
+  "main__Test_substring" [label="Test_substring", shape=box, ];
+  "main__Test_toplevel" [label="Test_toplevel", shape=box, ];
+  "main__Test_unix" [label="Test_unix", shape=box, ];
+  "main__Test_uref" [label="Test_uref", shape=box, ];
+  "main__Test_vect" [label="Test_vect", shape=box, ];
+  "mid__Mid" [label="Mid", shape=box, ];
+  "mkconf__Mkconf" [label="Mkconf", shape=box, ];
+  "popcount__Popcount" [label="Popcount", shape=box, ];
+  "prefilter__Prefilter" [label="Prefilter", shape=box, ];
+  "rand_choice__Rand_choice" [label="Rand_choice", shape=box, ];
+  "sequence__Sequence" [label="Sequence", shape=box, ];
+  "batteries.inner.threaded__BatMutex" [label="BatMutex", shape=box, ];
+  "batteries.inner.threaded__BatRMutex" [label="BatRMutex", shape=box, ];
+  "batteries.inner.threaded__Batteries.inner.threaded" [label="Batteries.inner.threaded",
+                                                        shape=box, ];
+  "batteries.inner.threaded__BatteriesThread" [label="BatteriesThread",
+                                               shape=box, ];
+  "batteries.inner.toplevel__Batteries.inner.toplevel" [label="Batteries.inner.toplevel",
+                                                        shape=box, ];
+  "batteries.inner.toplevel__BatteriesHelp" [label="BatteriesHelp",
+                                             shape=box, ];
+  "batteries.inner.unthreaded__BatArray" [label="BatArray", shape=box, ];
+  "batteries.inner.unthreaded__BatAvlTree" [label="BatAvlTree", shape=box, ];
+  "batteries.inner.unthreaded__BatBase64" [label="BatBase64", shape=box, ];
+  "batteries.inner.unthreaded__BatBig_int" [label="BatBig_int", shape=box, ];
+  "batteries.inner.unthreaded__BatBigarray" [label="BatBigarray", shape=box, ];
+  "batteries.inner.unthreaded__BatBitSet" [label="BatBitSet", shape=box, ];
+  "batteries.inner.unthreaded__BatBool" [label="BatBool", shape=box, ];
+  "batteries.inner.unthreaded__BatBounded" [label="BatBounded", shape=box, ];
+  "batteries.inner.unthreaded__BatBuffer" [label="BatBuffer", shape=box, ];
+  "batteries.inner.unthreaded__BatBytes" [label="BatBytes", shape=box, ];
+  "batteries.inner.unthreaded__BatBytesCompat" [label="BatBytesCompat",
+                                                shape=box, ];
+  "batteries.inner.unthreaded__BatCache" [label="BatCache", shape=box, ];
+  "batteries.inner.unthreaded__BatChar" [label="BatChar", shape=box, ];
+  "batteries.inner.unthreaded__BatCharParser" [label="BatCharParser",
+                                               shape=box, ];
+  "batteries.inner.unthreaded__BatComplex" [label="BatComplex", shape=box, ];
+  "batteries.inner.unthreaded__BatConcreteQueue" [label="BatConcreteQueue",
+                                                  shape=box, ];
+  "batteries.inner.unthreaded__BatConcreteQueue_402" [label="BatConcreteQueue_402",
+                                                      shape=box, ];
+  "batteries.inner.unthreaded__BatConcreteQueue_403" [label="BatConcreteQueue_403",
+                                                      shape=box, ];
+  "batteries.inner.unthreaded__BatConcurrent" [label="BatConcurrent",
+                                               shape=box, ];
+  "batteries.inner.unthreaded__BatDeque" [label="BatDeque", shape=box, ];
+  "batteries.inner.unthreaded__BatDigest" [label="BatDigest", shape=box, ];
+  "batteries.inner.unthreaded__BatDllist" [label="BatDllist", shape=box, ];
+  "batteries.inner.unthreaded__BatDynArray" [label="BatDynArray", shape=box, ];
+  "batteries.inner.unthreaded__BatEither" [label="BatEither", shape=box, ];
+  "batteries.inner.unthreaded__BatEnum" [label="BatEnum", shape=box, ];
+  "batteries.inner.unthreaded__BatFile" [label="BatFile", shape=box, ];
+  "batteries.inner.unthreaded__BatFilename" [label="BatFilename", shape=box, ];
+  "batteries.inner.unthreaded__BatFingerTree" [label="BatFingerTree",
+                                               shape=box, ];
+  "batteries.inner.unthreaded__BatFloat" [label="BatFloat", shape=box, ];
+  "batteries.inner.unthreaded__BatFormat" [label="BatFormat", shape=box, ];
+  "batteries.inner.unthreaded__BatGc" [label="BatGc", shape=box, ];
+  "batteries.inner.unthreaded__BatGenlex" [label="BatGenlex", shape=box, ];
+  "batteries.inner.unthreaded__BatGlobal" [label="BatGlobal", shape=box, ];
+  "batteries.inner.unthreaded__BatHashcons" [label="BatHashcons", shape=box, ];
+  "batteries.inner.unthreaded__BatHashtbl" [label="BatHashtbl", shape=box, ];
+  "batteries.inner.unthreaded__BatHeap" [label="BatHeap", shape=box, ];
+  "batteries.inner.unthreaded__BatIMap" [label="BatIMap", shape=box, ];
+  "batteries.inner.unthreaded__BatIO" [label="BatIO", shape=box, ];
+  "batteries.inner.unthreaded__BatISet" [label="BatISet", shape=box, ];
+  "batteries.inner.unthreaded__BatInnerIO" [label="BatInnerIO", shape=box, ];
+  "batteries.inner.unthreaded__BatInnerPervasives" [label="BatInnerPervasives",
+                                                    shape=box, ];
+  "batteries.inner.unthreaded__BatInnerShuffle" [label="BatInnerShuffle",
+                                                 shape=box, ];
+  "batteries.inner.unthreaded__BatInnerWeaktbl" [label="BatInnerWeaktbl",
+                                                 shape=box, ];
+  "batteries.inner.unthreaded__BatInt" [label="BatInt", shape=box, ];
+  "batteries.inner.unthreaded__BatInt32" [label="BatInt32", shape=box, ];
+  "batteries.inner.unthreaded__BatInt64" [label="BatInt64", shape=box, ];
+  "batteries.inner.unthreaded__BatInterfaces" [label="BatInterfaces",
+                                               shape=box, ];
+  "batteries.inner.unthreaded__BatLazyList" [label="BatLazyList", shape=box, ];
+  "batteries.inner.unthreaded__BatLexing" [label="BatLexing", shape=box, ];
+  "batteries.inner.unthreaded__BatList" [label="BatList", shape=box, ];
+  "batteries.inner.unthreaded__BatLog" [label="BatLog", shape=box, ];
+  "batteries.inner.unthreaded__BatLogger" [label="BatLogger", shape=box, ];
+  "batteries.inner.unthreaded__BatMap" [label="BatMap", shape=box, ];
+  "batteries.inner.unthreaded__BatMarshal" [label="BatMarshal", shape=box, ];
+  "batteries.inner.unthreaded__BatMultiMap" [label="BatMultiMap", shape=box, ];
+  "batteries.inner.unthreaded__BatMultiPMap" [label="BatMultiPMap",
+                                              shape=box, ];
+  "batteries.inner.unthreaded__BatNativeint" [label="BatNativeint",
+                                              shape=box, ];
+  "batteries.inner.unthreaded__BatNum" [label="BatNum", shape=box, ];
+  "batteries.inner.unthreaded__BatNumber" [label="BatNumber", shape=box, ];
+  "batteries.inner.unthreaded__BatOpaqueInnerSys" [label="BatOpaqueInnerSys",
+                                                   shape=box, ];
+  "batteries.inner.unthreaded__BatOptParse" [label="BatOptParse", shape=box, ];
+  "batteries.inner.unthreaded__BatOption" [label="BatOption", shape=box, ];
+  "batteries.inner.unthreaded__BatOrd" [label="BatOrd", shape=box, ];
+  "batteries.inner.unthreaded__BatParserCo" [label="BatParserCo", shape=box, ];
+  "batteries.inner.unthreaded__BatPathGen" [label="BatPathGen", shape=box, ];
+  "batteries.inner.unthreaded__BatPervasives" [label="BatPervasives",
+                                               shape=box, ];
+  "batteries.inner.unthreaded__BatPrintexc" [label="BatPrintexc", shape=box, ];
+  "batteries.inner.unthreaded__BatPrintf" [label="BatPrintf", shape=box, ];
+  "batteries.inner.unthreaded__BatQueue" [label="BatQueue", shape=box, ];
+  "batteries.inner.unthreaded__BatRandom" [label="BatRandom", shape=box, ];
+  "batteries.inner.unthreaded__BatRef" [label="BatRef", shape=box, ];
+  "batteries.inner.unthreaded__BatRefList" [label="BatRefList", shape=box, ];
+  "batteries.inner.unthreaded__BatResult" [label="BatResult", shape=box, ];
+  "batteries.inner.unthreaded__BatReturn" [label="BatReturn", shape=box, ];
+  "batteries.inner.unthreaded__BatScanf" [label="BatScanf", shape=box, ];
+  "batteries.inner.unthreaded__BatSeq" [label="BatSeq", shape=box, ];
+  "batteries.inner.unthreaded__BatSet" [label="BatSet", shape=box, ];
+  "batteries.inner.unthreaded__BatSplay" [label="BatSplay", shape=box, ];
+  "batteries.inner.unthreaded__BatStack" [label="BatStack", shape=box, ];
+  "batteries.inner.unthreaded__BatStream" [label="BatStream", shape=box, ];
+  "batteries.inner.unthreaded__BatString" [label="BatString", shape=box, ];
+  "batteries.inner.unthreaded__BatSubstring" [label="BatSubstring",
+                                              shape=box, ];
+  "batteries.inner.unthreaded__BatSys" [label="BatSys", shape=box, ];
+  "batteries.inner.unthreaded__BatText" [label="BatText", shape=box, ];
+  "batteries.inner.unthreaded__BatTuple" [label="BatTuple", shape=box, ];
+  "batteries.inner.unthreaded__BatUChar" [label="BatUChar", shape=box, ];
+  "batteries.inner.unthreaded__BatUTF8" [label="BatUTF8", shape=box, ];
+  "batteries.inner.unthreaded__BatUnit" [label="BatUnit", shape=box, ];
+  "batteries.inner.unthreaded__BatUnix" [label="BatUnix", shape=box, ];
+  "batteries.inner.unthreaded__BatUref" [label="BatUref", shape=box, ];
+  "batteries.inner.unthreaded__BatVect" [label="BatVect", shape=box, ];
+  "batteries.inner.unthreaded__Batteries" [label="Batteries", shape=box, ];
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" [label="Batteries.inner.unthreaded",
+                                                            shape=box, ];
+  "batteries.inner.unthreaded__BatteriesConfig" [label="BatteriesConfig",
+                                                 shape=box, ];
+  "batteries.inner.unthreaded__BatteriesExceptionless" [label="BatteriesExceptionless",
+                                                        shape=box, ];
+  "batteries.inner.unthreaded__BatteriesPrint" [label="BatteriesPrint",
+                                                shape=box, ];
+  "batteries.inner.unthreaded__Batteries_compattest" [label="Batteries_compattest",
+                                                      shape=box, ];
+  "batteries.inner.unthreaded__Extlib" [label="Extlib", shape=box, ];
+  "bench__Bench" [label="Bench", shape=box, ];
+  "qtest_batteries__Qtest_batteries" [label="Qtest_batteries", shape=box, ];
+  "local_package__" [label="", height=0.000000, width=0.000000,
+                     fixedsize=true, style="invis", ];
+  
+  subgraph cluster_129913994 { label="(compiler)"; "unix";"threads";"str";"compiler-libs";"bytes";
+     };
+  subgraph cluster_225091939 { label="stdlib-shims"; "stdlib-shims";
+     };
+  subgraph cluster_28765721 { label="ounit"; "oUnit";
+     };
+  subgraph cluster_318720853 { label="num"; "num.core";"num";
+     };
+  subgraph cluster_697139067 { label="ounit2"; "ounit2.advanced";"ounit2";
+     };
+  subgraph cluster_771236823 { label="seq"; "seq";
+     };
+  subgraph cluster_811090752 { label="camlp-streams"; "camlp-streams";
+     };
+  subgraph cluster_894734752 { label="benchmark"; "benchmark";
+     };
+  subgraph cluster_902546259 { label="(local)"; "local_package__";
+    subgraph cluster_1010796901 { label="euler011"; "euler011__Euler011";"euler011";
+       };
+    subgraph cluster_1023891949 { label="bench_kahan"; "bench_kahan__Bench_kahan";"bench_kahan";
+       };
+    subgraph cluster_108424310 { label="euler022"; "euler022__Euler022";"euler022";
+       };
+    subgraph cluster_130270820 { label="euler012"; "euler012__Euler012";"euler012";
+       };
+    subgraph cluster_14432201 { label="bench_int"; "bench_int__Bench_int";"bench_int";
+       };
+    subgraph cluster_156965197 { label="deque"; "deque__Deque";"deque";
+       };
+    subgraph cluster_173375373 { label="fsum"; "fsum__Fsum";"fsum";
+       };
+    subgraph cluster_18182622 { label="euler024"; "euler024__Euler024";"euler024";
+       };
+    subgraph cluster_189591663 { label="main"; "main__Test_vect";"main__Test_uref";"main__Test_unix";"main__Test_toplevel";"main__Test_substring";"main__Test_string";"main__Test_stack";"main__Test_set";"main__Test_random";"main__Test_print";"main__Test_pmap";"main__Test_pervasives";"main__Test_optparse";"main__Test_num";"main__Test_multipmap";"main__Test_modifiable";"main__Test_mappable";"main__Test_mapfunctors";"main__Test_map";"main__Test_hashtbl";"main__Test_hashcons";"main__Test_file";"main__Test_enum";"main__Test_dynarray";"main__Test_digest";"main__Test_container";"main__Test_bounded";"main__Test_bitset";"main__Test_base64";"main__Myocamlbuild";"main__Main";"main";
+       };
+    subgraph cluster_192565763 { label="dynarray_iter"; "dynarray_iter__Dynarray_iter";"dynarray_iter";
+       };
+    subgraph cluster_207566780 { label="lazylist"; "lazylist__Lazylist";"lazylist";
+       };
+    subgraph cluster_207612226 { label="sequence"; "sequence__Sequence";"sequence";
+       };
+    subgraph cluster_222769124 { label="euler021"; "euler021__Euler021";"euler021";
+       };
+    subgraph cluster_239833632 { label="rand_choice"; "rand_choice__Rand_choice";"rand_choice";
+       };
+    subgraph cluster_253222725 { label="batteries.inner.threaded"; "batteries.inner.threaded__BatteriesThread";"batteries.inner.threaded__Batteries.inner.threaded";"batteries.inner.threaded__BatRMutex";"batteries.inner.threaded__BatMutex";"batteries.inner.threaded";
+       };
+    subgraph cluster_309517790 { label="mkconf"; "mkconf__Mkconf";"mkconf";
+       };
+    subgraph cluster_352097301 { label="bench"; "bench__Bench";"bench";
+       };
+    subgraph cluster_37903935 { label="mid"; "mid__Mid";"mid";
+       };
+    subgraph cluster_384838752 { label="euler023"; "euler023__Euler023";"euler023";
+       };
+    subgraph cluster_399780968 { label="euler067"; "euler067__Euler067";"euler067";
+       };
+    subgraph cluster_406639059 { label="euler014"; "euler014__Euler014";"euler014";
+       };
+    subgraph cluster_457538956 { label="prefilter"; "prefilter__Prefilter";"prefilter";
+       };
+    subgraph cluster_5043403 { label="bench_nreplace"; "bench_nreplace__Bench_nreplace";"bench_nreplace";
+       };
+    subgraph cluster_549271371 { label="euler018"; "euler018__Euler018";"euler018";
+       };
+    subgraph cluster_553130465 { label="batteries.inner.toplevel"; "batteries.inner.toplevel__BatteriesHelp";"batteries.inner.toplevel__Batteries.inner.toplevel";"batteries.inner.toplevel";
+       };
+    subgraph cluster_565809595 { label="euler009"; "euler009__Euler009";"euler009";
+       };
+    subgraph cluster_584214941 { label="bench_num"; "bench_num__Bench_num";"bench_num";
+       };
+    subgraph cluster_596302158 { label="bench_map"; "bench_map__Bench_map";"bench_map";
+       };
+    subgraph cluster_604218642 { label="grouping"; "grouping__Grouping";"grouping";
+       };
+    subgraph cluster_610575085 { label="flip"; "flip__Flip";"flip";
+       };
+    subgraph cluster_629370804 { label="bench_set_to_seq"; "bench_set_to_seq__Bench_set_to_seq";"bench_set_to_seq";
+       };
+    subgraph cluster_6325203 { label="euler001"; "euler001__Euler001";"euler001";
+       };
+    subgraph cluster_661705696 { label="euler013"; "euler013__Euler013";"euler013";
+       };
+    subgraph cluster_68564967 { label="euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067";
+                                "euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Mathlib";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler067";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler024";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler023";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler022";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler021";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler019";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler018";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler014";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler013";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler012";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler011";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler010";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler009";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler008";"euler001, euler008, euler009, euler010, euler011, euler012, euler013, euler014, euler018, euler019, euler021, euler022, euler023, euler024, euler067__Euler001";
+       };
+    subgraph cluster_754604398 { label="batteries.inner.unthreaded"; "batteries.inner.unthreaded__Extlib";"batteries.inner.unthreaded__Batteries_compattest";"batteries.inner.unthreaded__BatteriesPrint";"batteries.inner.unthreaded__BatteriesExceptionless";"batteries.inner.unthreaded__BatteriesConfig";"batteries.inner.unthreaded__Batteries.inner.unthreaded";"batteries.inner.unthreaded__Batteries";"batteries.inner.unthreaded__BatVect";"batteries.inner.unthreaded__BatUref";"batteries.inner.unthreaded__BatUnix";"batteries.inner.unthreaded__BatUnit";"batteries.inner.unthreaded__BatUTF8";"batteries.inner.unthreaded__BatUChar";"batteries.inner.unthreaded__BatTuple";"batteries.inner.unthreaded__BatText";"batteries.inner.unthreaded__BatSys";"batteries.inner.unthreaded__BatSubstring";"batteries.inner.unthreaded__BatString";"batteries.inner.unthreaded__BatStream";"batteries.inner.unthreaded__BatStack";"batteries.inner.unthreaded__BatSplay";"batteries.inner.unthreaded__BatSet";"batteries.inner.unthreaded__BatSeq";"batteries.inner.unthreaded__BatScanf";"batteries.inner.unthreaded__BatReturn";"batteries.inner.unthreaded__BatResult";"batteries.inner.unthreaded__BatRefList";"batteries.inner.unthreaded__BatRef";"batteries.inner.unthreaded__BatRandom";"batteries.inner.unthreaded__BatQueue";"batteries.inner.unthreaded__BatPrintf";"batteries.inner.unthreaded__BatPrintexc";"batteries.inner.unthreaded__BatPervasives";"batteries.inner.unthreaded__BatPathGen";"batteries.inner.unthreaded__BatParserCo";"batteries.inner.unthreaded__BatOrd";"batteries.inner.unthreaded__BatOption";"batteries.inner.unthreaded__BatOptParse";"batteries.inner.unthreaded__BatOpaqueInnerSys";"batteries.inner.unthreaded__BatNumber";"batteries.inner.unthreaded__BatNum";"batteries.inner.unthreaded__BatNativeint";"batteries.inner.unthreaded__BatMultiPMap";"batteries.inner.unthreaded__BatMultiMap";"batteries.inner.unthreaded__BatMarshal";"batteries.inner.unthreaded__BatMap";"batteries.inner.unthreaded__BatLogger";"batteries.inner.unthreaded__BatLog";"batteries.inner.unthreaded__BatList";"batteries.inner.unthreaded__BatLexing";"batteries.inner.unthreaded__BatLazyList";"batteries.inner.unthreaded__BatInterfaces";"batteries.inner.unthreaded__BatInt64";"batteries.inner.unthreaded__BatInt32";"batteries.inner.unthreaded__BatInt";"batteries.inner.unthreaded__BatInnerWeaktbl";"batteries.inner.unthreaded__BatInnerShuffle";"batteries.inner.unthreaded__BatInnerPervasives";"batteries.inner.unthreaded__BatInnerIO";"batteries.inner.unthreaded__BatISet";"batteries.inner.unthreaded__BatIO";"batteries.inner.unthreaded__BatIMap";"batteries.inner.unthreaded__BatHeap";"batteries.inner.unthreaded__BatHashtbl";"batteries.inner.unthreaded__BatHashcons";"batteries.inner.unthreaded__BatGlobal";"batteries.inner.unthreaded__BatGenlex";"batteries.inner.unthreaded__BatGc";"batteries.inner.unthreaded__BatFormat";"batteries.inner.unthreaded__BatFloat";"batteries.inner.unthreaded__BatFingerTree";"batteries.inner.unthreaded__BatFilename";"batteries.inner.unthreaded__BatFile";"batteries.inner.unthreaded__BatEnum";"batteries.inner.unthreaded__BatEither";"batteries.inner.unthreaded__BatDynArray";"batteries.inner.unthreaded__BatDllist";"batteries.inner.unthreaded__BatDigest";"batteries.inner.unthreaded__BatDeque";"batteries.inner.unthreaded__BatConcurrent";"batteries.inner.unthreaded__BatConcreteQueue_403";"batteries.inner.unthreaded__BatConcreteQueue_402";"batteries.inner.unthreaded__BatConcreteQueue";"batteries.inner.unthreaded__BatComplex";"batteries.inner.unthreaded__BatCharParser";"batteries.inner.unthreaded__BatChar";"batteries.inner.unthreaded__BatCache";"batteries.inner.unthreaded__BatBytesCompat";"batteries.inner.unthreaded__BatBytes";"batteries.inner.unthreaded__BatBuffer";"batteries.inner.unthreaded__BatBounded";"batteries.inner.unthreaded__BatBool";"batteries.inner.unthreaded__BatBitSet";"batteries.inner.unthreaded__BatBigarray";"batteries.inner.unthreaded__BatBig_int";"batteries.inner.unthreaded__BatBase64";"batteries.inner.unthreaded__BatAvlTree";"batteries.inner.unthreaded__BatArray";"batteries.inner.unthreaded";
+       };
+    subgraph cluster_781129353 { label="bench_set"; "bench_set__Bench_set";"bench_set";
+       };
+    subgraph cluster_801436905 { label="lines_of"; "lines_of__Lines_of";"lines_of";
+       };
+    subgraph cluster_868536445 { label="euler019"; "euler019__Euler019";"euler019";
+       };
+    subgraph cluster_904164378 { label="euler008"; "euler008__Euler008";"euler008";
+       };
+    subgraph cluster_927069799 { label="bitset"; "bitset__Bitset";"bitset";
+       };
+    subgraph cluster_938869564 { label="euler010"; "euler010__Euler010";"euler010";
+       };
+    subgraph cluster_970526185 { label="qtest_batteries"; "qtest_batteries__Qtest_batteries";"qtest_batteries";
+       };
+    subgraph cluster_975613260 { label="bench_finger_tree_enum"; "bench_finger_tree_enum__Bench_finger_tree_enum";"bench_finger_tree_enum";
+       };
+    subgraph cluster_978306501 { label="popcount"; "popcount__Popcount";"popcount";
+       };
+     };
+  
+  "bench_finger_tree_enum" -> "batteries.inner.unthreaded" [minlen=2,
+                                                            lhead="cluster_754604398",
+                                                            ltail="cluster_975613260",
+                                                            ];
+  "bench_finger_tree_enum" -> "bench" [minlen=2, lhead="cluster_352097301",
+                                       ltail="cluster_975613260", ];
+  "bench_finger_tree_enum" -> "bench_finger_tree_enum__Bench_finger_tree_enum";
+  "bench_int" -> "batteries.inner.unthreaded" [minlen=2,
+                                               lhead="cluster_754604398",
+                                               ltail="cluster_14432201", ];
+  "bench_int" -> "bench" [minlen=2, lhead="cluster_352097301",
+                          ltail="cluster_14432201", ];
+  "bench_int" -> "bench_int__Bench_int";
+  "bench_kahan" -> "batteries.inner.unthreaded" [minlen=2,
+                                                 lhead="cluster_754604398",
+                                                 ltail="cluster_1023891949", ];
+  "bench_kahan" -> "bench" [minlen=2, lhead="cluster_352097301",
+                            ltail="cluster_1023891949", ];
+  "bench_kahan" -> "bench_kahan__Bench_kahan";
+  "bench_map" -> "batteries.inner.unthreaded" [minlen=2,
+                                               lhead="cluster_754604398",
+                                               ltail="cluster_596302158", ];
+  "bench_map" -> "bench" [minlen=2, lhead="cluster_352097301",
+                          ltail="cluster_596302158", ];
+  "bench_map" -> "bench_map__Bench_map";
+  "bench_nreplace" -> "batteries.inner.unthreaded" [minlen=2,
+                                                    lhead="cluster_754604398",
+                                                    ltail="cluster_5043403", ];
+  "bench_nreplace" -> "bench" [minlen=2, lhead="cluster_352097301",
+                               ltail="cluster_5043403", ];
+  "bench_nreplace" -> "bench_nreplace__Bench_nreplace";
+  "bench_num" -> "batteries.inner.unthreaded" [minlen=2,
+                                               lhead="cluster_754604398",
+                                               ltail="cluster_584214941", ];
+  "bench_num" -> "bench" [minlen=2, lhead="cluster_352097301",
+                          ltail="cluster_584214941", ];
+  "bench_num" -> "bench_num__Bench_num";
+  "bench_set" -> "benchmark" [ltail="cluster_781129353", ];
+  "bench_set" -> "batteries.inner.unthreaded" [minlen=2,
+                                               lhead="cluster_754604398",
+                                               ltail="cluster_781129353", ];
+  "bench_set" -> "bench_set__Bench_set";
+  "bench_set_to_seq" -> "batteries.inner.unthreaded" [minlen=2,
+                                                      lhead="cluster_754604398",
+                                                      ltail="cluster_629370804",
+                                                      ];
+  "bench_set_to_seq" -> "bench" [minlen=2, lhead="cluster_352097301",
+                                 ltail="cluster_629370804", ];
+  "bench_set_to_seq" -> "bench_set_to_seq__Bench_set_to_seq";
+  "bitset" -> "batteries.inner.unthreaded" [minlen=2,
+                                            lhead="cluster_754604398",
+                                            ltail="cluster_927069799", ];
+  "bitset" -> "bench" [minlen=2, lhead="cluster_352097301",
+                       ltail="cluster_927069799", ];
+  "bitset" -> "bitset__Bitset";
+  "deque" -> "batteries.inner.unthreaded" [minlen=2,
+                                           lhead="cluster_754604398",
+                                           ltail="cluster_156965197", ];
+  "deque" -> "bench" [minlen=2, lhead="cluster_352097301",
+                      ltail="cluster_156965197", ];
+  "deque" -> "deque__Deque";
+  "dynarray_iter" -> "batteries.inner.unthreaded" [minlen=2,
+                                                   lhead="cluster_754604398",
+                                                   ltail="cluster_192565763", ];
+  "dynarray_iter" -> "bench" [minlen=2, lhead="cluster_352097301",
+                              ltail="cluster_192565763", ];
+  "dynarray_iter" -> "dynarray_iter__Dynarray_iter";
+  "euler001" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_6325203", ];
+  "euler001" -> "euler001__Euler001";
+  "euler008" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_904164378", ];
+  "euler008" -> "euler008__Euler008";
+  "euler009" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_565809595", ];
+  "euler009" -> "euler009__Euler009";
+  "euler010" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_938869564", ];
+  "euler010" -> "euler010__Euler010";
+  "euler011" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_1010796901", ];
+  "euler011" -> "euler011__Euler011";
+  "euler012" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_130270820", ];
+  "euler012" -> "euler012__Euler012";
+  "euler013" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_661705696", ];
+  "euler013" -> "euler013__Euler013";
+  "euler014" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_406639059", ];
+  "euler014" -> "euler014__Euler014";
+  "euler018" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_549271371", ];
+  "euler018" -> "euler018__Euler018";
+  "euler019" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_868536445", ];
+  "euler019" -> "euler019__Euler019";
+  "euler021" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_222769124", ];
+  "euler021" -> "euler021__Euler021";
+  "euler022" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_108424310", ];
+  "euler022" -> "euler022__Euler022";
+  "euler023" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_384838752", ];
+  "euler023" -> "euler023__Euler023";
+  "euler024" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_18182622", ];
+  "euler024" -> "euler024__Euler024";
+  "euler067" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_399780968", ];
+  "euler067" -> "euler067__Euler067";
+  "flip" -> "batteries.inner.unthreaded" [minlen=2,
+                                          lhead="cluster_754604398",
+                                          ltail="cluster_610575085", ];
+  "flip" -> "bench" [minlen=2, lhead="cluster_352097301",
+                     ltail="cluster_610575085", ];
+  "flip" -> "flip__Flip";
+  "fsum" -> "batteries.inner.unthreaded" [minlen=2,
+                                          lhead="cluster_754604398",
+                                          ltail="cluster_173375373", ];
+  "fsum" -> "bench" [minlen=2, lhead="cluster_352097301",
+                     ltail="cluster_173375373", ];
+  "fsum" -> "fsum__Fsum";
+  "grouping" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_604218642", ];
+  "grouping" -> "bench" [minlen=2, lhead="cluster_352097301",
+                         ltail="cluster_604218642", ];
+  "grouping" -> "grouping__Grouping";
+  "lazylist" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_207566780", ];
+  "lazylist" -> "bench" [minlen=2, lhead="cluster_352097301",
+                         ltail="cluster_207566780", ];
+  "lazylist" -> "lazylist__Lazylist";
+  "lines_of" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_801436905", ];
+  "lines_of" -> "bench" [minlen=2, lhead="cluster_352097301",
+                         ltail="cluster_801436905", ];
+  "lines_of" -> "lines_of__Lines_of";
+  "main" -> "oUnit" [ltail="cluster_189591663", ];
+  "main" -> "threads" [ltail="cluster_189591663", ];
+  "main" -> "batteries.inner.unthreaded" [minlen=2,
+                                          lhead="cluster_754604398",
+                                          ltail="cluster_189591663", ];
+  "main" -> "main__Main";
+  "mid" -> "batteries.inner.unthreaded" [minlen=2, lhead="cluster_754604398",
+                                         ltail="cluster_37903935", ];
+  "mid" -> "bench" [minlen=2, lhead="cluster_352097301",
+                    ltail="cluster_37903935", ];
+  "mid" -> "mid__Mid";
+  "mkconf" -> "str" [ltail="cluster_309517790", ];
+  "mkconf" -> "mkconf__Mkconf";
+  "popcount" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_978306501", ];
+  "popcount" -> "bench" [minlen=2, lhead="cluster_352097301",
+                         ltail="cluster_978306501", ];
+  "popcount" -> "popcount__Popcount";
+  "prefilter" -> "str" [ltail="cluster_457538956", ];
+  "prefilter" -> "prefilter__Prefilter";
+  "rand_choice" -> "batteries.inner.unthreaded" [minlen=2,
+                                                 lhead="cluster_754604398",
+                                                 ltail="cluster_239833632", ];
+  "rand_choice" -> "bench" [minlen=2, lhead="cluster_352097301",
+                            ltail="cluster_239833632", ];
+  "rand_choice" -> "rand_choice__Rand_choice";
+  "sequence" -> "batteries.inner.unthreaded" [minlen=2,
+                                              lhead="cluster_754604398",
+                                              ltail="cluster_207612226", ];
+  "sequence" -> "bench" [minlen=2, lhead="cluster_352097301",
+                         ltail="cluster_207612226", ];
+  "sequence" -> "sequence__Sequence";
+  "benchmark" -> "unix";
+  "num" -> "num.core";
+  "oUnit" -> "ounit2";
+  "ounit2" -> "ounit2.advanced";
+  "ounit2.advanced" -> "seq";
+  "ounit2.advanced" -> "stdlib-shims";
+  "ounit2.advanced" -> "bytes";
+  "ounit2.advanced" -> "unix";
+  "threads" -> "unix";
+  "batteries.inner.threaded" -> "threads" [ltail="cluster_253222725", ];
+  "batteries.inner.threaded" -> "batteries.inner.unthreaded" [minlen=2,
+                                                              lhead="cluster_754604398",
+                                                              ltail="cluster_253222725",
+                                                              ];
+  "batteries.inner.threaded" -> "batteries.inner.threaded__Batteries.inner.threaded";
+  "batteries.inner.toplevel" -> "compiler-libs" [ltail="cluster_553130465", ];
+  "batteries.inner.toplevel" -> "threads" [ltail="cluster_553130465", ];
+  "batteries.inner.toplevel" -> "batteries.inner.unthreaded" [minlen=2,
+                                                              lhead="cluster_754604398",
+                                                              ltail="cluster_553130465",
+                                                              ];
+  "batteries.inner.toplevel" -> "batteries.inner.toplevel__Batteries.inner.toplevel";
+  "batteries.inner.unthreaded" -> "camlp-streams" [ltail="cluster_754604398", ];
+  "batteries.inner.unthreaded" -> "num" [ltail="cluster_754604398", ];
+  "batteries.inner.unthreaded" -> "str" [ltail="cluster_754604398", ];
+  "batteries.inner.unthreaded" -> "unix" [ltail="cluster_754604398", ];
+  "batteries.inner.unthreaded" -> "batteries.inner.unthreaded__Batteries.inner.unthreaded";
+  "bench" -> "unix" [ltail="cluster_352097301", ];
+  "bench" -> "bench__Bench";
+  "qtest_batteries" -> "qtest_batteries__Qtest_batteries";
+  "batteries.inner.threaded__Batteries.inner.threaded" -> "batteries.inner.threaded__BatMutex";
+  "batteries.inner.threaded__Batteries.inner.threaded" -> "batteries.inner.threaded__BatRMutex";
+  "batteries.inner.threaded__Batteries.inner.threaded" -> "batteries.inner.threaded__BatteriesThread";
+  "batteries.inner.toplevel__Batteries.inner.toplevel" -> "batteries.inner.toplevel__BatteriesHelp";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatArray";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatAvlTree";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBase64";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBig_int";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBigarray";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBitSet";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBool";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBounded";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBuffer";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBytes";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatBytesCompat";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatCache";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatChar";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatCharParser";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatComplex";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatConcreteQueue";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatConcreteQueue_402";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatConcreteQueue_403";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatConcurrent";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatDeque";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatDigest";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatDllist";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatDynArray";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatEither";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatEnum";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatFile";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatFilename";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatFingerTree";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatFloat";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatFormat";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatGc";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatGenlex";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatGlobal";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatHashcons";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatHashtbl";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatHeap";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatIMap";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatIO";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatISet";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInnerIO";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInnerPervasives";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInnerShuffle";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInnerWeaktbl";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInt";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInt32";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInt64";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatInterfaces";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatLazyList";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatLexing";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatList";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatLog";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatLogger";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatMap";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatMarshal";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatMultiMap";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatMultiPMap";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatNativeint";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatNum";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatNumber";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatOpaqueInnerSys";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatOptParse";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatOption";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatOrd";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatParserCo";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatPathGen";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatPervasives";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatPrintexc";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatPrintf";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatQueue";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatRandom";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatRef";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatRefList";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatResult";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatReturn";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatScanf";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatSeq";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatSet";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatSplay";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatStack";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatStream";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatString";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatSubstring";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatSys";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatText";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatTuple";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatUChar";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatUTF8";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatUnit";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatUnix";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatUref";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatVect";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__Batteries";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatteriesConfig";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatteriesExceptionless";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__BatteriesPrint";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__Batteries_compattest";
+  "batteries.inner.unthreaded__Batteries.inner.unthreaded" -> "batteries.inner.unthreaded__Extlib";
+  
+  }

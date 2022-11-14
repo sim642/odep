@@ -22,12 +22,16 @@ let digest_map_of_dune_describe dune_describe =
 let g_of_modules parent modules =
   let fold_module g {name; module_deps} =
     let mod_: V.t = Module {parent; name} in
-    let fold_dep g dep =
-      G.add_edge g mod_ (Module {parent; name=dep})
-    in
     let g = G.add_vertex g mod_ in
-    let g = List.fold_left fold_dep g module_deps.for_intf in
-    List.fold_left fold_dep g module_deps.for_impl
+    match module_deps with
+    | Some module_deps ->
+      let fold_dep g dep =
+        G.add_edge g mod_ (Module {parent; name=dep})
+      in
+      let g = List.fold_left fold_dep g module_deps.for_intf in
+      List.fold_left fold_dep g module_deps.for_impl
+    | None ->
+      g (* TODO: need other exclusions? *)
   in
   List.fold_left fold_module G.empty modules
 

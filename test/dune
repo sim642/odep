@@ -1,3 +1,21 @@
+; deps
+
+(rule
+ (with-stdout-to deps.dot
+  (run depgraph dune-describe-file -t dot %{dep:deps.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps.dot.expected deps.dot)))
+
+(rule
+ (with-stdout-to deps.mermaid
+  (run depgraph dune-describe-file -t mermaid %{dep:deps.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps.mermaid.expected deps.mermaid)))
+
 ; deps2
 
 (rule

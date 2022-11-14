@@ -15,7 +15,7 @@ type module_deps = {
 
 type module_ = {
   name: string;
-  module_deps: module_deps;
+  module_deps: module_deps option [@sexp.option];
 }
 [@@deriving of_sexp] [@@sexp.allow_extra_fields]
 
