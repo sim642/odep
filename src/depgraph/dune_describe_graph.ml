@@ -96,7 +96,7 @@ let g_of_libraries ~tred_libraries dune_describe =
   else
     g
 
-let dune_describe_s ~tred_modules ~tred_libraries s =
+let g_of_string ~tred_modules ~tred_libraries s =
   let dune_describe = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
   let g = g_of_libraries ~tred_libraries dune_describe in
