@@ -1,5 +1,6 @@
 (* From https://github.com/ocurrent/opam-dune-lint/blob/master/index.ml *)
 open Common
+open Std.Common_syntax
 open Std.Option_syntax
 
 module String_map = Map.Make (String)
@@ -25,7 +26,7 @@ let extract_changes_libraries findlib_map changes ~pkg =
 let create_findlib_map () =
   let root = OpamStateConfig.opamroot () in
   ignore (OpamStateConfig.load_defaults ~lock_kind:`Lock_read root);
-  OpamGlobalState.with_ `Lock_none @@ fun gt ->
+  let@ gt = OpamGlobalState.with_ `Lock_none in
   let switch = OpamStateConfig.get_switch () in
 
   let installed = (OpamSwitchState.load_selections ~lock_kind:`Lock_read gt switch).sel_installed in

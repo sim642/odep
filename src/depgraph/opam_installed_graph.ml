@@ -1,6 +1,7 @@
 open OpamTypes
 
 open Common
+open Std.Common_syntax
 
 module Opkg = OpamPackage
 module Ofml = OpamFormula
@@ -100,9 +101,9 @@ let g_of_installed ~tred_packages ?depends ?rdepends () =
   ignore (OpamStateConfig.load_defaults root);
   OpamCoreConfig.init ();
   OpamRepositoryConfig.init ();
-  OpamStateConfig.init ~root_dir:root () ;
-  OpamGlobalState.with_ `Lock_none @@ fun gt ->
-  OpamSwitchState.with_ `Lock_none gt @@ fun st ->
+  OpamStateConfig.init ~root_dir:root ();
+  let@ gt = OpamGlobalState.with_ `Lock_none in
+  let@ st = OpamSwitchState.with_ `Lock_none gt in
   let env = OpamPackageVar.resolve st in
 
   let g =
