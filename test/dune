@@ -1,0 +1,53 @@
+; deps2
+
+(rule
+ (with-stdout-to deps2.dot
+  (run depgraph dune-describe-file -t dot %{dep:deps2.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps2.dot.expected deps2.dot)))
+
+(rule
+ (with-stdout-to deps2.mermaid
+  (run depgraph dune-describe-file -t mermaid %{dep:deps2.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps2.mermaid.expected deps2.mermaid)))
+
+; deps3
+
+(rule
+ (with-stdout-to deps3.dot
+  (run depgraph dune-describe-file -t dot %{dep:deps3.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps3.dot.expected deps3.dot)))
+
+(rule
+ (with-stdout-to deps3.mermaid
+  (run depgraph dune-describe-file -t mermaid %{dep:deps3.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps3.mermaid.expected deps3.mermaid)))
+
+; deps4
+
+(rule
+ (with-stdout-to deps4.dot
+  (run depgraph dune-describe-file -t dot %{dep:deps4.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps4.dot.expected deps4.dot)))
+
+(rule
+ (with-stdout-to deps4.mermaid
+  (run depgraph dune-describe-file -t mermaid %{dep:deps4.txt})))
+
+(rule
+ (alias runtest)
+ (action (diff deps4.mermaid.expected deps4.mermaid)))
