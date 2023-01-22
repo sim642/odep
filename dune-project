@@ -13,6 +13,7 @@
  (name odep)
  (synopsis "Dependency graphs for OCaml modules, libraries and packages.")
  (depends
+  (ocaml (>= 4.08))
   sexplib
   ppx_sexp_conv
   parsexp
