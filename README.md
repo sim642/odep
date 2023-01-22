@@ -4,14 +4,28 @@ Dependency graphs for OCaml modules, libraries and packages.
 
 ## Examples
 
-### This package
+### dune
+Dependency graphs for dune project modules and libraries, examples here for this repository.
+Includes clusters for libraries and opam packages.
+
+#### xdot
+```console
+odep dune | xdot -
+```
+opens `xdot` for interactive dot graph viewing.
 
 #### dot
-
-[![Dependency graph for odep](img/odep.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/odep.svg)
+```console
+odep dune | dot -Tsvg > img/odep.svg
+```
+produces:
+[![Dune dependency graph for odep](img/dune-odep.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/dune-odep.svg)
 
 #### Mermaid
-
+```console
+odep dune -t mermaid
+```
+copied into a `mermaid` language block in GitHub Flavored Markdown produces:
 ```mermaid
 flowchart TD
   subgraph 102489341 ["parsexp"]
@@ -288,6 +302,49 @@ flowchart TD
   id1008512934-->id262221135
   id1008512934-->id916334710
 ```
+
+### findlib
+Dependency graphs for _installed_ findlib libraries.
+Includes clusters for opam packages.
+
+#### Dependencies
+```console
+odep findlib --depends=dune-release
+```
+[![Findlib dependency graph for dune-release](img/findlib-depends-dune-release.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/findlib-depends-dune-release.svg)
+
+#### Reverse dependencies
+```console
+odep findlib --rdepends=fmt
+```
+[![Findlib reverse dependency graph for fmt](img/findlib-rdepends-fmt.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/findlib-rdepends-fmt.svg)
+
+#### Intersection of dependencies and reverse dependencies
+```console
+odep findlib --depends=dune-release --rdepends=fmt
+```
+[![Findlib dependency and reverse dependency intersection graph for dune-release and fmt](img/findlib-depends-dune-release-rdepends-fmt.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/findlib-depends-dune-release-rdepends-fmt.svg)
+
+### opam
+Dependency graphs for _installed_ opam packages.
+
+#### Dependencies
+```console
+odep opam --depends=dune-release
+```
+[![Opam dependency graph for dune-release](img/opam-depends-dune-release.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/opam-depends-dune-release.svg)
+
+#### Reverse dependencies
+```console
+odep opam --rdepends=fmt
+```
+[![Opam reverse dependency graph for fmt](img/opam-rdepends-fmt.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/opam-rdepends-fmt.svg)
+
+#### Intersection of dependencies and reverse dependencies
+```console
+odep opam --depends=dune-release --rdepends=fmt
+```
+[![Opam dependency and reverse dependency intersection graph for dune-release and fmt](img/opam-depends-dune-release-rdepends-fmt.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/opam-depends-dune-release-rdepends-fmt.svg)
 
 ## Other tools
 
