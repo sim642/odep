@@ -174,6 +174,7 @@ flowchart TD
       id1008512934(Std)
       id916334710(Result_syntax)
       id262221135(Option_syntax)
+      id768355202(Common_syntax)
       id158492278(["std"])
     end
     subgraph 189591663 ["main"]
@@ -283,6 +284,7 @@ flowchart TD
   id439874552-->id175675044
   id157893572-->id383119909
   id872997936-->id157893572
+  id1008512934-->id768355202
   id1008512934-->id262221135
   id1008512934-->id916334710
 ```
