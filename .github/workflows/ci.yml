@@ -111,3 +111,6 @@ jobs:
 
       - name: Install with test
         run: opam install odep --with-test
+
+      - name: Execute installed
+        run: opam exec -- odep --version
