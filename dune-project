@@ -11,7 +11,7 @@
 
 (package
  (name odep)
- (synopsis "Dependency graphs for OCaml modules, libraries and packages.")
+ (synopsis "Dependency graphs for OCaml modules, libraries and packages")
  (depends
   sexplib
   ppx_sexp_conv
