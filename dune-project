@@ -17,7 +17,8 @@
   sexplib
   ppx_sexp_conv
   parsexp
-  opam-state
+  (opam-core (>= 2.1))
+  (opam-state (>= 2.1))
   opam-format
   ocamlfind
   cmdliner
