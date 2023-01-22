@@ -1,0 +1,116 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os:
+          - ubuntu-latest
+          # - macos-latest
+        ocaml-compiler:
+          - 5.0.0
+          - 4.14.x
+          - 4.13.x
+          - 4.12.x
+          - 4.11.x
+          - 4.10.x
+          - 4.09.x
+          - 4.08.x
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up OCaml ${{ matrix.ocaml-compiler }}
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+
+      - name: Install dependencies
+        run: opam install . --deps-only --with-test
+
+      - name: Build
+        run: opam exec -- dune build
+
+      - name: Test
+        run: opam exec -- dune runtest
+
+
+  lower-bounds-downgrade:
+    # use external 0install solver to downgrade: https://github.com/ocaml-opam/opam-0install-solver
+    # TODO: will be built in in opam 2.2: https://github.com/ocaml/opam/pull/4909
+
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        ocaml-compiler:
+          - 4.14.x
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      OPAMCONFIRMLEVEL: unsafe-yes # allow opam depext to yes package manager prompts
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up OCaml ${{ matrix.ocaml-compiler }}
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+
+      - name: Install dependencies
+        run: opam install . --deps-only --with-test
+
+      - name: Install opam-0install
+        run: opam install opam-0install
+
+      - name: Downgrade dependencies
+        # must specify ocaml-base-compiler again to prevent it from being downgraded
+        # run: opam install $(opam exec -- opam-0install --prefer-oldest odep ocaml-base-compiler.${{ matrix.ocaml-compiler }})
+        run: opam install --unlock-base $(opam exec -- opam-0install --prefer-oldest --with-test odep)
+
+      - name: Build
+        run: opam exec -- dune build
+
+      - name: Test
+        run: opam exec -- dune runtest
+
+
+  opam-install:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        ocaml-compiler:
+          - 4.14.x
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up OCaml ${{ matrix.ocaml-compiler }}
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: ${{ matrix.ocaml-compiler }}
+
+      - name: Install with test
+        run: opam install odep --with-test
+
+      - name: Execute installed
+        run: opam exec -- odep --version

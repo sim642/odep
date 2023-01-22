@@ -13,12 +13,16 @@
  (name odep)
  (synopsis "Dependency graphs for OCaml modules, libraries and packages")
  (depends
+  (ocaml (>= 4.08))
   sexplib
-  ppx_sexp_conv
+  (ppx_sexp_conv (>= v0.13))
   parsexp
-  opam-state
+  (opam-core (>= 2.1.0))
+  (opam-state (>= 2.1.0))
   opam-format
-  ocamlfind
-  cmdliner
+  (ocamlfind (>= 1.8.1))
+  (cmdliner (>= 1.1.0))
   bos
-  ppx_deriving))
+  ppx_deriving)
+ (conflicts
+  (result (< 1.5))))
