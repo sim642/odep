@@ -7,7 +7,7 @@ license: "MIT"
 homepage: "https://github.com/sim642/odep"
 bug-reports: "https://github.com/sim642/odep/issues"
 depends: [
-  "dune" {>= "2.5"}
+  "dune" {>= "2.7"}
   "ocaml" {>= "4.08"}
   "sexplib"
   "ppx_sexp_conv" {>= "v0.13"}
@@ -19,12 +19,13 @@ depends: [
   "cmdliner" {>= "1.1.0"}
   "bos"
   "ppx_deriving"
+  "odoc" {with-doc}
 ]
 conflicts: [
   "result" {< "1.5"}
 ]
 build: [
-  ["dune" "subst"] {pinned}
+  ["dune" "subst"] {dev}
   [
     "dune"
     "build"
