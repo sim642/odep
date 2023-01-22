@@ -21,6 +21,6 @@
   (opam-state (>= 2.1.0))
   opam-format
   (ocamlfind (>= 1.8.1))
-  cmdliner
+  (cmdliner (>= 1.1.0))
   bos
   ppx_deriving))
