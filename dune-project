@@ -23,4 +23,6 @@
   (ocamlfind (>= 1.8.1))
   (cmdliner (>= 1.1.0))
   bos
-  ppx_deriving))
+  ppx_deriving)
+ (conflicts
+  (result (< 1.5))))

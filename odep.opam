@@ -20,6 +20,9 @@ depends: [
   "bos"
   "ppx_deriving"
 ]
+conflicts: [
+  "result" {< "1.5"}
+]
 build: [
   ["dune" "subst"] {pinned}
   [
