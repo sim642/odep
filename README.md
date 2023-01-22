@@ -1,5 +1,7 @@
 # odep
 
+[![ci workflow status](https://github.com/sim642/odep/actions/workflows/ci.yml/badge.svg)](https://github.com/sim642/odep/actions/workflows/ci.yml)
+
 Dependency graphs for OCaml modules, libraries and packages.
 
 ## Examples
