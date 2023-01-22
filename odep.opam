@@ -4,8 +4,8 @@ synopsis: "Dependency graphs for OCaml modules, libraries and packages."
 maintainer: ["Simmo Saan <simmo.saan@gmail.com>"]
 authors: ["Simmo Saan"]
 license: "MIT"
-homepage: "https://github.com/sim642/ocaml-depgraph"
-bug-reports: "https://github.com/sim642/ocaml-depgraph/issues"
+homepage: "https://github.com/sim642/odep"
+bug-reports: "https://github.com/sim642/odep/issues"
 depends: [
   "dune" {>= "2.5"}
   "sexplib"
@@ -32,4 +32,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-dev-repo: "git+https://github.com/sim642/ocaml-depgraph.git"
+dev-repo: "git+https://github.com/sim642/odep.git"

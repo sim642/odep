@@ -2,7 +2,7 @@
 
 (rule
  (with-stdout-to deps.dot
-  (run depgraph dune-describe-file -t dot %{dep:deps.sexp})))
+  (run odep dune-describe-file -t dot %{dep:deps.sexp})))
 
 (rule
  (alias runtest)
@@ -10,7 +10,7 @@
 
 (rule
  (with-stdout-to deps.mermaid
-  (run depgraph dune-describe-file -t mermaid %{dep:deps.sexp})))
+  (run odep dune-describe-file -t mermaid %{dep:deps.sexp})))
 
 (rule
  (alias runtest)
@@ -20,7 +20,7 @@
 
 (rule
  (with-stdout-to deps2.dot
-  (run depgraph dune-describe-file -t dot %{dep:deps2.sexp})))
+  (run odep dune-describe-file -t dot %{dep:deps2.sexp})))
 
 (rule
  (alias runtest)
@@ -28,7 +28,7 @@
 
 (rule
  (with-stdout-to deps2.mermaid
-  (run depgraph dune-describe-file -t mermaid %{dep:deps2.sexp})))
+  (run odep dune-describe-file -t mermaid %{dep:deps2.sexp})))
 
 (rule
  (alias runtest)
@@ -38,7 +38,7 @@
 
 (rule
  (with-stdout-to deps3.dot
-  (run depgraph dune-describe-file -t dot %{dep:deps3.sexp})))
+  (run odep dune-describe-file -t dot %{dep:deps3.sexp})))
 
 (rule
  (alias runtest)
@@ -46,7 +46,7 @@
 
 (rule
  (with-stdout-to deps3.mermaid
-  (run depgraph dune-describe-file -t mermaid %{dep:deps3.sexp})))
+  (run odep dune-describe-file -t mermaid %{dep:deps3.sexp})))
 
 (rule
  (alias runtest)
@@ -56,7 +56,7 @@
 
 (rule
  (with-stdout-to deps4.dot
-  (run depgraph dune-describe-file -t dot %{dep:deps4.sexp})))
+  (run odep dune-describe-file -t dot %{dep:deps4.sexp})))
 
 (rule
  (alias runtest)
@@ -64,7 +64,7 @@
 
 (rule
  (with-stdout-to deps4.mermaid
-  (run depgraph dune-describe-file -t mermaid %{dep:deps4.sexp})))
+  (run odep dune-describe-file -t mermaid %{dep:deps4.sexp})))
 
 (rule
  (alias runtest)

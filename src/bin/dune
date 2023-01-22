@@ -1,6 +1,6 @@
 (executable
  (name main)
- (public_name depgraph)
+ (public_name odep)
  (libraries
   depgraph
   std

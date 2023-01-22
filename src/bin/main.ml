@@ -9,7 +9,7 @@ let cmds = [
 
 let cmd =
   let doc = "Generate dependency graphs for OCaml modules, libraries and packages." in
-  let info = Cmd.info "depgraph" ~version:"%%VERSION%%" ~doc in
+  let info = Cmd.info "odep" ~version:"%%VERSION%%" ~doc in
   Cmd.group info cmds
 
 let () = exit (Cmd.eval cmd)

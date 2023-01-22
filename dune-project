@@ -1,16 +1,16 @@
 (lang dune 2.5)
 
-(name depgraph)
+(name odep)
 
 (generate_opam_files true)
 
-(source (github sim642/ocaml-depgraph))
+(source (github sim642/odep))
 (authors "Simmo Saan")
 (maintainers "Simmo Saan <simmo.saan@gmail.com>")
 (license MIT)
 
 (package
- (name depgraph)
+ (name odep)
  (synopsis "Dependency graphs for OCaml modules, libraries and packages.")
  (depends
   sexplib

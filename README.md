@@ -1,4 +1,4 @@
-# ocaml-depgraph
+# odep
 
 Dependency graphs for OCaml modules, libraries and packages.
 
@@ -8,7 +8,7 @@ Dependency graphs for OCaml modules, libraries and packages.
 
 #### dot
 
-[![Dependency graph for ocaml-depgraph](img/ocaml-depgraph.svg)](https://raw.githubusercontent.com/sim642/ocaml-depgraph/master/img/ocaml-depgraph.svg)
+[![Dependency graph for odep](img/odep.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/odep.svg)
 
 #### Mermaid
 
