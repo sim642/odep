@@ -1,3 +1,5 @@
+; Not under runtest alias, because output depends on installed optional opam packages.
+
 ; deps
 
 (rule
@@ -5,7 +7,7 @@
   (run odep dune-describe-file -t dot %{dep:deps.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps.dot.expected deps.dot)))
 
 (rule
@@ -13,7 +15,7 @@
   (run odep dune-describe-file -t mermaid %{dep:deps.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps.mermaid.expected deps.mermaid)))
 
 ; deps2
@@ -23,7 +25,7 @@
   (run odep dune-describe-file -t dot %{dep:deps2.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps2.dot.expected deps2.dot)))
 
 (rule
@@ -31,7 +33,7 @@
   (run odep dune-describe-file -t mermaid %{dep:deps2.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps2.mermaid.expected deps2.mermaid)))
 
 ; deps3
@@ -41,7 +43,7 @@
   (run odep dune-describe-file -t dot %{dep:deps3.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps3.dot.expected deps3.dot)))
 
 (rule
@@ -49,7 +51,7 @@
   (run odep dune-describe-file -t mermaid %{dep:deps3.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps3.mermaid.expected deps3.mermaid)))
 
 ; deps4
@@ -59,7 +61,7 @@
   (run odep dune-describe-file -t dot %{dep:deps4.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps4.dot.expected deps4.dot)))
 
 (rule
@@ -67,5 +69,5 @@
   (run odep dune-describe-file -t mermaid %{dep:deps4.sexp})))
 
 (rule
- (alias runtest)
+ (alias sim642test)
  (action (diff deps4.mermaid.expected deps4.mermaid)))
