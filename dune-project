@@ -20,7 +20,7 @@
   (opam-core (>= 2.1.0))
   (opam-state (>= 2.1.0))
   opam-format
-  ocamlfind
+  (ocamlfind (>= 1.8.1))
   cmdliner
   bos
   ppx_deriving))
