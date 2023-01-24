@@ -6,6 +6,11 @@
 
 Dependency graphs for OCaml modules, libraries and packages.
 
+## Installation
+```console
+opam install odep
+```
+
 ## Examples
 
 ### dune
