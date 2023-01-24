@@ -1,6 +1,8 @@
 # odep
 
 [![ci workflow status](https://github.com/sim642/odep/actions/workflows/ci.yml/badge.svg)](https://github.com/sim642/odep/actions/workflows/ci.yml)
+[![GitHub release status](https://img.shields.io/github/v/release/sim642/odep)](https://github.com/sim642/odep/releases)
+[![opam package status](https://badgen.net/opam/v/odep)](https://opam.ocaml.org/packages/odep)
 
 Dependency graphs for OCaml modules, libraries and packages.
 
