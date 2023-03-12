@@ -13,8 +13,15 @@ let run path (`Type type_) (`Tred_modules tred_modules) (`Tred_libraries tred_li
       Fpath.parent f
   in
   let+ s = OS.Dir.with_current dir (fun () ->
-      let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps") in
-      OS.Cmd.(run_out dune_describe |> out_string |> success)
+      let dune_describe' = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps") in
+      let dune_describe = Cmd.(dune_describe' % "--with-pps") in
+      match OS.Cmd.(run_out dune_describe |> out_string) with
+      | Ok (s, (_, `Exited 0)) ->
+        Ok s
+      | Ok (_, (_, `Exited _)) -> (* maybe dune < 3.7.0, which doesn't have --with-pps *)
+        OS.Cmd.(run_out dune_describe' |> out_string |> success)
+      | r ->
+        OS.Cmd.success r
     ) ()
     |> Result.join
   in
