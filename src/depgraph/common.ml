@@ -30,7 +30,7 @@ struct
     | Library of library
     | Module of {parent: t; name: string}
     | LocalPackageCluster
-    | OpamPackage of string
+    | OpamPackage of OpamPackage.t
   [@@deriving eq, ord]
 
   let hash = Hashtbl.hash

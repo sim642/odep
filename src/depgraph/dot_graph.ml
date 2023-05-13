@@ -26,7 +26,7 @@ struct
     | Library {name; _} -> name
     | Module {name; parent} -> vertex_name parent ^ "__" ^ name
     | LocalPackageCluster -> "local_package__"
-    | OpamPackage name -> name
+    | OpamPackage package -> OpamPackage.to_string package
   let local_package_subgraph = string_of_int (Hashtbl.hash (show_package Local))
   let get_subgraph = function
     | VV.Module {parent; _} ->
