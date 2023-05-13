@@ -92,12 +92,16 @@ struct
             | Some (`Ltail x) -> x
             | _ -> "id" ^ string_of_int (X.V.hash u)
           in
+          let style = match List.find_opt (function `Style _ -> true | _ -> false) a with
+            | Some (`Style `Dotted) -> "-.->"
+            | _ -> "-->"
+          in
           let vv =
             match List.find_opt (function `Lhead _ -> true | _ -> false) a with
             | Some (`Lhead x) -> x
             | _ -> "id" ^ string_of_int (X.V.hash v)
           in
-          fprintf ppf "%s-->%s@ " uu vv
+          fprintf ppf "%s%s%s@ " uu style vv
         ) g
     in
 
