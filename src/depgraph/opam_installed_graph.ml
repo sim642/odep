@@ -17,9 +17,9 @@ let g_of_depends ~st ~env depends =
     let deps = Opkg.Map.find package u_depends |> OpamPackageVar.filter_depends_formula ~env in
     let depopts = Opkg.Map.find package u_depopts |> OpamPackageVar.filter_depends_formula ~env in
 
-    let fold_depend acc (name, _) =
+    let fold_depend acc (name, version_formula) =
       match OpamSwitchState.find_installed_package_by_name st name with
-      | package -> f acc package
+      | package -> f acc package version_formula
       | exception Not_found -> acc
     in
 
@@ -30,8 +30,8 @@ let g_of_depends ~st ~env depends =
   let fold_package package g =
     let pkg: V.t = OpamPackage package in
     let g = G.add_vertex g pkg in
-    fold_all_depends (fun g depend_package ->
-        G.add_edge g pkg (OpamPackage depend_package)
+    fold_all_depends (fun g depend_package version_formula ->
+        G.add_edge_e g (pkg, OpamFormula version_formula, OpamPackage depend_package)
       ) g package
   in
 
@@ -46,7 +46,7 @@ let g_of_depends ~st ~env depends =
       else (
         let visited = Opkg.Set.add package visited in
         let g = fold_package package g in
-        fold_all_depends (fun g depend_package ->
+        fold_all_depends (fun g depend_package _ ->
             fold_deps g visited depend_package
           ) g package
       )
@@ -62,9 +62,9 @@ let g_of_rdepends ~st ~env rdepends =
     let deps = Opkg.Map.find package u_depends |> OpamPackageVar.filter_depends_formula ~env in
     let depopts = Opkg.Map.find package u_depopts |> OpamPackageVar.filter_depends_formula ~env in
 
-    let fold_depend acc (name, _) =
+    let fold_depend acc (name, version_formula) =
       match OpamSwitchState.find_installed_package_by_name st name with
-      | package -> f acc package
+      | package -> f acc package version_formula
       | exception Not_found -> acc
     in
 
@@ -73,10 +73,10 @@ let g_of_rdepends ~st ~env rdepends =
   in
 
   let rdeps_map = Opkg.Set.fold (fun package rdeps_map ->
-      fold_all_depends (fun rdeps_map depend_package ->
+      fold_all_depends (fun rdeps_map depend_package version_formula ->
           Opkg.Map.update depend_package (fun rdeps ->
-              Opkg.Set.add package rdeps
-            ) Opkg.Set.empty rdeps_map
+              Opkg.Map.add package version_formula rdeps
+            ) Opkg.Map.empty rdeps_map
         ) rdeps_map package
     ) u_installed Opkg.Map.empty
   in
@@ -87,11 +87,11 @@ let g_of_rdepends ~st ~env rdepends =
     let rdeps =
       match Opkg.Map.find_opt package rdeps_map with
       | Some rdeps -> rdeps
-      | None -> Opkg.Set.empty
+      | None -> Opkg.Map.empty
     in
-    Opkg.Set.fold (fun rdepend_package g ->
+    Opkg.Map.fold (fun rdepend_package version_formula g ->
         let g = fold_rdeps g rdepend_package in
-        G.add_edge g (OpamPackage rdepend_package) pkg
+        G.add_edge_e g (OpamPackage rdepend_package, OpamFormula version_formula, pkg)
       ) rdeps g
   in
   let rdepends_package = OpamSwitchState.find_installed_package_by_name st (Opkg.Name.of_string rdepends) in
