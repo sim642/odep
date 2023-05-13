@@ -7,7 +7,7 @@ type package =
 [@@deriving eq, ord]
 
 let show_package = function
-  | Opam package -> Opkg.to_string package
+  | Opam package -> Opkg.Name.to_string package.name ^ " " ^ Opkg.Version.to_string package.version
   | Compiler -> "(compiler)"
   | Local -> "(local)"
 
