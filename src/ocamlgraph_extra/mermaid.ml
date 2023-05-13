@@ -20,9 +20,11 @@ struct
   let fprint_graph ppf g =
     let module SG = Map.Make(String) in
     let subgraphs = ref SG.empty in
+    let root_vertices = ref [] in
     X.iter_vertex (function node ->
         match X.get_subgraph node with
-        | None -> () (* TODO: print also *)
+        | None ->
+          root_vertices := node :: !root_vertices
         | Some sg ->
           let (sg, nodes) =
             if SG.mem sg.sg_name !subgraphs then
@@ -53,6 +55,10 @@ struct
         fprintf ppf "id%d%(%s%)%t" (X.V.hash v) shape label style
       with Exit ->
         ()
+    in
+
+    let print_root_vertices ppf =
+      pp_print_list print_vertex ppf !root_vertices
     in
 
     let rec print_subgraph ppf name =
@@ -101,7 +107,8 @@ struct
         ) g
     in
 
-    fprintf ppf "@[<v 2>flowchart TD@ %t@ %t@]"
+    fprintf ppf "@[<v 2>flowchart TD@ %t@ %t@ %t@]"
+      print_root_vertices
       print_subgraphs
       print_edges
 end
