@@ -1,11 +1,13 @@
+module Opkg = OpamPackage
+
 type package =
-  | Opam of string
+  | Opam of Opkg.t
   | Compiler
   | Local
 [@@deriving eq, ord]
 
 let show_package = function
-  | Opam package -> package
+  | Opam package -> Opkg.to_string package
   | Compiler -> "(compiler)"
   | Local -> "(local)"
 
@@ -30,7 +32,7 @@ struct
     | Library of library
     | Module of {parent: t; name: string}
     | LocalPackageCluster
-    | OpamPackage of OpamPackage.t
+    | OpamPackage of Opkg.t
   [@@deriving eq, ord]
 
   let hash = Hashtbl.hash
