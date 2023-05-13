@@ -49,7 +49,8 @@ struct
     let label =
       match e with
       | EE.None -> []
-      | OpamFormula vf -> [`Label (Version_formula.show vf)]
+      | OpamFormula {optional = false; version_formula} -> [`Label (Version_formula.show version_formula)]
+      | OpamFormula {optional = true; version_formula} -> [`Style `Dotted; `Label (Version_formula.show version_formula)]
     in
     let ltail =
       match u with

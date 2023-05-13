@@ -59,7 +59,7 @@ module E =
 struct
   type t =
     | None
-    | OpamFormula of Version_formula.t
+    | OpamFormula of {optional: bool; version_formula: Version_formula.t}
   [@@deriving ord]
 
   let default = None
