@@ -2,6 +2,7 @@
  (alias readme)
  (target findlib-depends-dune-release.svg)
  (mode promote)
+ (enabled_if %{bin-available:dot})
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -12,6 +13,7 @@
  (alias readme)
  (target findlib-rdepends-fmt.svg)
  (mode promote)
+ (enabled_if %{bin-available:dot})
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -22,6 +24,7 @@
  (alias readme)
  (target findlib-depends-dune-release-rdepends-fmt.svg)
  (mode promote)
+ (enabled_if %{bin-available:dot})
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -32,6 +35,7 @@
  (alias readme)
  (target opam-depends-dune-release.svg)
  (mode promote)
+ (enabled_if %{bin-available:dot})
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -42,6 +46,7 @@
  (alias readme)
  (target opam-rdepends-fmt.svg)
  (mode promote)
+ (enabled_if %{bin-available:dot})
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -52,6 +57,7 @@
  (alias readme)
  (target opam-depends-dune-release-rdepends-fmt.svg)
  (mode promote)
+ (enabled_if %{bin-available:dot})
  (action
   (with-stdout-to %{target}
    (pipe-stdout
