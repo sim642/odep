@@ -25,7 +25,7 @@ opens `xdot` for interactive dot graph viewing.
 
 #### dot
 ```console
-odep dune | dot -Tsvg > img/odep.svg
+odep dune | dot -Tsvg > img/dune-odep.svg
 ```
 produces:
 [![Dune dependency graph for odep](img/dune-odep.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/dune-odep.svg)
