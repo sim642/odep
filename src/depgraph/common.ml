@@ -34,6 +34,7 @@ struct
     | Module of {parent: t; name: string}
     | LocalPackageCluster
     | OpamPackage of Opkg.t
+    | SysPackage of string
   [@@deriving eq, ord]
 
   let hash = Hashtbl.hash

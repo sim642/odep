@@ -20,6 +20,8 @@ struct
       [`Fixedsize true; `Width 0.; `Height 0.; `Style `Invis; `Label ""]
     | OpamPackage _ ->
       [`Shape `Box]
+    | SysPackage _ ->
+      [`Shape `Box; `Style `Filled]
   let default_vertex_attributes _ = []
   let default_edge_attributes _ = []
   let rec vertex_name = function
@@ -28,6 +30,7 @@ struct
     | Module {name; parent} -> vertex_name parent ^ "__" ^ name
     | LocalPackageCluster -> "local_package__"
     | OpamPackage package -> Opkg.Name.to_string package.name ^ "\n" ^ Opkg.Version.to_string package.version
+    | SysPackage name -> name
   let local_package_subgraph = string_of_int (Hashtbl.hash (show_package Local))
   let get_subgraph = function
     | VV.Module {parent; _} ->
@@ -42,7 +45,8 @@ struct
       end
     | LocalPackageCluster ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = local_package_subgraph; sg_attributes = [`Label (show_package Local)]; sg_parent = None}
-    | OpamPackage _ ->
+    | OpamPackage _
+    | SysPackage _ ->
       None
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
   let edge_attributes (u, e, v) =
