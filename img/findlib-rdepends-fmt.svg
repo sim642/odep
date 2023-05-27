@@ -10,39 +10,39 @@
 <title>G</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-408 802,-408 802,4 -4,4"/>
 <g id="clust1" class="cluster">
-<title>cluster_1022634066</title>
-<polygon fill="none" stroke="black" points="652,-80 652,-313 790,-313 790,-80 652,-80"/>
-<text text-anchor="middle" x="721" y="-297.8" font-family="Times,serif" font-size="14.00">odoc</text>
+<title>cluster_1009034736</title>
+<polygon fill="none" stroke="black" points="160,-8 160,-238 333,-238 333,-8 160,-8"/>
+<text text-anchor="middle" x="246.5" y="-222.8" font-family="Times,serif" font-size="14.00">fmt 0.9.0</text>
 </g>
 <g id="clust2" class="cluster">
-<title>cluster_407490632</title>
-<polygon fill="none" stroke="black" points="8,-163 8,-313 152,-313 152,-163 8,-163"/>
-<text text-anchor="middle" x="80" y="-297.8" font-family="Times,serif" font-size="14.00">alcotest</text>
+<title>cluster_223284529</title>
+<polygon fill="none" stroke="black" points="652,-80 652,-313 790,-313 790,-80 652,-80"/>
+<text text-anchor="middle" x="721" y="-297.8" font-family="Times,serif" font-size="14.00">odoc 2.2.0</text>
 </g>
 <g id="clust3" class="cluster">
-<title>cluster_47602582</title>
-<polygon fill="none" stroke="black" points="544,-80 544,-313 644,-313 644,-80 544,-80"/>
-<text text-anchor="middle" x="594" y="-297.8" font-family="Times,serif" font-size="14.00">mdx</text>
+<title>cluster_591990434</title>
+<polygon fill="none" stroke="black" points="341,-163 341,-313 536,-313 536,-163 341,-163"/>
+<text text-anchor="middle" x="438.5" y="-297.8" font-family="Times,serif" font-size="14.00">bos 0.2.1</text>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_652999151</title>
-<polygon fill="none" stroke="black" points="421,-321 421,-396 547,-396 547,-321 421,-321"/>
-<text text-anchor="middle" x="484" y="-380.8" font-family="Times,serif" font-size="14.00">dune&#45;release</text>
+<title>cluster_731747523</title>
+<polygon fill="none" stroke="black" points="8,-163 8,-313 152,-313 152,-163 8,-163"/>
+<text text-anchor="middle" x="80" y="-297.8" font-family="Times,serif" font-size="14.00">alcotest 1.6.0</text>
 </g>
 <g id="clust5" class="cluster">
-<title>cluster_668538665</title>
-<polygon fill="none" stroke="black" points="160,-8 160,-238 333,-238 333,-8 160,-8"/>
-<text text-anchor="middle" x="246.5" y="-222.8" font-family="Times,serif" font-size="14.00">fmt</text>
+<title>cluster_762742185</title>
+<polygon fill="none" stroke="black" points="544,-80 544,-313 644,-313 644,-80 544,-80"/>
+<text text-anchor="middle" x="594" y="-297.8" font-family="Times,serif" font-size="14.00">mdx 2.1.0</text>
 </g>
 <g id="clust6" class="cluster">
-<title>cluster_74961155</title>
-<polygon fill="none" stroke="black" points="341,-163 341,-313 536,-313 536,-163 341,-163"/>
-<text text-anchor="middle" x="438.5" y="-297.8" font-family="Times,serif" font-size="14.00">bos</text>
+<title>cluster_903389259</title>
+<polygon fill="none" stroke="black" points="404,-80 404,-155 500,-155 500,-80 404,-80"/>
+<text text-anchor="middle" x="452" y="-139.8" font-family="Times,serif" font-size="14.00">logs 0.7.0</text>
 </g>
 <g id="clust7" class="cluster">
-<title>cluster_86790983</title>
-<polygon fill="none" stroke="black" points="404,-80 404,-155 500,-155 500,-80 404,-80"/>
-<text text-anchor="middle" x="452" y="-139.8" font-family="Times,serif" font-size="14.00">logs</text>
+<title>cluster_956174373</title>
+<polygon fill="none" stroke="black" points="421,-321 421,-396 547,-396 547,-321 421,-321"/>
+<text text-anchor="middle" x="484" y="-380.8" font-family="Times,serif" font-size="14.00">dune&#45;release 1.6.2</text>
 </g>
 <!-- alcotest -->
 <g id="node1" class="node">

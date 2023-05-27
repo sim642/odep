@@ -10,24 +10,24 @@
 <title>G</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-325 333,-325 333,4 -4,4"/>
 <g id="clust1" class="cluster">
-<title>cluster_652999151</title>
-<polygon fill="none" stroke="black" points="8,-238 8,-313 134,-313 134,-238 8,-238"/>
-<text text-anchor="middle" x="71" y="-297.8" font-family="Times,serif" font-size="14.00">dune&#45;release</text>
+<title>cluster_1009034736</title>
+<polygon fill="none" stroke="black" points="131,-8 131,-155 217,-155 217,-8 131,-8"/>
+<text text-anchor="middle" x="174" y="-139.8" font-family="Times,serif" font-size="14.00">fmt 0.9.0</text>
 </g>
 <g id="clust2" class="cluster">
-<title>cluster_668538665</title>
-<polygon fill="none" stroke="black" points="131,-8 131,-155 217,-155 217,-8 131,-8"/>
-<text text-anchor="middle" x="174" y="-139.8" font-family="Times,serif" font-size="14.00">fmt</text>
+<title>cluster_591990434</title>
+<polygon fill="none" stroke="black" points="19,-80 19,-230 123,-230 123,-80 19,-80"/>
+<text text-anchor="middle" x="71" y="-214.8" font-family="Times,serif" font-size="14.00">bos 0.2.1</text>
 </g>
 <g id="clust3" class="cluster">
-<title>cluster_74961155</title>
-<polygon fill="none" stroke="black" points="19,-80 19,-230 123,-230 123,-80 19,-80"/>
-<text text-anchor="middle" x="71" y="-214.8" font-family="Times,serif" font-size="14.00">bos</text>
+<title>cluster_903389259</title>
+<polygon fill="none" stroke="black" points="225,-80 225,-155 321,-155 321,-80 225,-80"/>
+<text text-anchor="middle" x="273" y="-139.8" font-family="Times,serif" font-size="14.00">logs 0.7.0</text>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_86790983</title>
-<polygon fill="none" stroke="black" points="225,-80 225,-155 321,-155 321,-80 225,-80"/>
-<text text-anchor="middle" x="273" y="-139.8" font-family="Times,serif" font-size="14.00">logs</text>
+<title>cluster_956174373</title>
+<polygon fill="none" stroke="black" points="8,-238 8,-313 134,-313 134,-238 8,-238"/>
+<text text-anchor="middle" x="71" y="-297.8" font-family="Times,serif" font-size="14.00">dune&#45;release 1.6.2</text>
 </g>
 <!-- bos -->
 <g id="node1" class="node">

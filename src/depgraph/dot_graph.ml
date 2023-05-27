@@ -3,6 +3,7 @@ open Common
 module G =
 struct
   module VV = V
+  module EE = E
   include G
 
   let graph_attributes _ = [`Compound true]
@@ -26,7 +27,7 @@ struct
     | Library {name; _} -> name
     | Module {name; parent} -> vertex_name parent ^ "__" ^ name
     | LocalPackageCluster -> "local_package__"
-    | OpamPackage name -> name
+    | OpamPackage package -> Opkg.Name.to_string package.name ^ "\n" ^ Opkg.Version.to_string package.version
   let local_package_subgraph = string_of_int (Hashtbl.hash (show_package Local))
   let get_subgraph = function
     | VV.Module {parent; _} ->
@@ -44,7 +45,13 @@ struct
     | OpamPackage _ ->
       None
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
-  let edge_attributes (u, v) =
+  let edge_attributes (u, e, v) =
+    let label =
+      match e with
+      | EE.None -> []
+      | OpamFormula {optional = false; version_formula} -> [`Label (Version_formula.show version_formula)]
+      | OpamFormula {optional = true; version_formula} -> [`Style `Dotted; `Label (Version_formula.show version_formula)]
+    in
     let ltail =
       match u with
       | VV.Library {local = true; _} | Executable _ ->
@@ -66,6 +73,6 @@ struct
       | _ -> []
     in
     match get_subgraph u, get_subgraph v with
-    | Some su, Some sv when su = sv -> minlen
-    | _, _ -> ltail @ lhead @ minlen
+    | Some su, Some sv when su = sv -> label @ minlen
+    | _, _ -> label @ ltail @ lhead @ minlen
 end

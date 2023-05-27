@@ -54,5 +54,5 @@ let find_library_package name =
   | "bytes" ->
     Some Compiler
   | s ->
-    let+ {name; _} = String_map.find_opt s (Lazy.force findlib_map) in
-    Opam (OpamPackage.Name.to_string name)
+    let+ package = String_map.find_opt s (Lazy.force findlib_map) in
+    Opam package

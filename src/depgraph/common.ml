@@ -1,11 +1,14 @@
+module Opkg = OpamPackage
+module Ofml = OpamFormula
+
 type package =
-  | Opam of string
+  | Opam of Opkg.t
   | Compiler
   | Local
 [@@deriving eq, ord]
 
 let show_package = function
-  | Opam package -> package
+  | Opam package -> Opkg.Name.to_string package.name ^ " " ^ Opkg.Version.to_string package.version
   | Compiler -> "(compiler)"
   | Local -> "(local)"
 
@@ -30,10 +33,36 @@ struct
     | Library of library
     | Module of {parent: t; name: string}
     | LocalPackageCluster
-    | OpamPackage of string
+    | OpamPackage of Opkg.t
   [@@deriving eq, ord]
 
   let hash = Hashtbl.hash
 end
 
-module G = Graph.Persistent.Digraph.Concrete (V)
+module Version_formula =
+struct
+  type t = Ofml.version_formula
+
+  (* Ofml.compare_version_formula is not exposed... *)
+  let compare =
+    Ofml.compare_formula [%ord: [`Eq|`Neq|`Geq|`Gt|`Leq|`Lt] * Opkg.Version.t]
+
+  let show = function
+    | Ofml.Empty -> ""
+    | vf ->
+      Ofml.string_of_formula (fun (relop, v) ->
+          OpamPrinter.FullPos.relop_kind relop ^ " " ^ Opkg.Version.to_string v
+        ) vf
+end
+
+module E =
+struct
+  type t =
+    | None
+    | OpamFormula of {optional: bool; version_formula: Version_formula.t}
+  [@@deriving ord]
+
+  let default = None
+end
+
+module G = Graph.Persistent.Digraph.ConcreteLabeled (V) (E)
