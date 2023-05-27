@@ -27,11 +27,22 @@ let g_of_depends ~st ~env depends =
     Ofml.fold_left (fold_depend ~optional:true) acc depopts
   in
 
+  let fold_all_depexts f acc package =
+    let depexts = OpamSwitchState.depexts st package in
+    OpamSysPkg.Set.fold (fun depext acc ->
+        f acc depext
+      ) depexts acc
+  in
+
   let fold_package package g =
     let pkg: V.t = OpamPackage package in
     let g = G.add_vertex g pkg in
-    fold_all_depends (fun g depend_package optional version_formula ->
+    let g = fold_all_depends (fun g depend_package optional version_formula ->
         G.add_edge_e g (pkg, OpamFormula {optional; version_formula}, OpamPackage depend_package)
+      ) g package
+    in
+    fold_all_depexts (fun g depext ->
+        G.add_edge_e g (pkg, None, SysPackage (OpamSysPkg.to_string depext))
       ) g package
   in
 
