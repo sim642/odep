@@ -339,19 +339,19 @@ Dependency graphs for _installed_ opam packages.
 
 #### Dependencies
 ```console
-odep opam --depends=dune-release
+odep opam-installed --depends=dune-release
 ```
 [![Opam dependency graph for dune-release](img/opam-depends-dune-release.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/opam-depends-dune-release.svg)
 
 #### Reverse dependencies
 ```console
-odep opam --rdepends=fmt
+odep opam-installed --rdepends=fmt
 ```
 [![Opam reverse dependency graph for fmt](img/opam-rdepends-fmt.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/opam-rdepends-fmt.svg)
 
 #### Intersection of dependencies and reverse dependencies
 ```console
-odep opam --depends=dune-release --rdepends=fmt
+odep opam-installed --depends=dune-release --rdepends=fmt
 ```
 [![Opam dependency and reverse dependency intersection graph for dune-release and fmt](img/opam-depends-dune-release-rdepends-fmt.svg)](https://raw.githubusercontent.com/sim642/odep/master/img/opam-depends-dune-release-rdepends-fmt.svg)
 
