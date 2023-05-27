@@ -7,7 +7,7 @@ license: "MIT"
 homepage: "https://github.com/sim642/odep"
 bug-reports: "https://github.com/sim642/odep/issues"
 depends: [
-  "dune" {>= "2.7"}
+  "dune" {>= "3.0"}
   "ocaml" {>= "4.08"}
   "sexplib"
   "ppx_sexp_conv" {>= "v0.13"}
