@@ -1,0 +1,59 @@
+(rule
+ (alias readme)
+ (target findlib-depends-dune-release.svg)
+ (mode promote)
+ (action
+  (with-stdout-to %{target}
+   (pipe-stdout
+    (run %{bin:odep} findlib --depends=dune-release)
+    (run dot -Tsvg)))))
+
+(rule
+ (alias readme)
+ (target findlib-rdepends-fmt.svg)
+ (mode promote)
+ (action
+  (with-stdout-to %{target}
+   (pipe-stdout
+    (run %{bin:odep} findlib --rdepends=fmt)
+    (run dot -Tsvg)))))
+
+(rule
+ (alias readme)
+ (target findlib-depends-dune-release-rdepends-fmt.svg)
+ (mode promote)
+ (action
+  (with-stdout-to %{target}
+   (pipe-stdout
+    (run %{bin:odep} findlib --depends=dune-release --rdepends=fmt)
+    (run dot -Tsvg)))))
+
+(rule
+ (alias readme)
+ (target opam-depends-dune-release.svg)
+ (mode promote)
+ (action
+  (with-stdout-to %{target}
+   (pipe-stdout
+    (run %{bin:odep} opam-installed --depends=dune-release)
+    (run dot -Tsvg)))))
+
+(rule
+ (alias readme)
+ (target opam-rdepends-fmt.svg)
+ (mode promote)
+ (action
+  (with-stdout-to %{target}
+   (pipe-stdout
+    (run %{bin:odep} opam-installed --rdepends=fmt)
+    (run dot -Tsvg)))))
+
+(rule
+ (alias readme)
+ (target opam-depends-dune-release-rdepends-fmt.svg)
+ (mode promote)
+ (action
+  (with-stdout-to %{target}
+   (pipe-stdout
+    (run %{bin:odep} opam-installed --depends=dune-release --rdepends=fmt)
+    (run dot -Tsvg)))))
