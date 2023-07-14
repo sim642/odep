@@ -17,9 +17,9 @@
   sexplib
   (ppx_sexp_conv (>= v0.13))
   parsexp
-  (opam-core (>= 2.1.0))
-  (opam-state (>= 2.1.0))
-  opam-format
+  (opam-core (and (>= 2.1.0) (< 2.2)))
+  (opam-state (and (>= 2.1.0) (< 2.2)))
+  (opam-format (< 2.2))
   (ocamlfind (>= 1.8.1))
   (cmdliner (>= 1.1.0))
   bos
