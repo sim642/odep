@@ -370,6 +370,7 @@ odep opam-installed --depends=dune-release --rdepends=fmt
 * [dune-deps](https://github.com/mjambon/dune-deps) — dune only, custom dune files parsing.
 * [opam-dot](https://github.com/Drup/opam-dot) — opam only, outdated ([fork](https://github.com/sim642/opam-dot)).
 * [depgraph](https://github.com/rgrinberg/ocaml-depgraph) — modules only (via `ocamldep`), inactive.
+* [module-graph](https://github.com/ocamlpro/module-graph) — modules only, based on compiled object files.
 * [odoc-depgraph](https://github.com/zoggy/odoc_depgraph) — modules only (in `ocamldoc`), inactive.
 * [`ocamldoc -dot`](https://v2.ocaml.org/manual/ocamldoc.html) — modules only (in `ocamldoc`).
 * [codept](https://github.com/Octachron/codept) — `ocamldep` alternative, has `dot` output, no dune integration.
