@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.0
 * Add package versions to nodes and clusters (#2).
 * Add package dependency version constraints to edges (#3).
 * Add package depexts (#5).
