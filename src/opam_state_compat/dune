@@ -1,0 +1,13 @@
+(library
+ (name opam_state_compat)
+ (modules opam_state_compat)
+ (libraries opam-state))
+
+(executable
+ (name opam_state_compat_gen)
+ (modules opam_state_compat_gen)
+ (libraries opam-core opam-state))
+
+(rule
+ (target opam_state_compat.ml)
+ (action (with-stdout-to %{target} (run ./opam_state_compat_gen.exe))))

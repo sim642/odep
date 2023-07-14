@@ -182,7 +182,6 @@ flowchart TD
     style id370539618 fill:#BBB
   end
   subgraph 902546259 ["(local)"]
-
     subgraph 122612022 ["depgraph"]
       id439874552(Opam_installed_graph)
       id882674132(Opam_findlib)
@@ -209,11 +208,19 @@ flowchart TD
       id326418831(Common)
       id189591663{"main"}
     end
+    subgraph 305831830 ["opam_state_compat_gen"]
+      id323374370(Opam_state_compat_gen)
+      id305831830{"opam_state_compat_gen"}
+    end
     subgraph 312718400 ["ocamlgraph_extra"]
       id872997936(Ocamlgraph_extra)
       id157893572(Mermaid)
       id383119909(Graphviz)
       id312718400(["ocamlgraph_extra"])
+    end
+    subgraph 433051691 ["opam_state_compat"]
+      id80388000(Opam_state_compat)
+      id433051691(["opam_state_compat"])
     end
     subgraph 557698697 ["dune_describe"]
       id15495529(Dune_describe)
@@ -228,6 +235,8 @@ flowchart TD
   189591663-->id500343217
   189591663-->122612022
   id189591663-->id725600054
+  305831830-->id261565931
+  id305831830-->id323374370
   id615168812-->id920833612
   id615168812-->id631192440
   id615168812-->id1001087518
@@ -275,9 +284,9 @@ flowchart TD
   id85613087-->id612096776
   id612096776-->id266426620
   122612022-->id11445160
-  122612022-->id261565931
   122612022-->557698697
   122612022-->312718400
+  122612022-->433051691
   122612022-->158492278
   id122612022-->id593996496
   557698697-->id958091540
@@ -286,6 +295,8 @@ flowchart TD
   id557698697-->id15495529
   312718400-->id183162717
   id312718400-->id872997936
+  433051691-->id261565931
+  id433051691-->id80388000
   id158492278-->id1008512934
   id952370123-->id326418831
   id8714191-->id326418831

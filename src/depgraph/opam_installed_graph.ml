@@ -9,9 +9,7 @@ module Ofml = OpamFormula
 module GOper = Graph.Oper.P (G)
 
 let g_of_depends ~st ~env depends =
-  let {u_installed; u_depends; u_depopts; _} =
-    OpamSwitchState.universe st ~requested:Opkg.Name.Set.empty Query
-  in
+  let {u_installed; u_depends; u_depopts; _} = Opam_state_compat.universe_query st in
 
   let fold_all_depends f acc package =
     let deps = Opkg.Map.find package u_depends |> OpamPackageVar.filter_depends_formula ~env in
@@ -65,9 +63,7 @@ let g_of_depends ~st ~env depends =
     fold_deps G.empty Opkg.Set.empty depends_package
 
 let g_of_rdepends ~st ~env rdepends =
-  let {u_installed; u_depends; u_depopts; _} =
-    OpamSwitchState.universe st ~requested:Opkg.Name.Set.empty Query
-  in
+  let {u_installed; u_depends; u_depopts; _} = Opam_state_compat.universe_query st in
 
   let fold_all_depends f acc package =
     let deps = Opkg.Map.find package u_depends |> OpamPackageVar.filter_depends_formula ~env in
