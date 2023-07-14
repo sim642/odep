@@ -15,19 +15,19 @@
 <text text-anchor="middle" x="174" y="-139.8" font-family="Times,serif" font-size="14.00">fmt 0.9.0</text>
 </g>
 <g id="clust2" class="cluster">
+<title>cluster_482063017</title>
+<polygon fill="none" stroke="black" points="8,-238 8,-313 134,-313 134,-238 8,-238"/>
+<text text-anchor="middle" x="71" y="-297.8" font-family="Times,serif" font-size="14.00">dune&#45;release 2.0.0</text>
+</g>
+<g id="clust3" class="cluster">
 <title>cluster_591990434</title>
 <polygon fill="none" stroke="black" points="19,-80 19,-230 123,-230 123,-80 19,-80"/>
 <text text-anchor="middle" x="71" y="-214.8" font-family="Times,serif" font-size="14.00">bos 0.2.1</text>
 </g>
-<g id="clust3" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_903389259</title>
 <polygon fill="none" stroke="black" points="225,-80 225,-155 321,-155 321,-80 225,-80"/>
 <text text-anchor="middle" x="273" y="-139.8" font-family="Times,serif" font-size="14.00">logs 0.7.0</text>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster_956174373</title>
-<polygon fill="none" stroke="black" points="8,-238 8,-313 134,-313 134,-238 8,-238"/>
-<text text-anchor="middle" x="71" y="-297.8" font-family="Times,serif" font-size="14.00">dune&#45;release 1.6.2</text>
 </g>
 <!-- bos -->
 <g id="node1" class="node">
