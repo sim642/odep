@@ -22,6 +22,8 @@ struct
       [`Shape `Box]
     | SysPackage _ ->
       [`Shape `Box; `Style `Filled]
+    | ExecutableCluster _ ->
+      assert false
   let default_vertex_attributes _ = []
   let default_edge_attributes _ = []
   let rec vertex_name = function
@@ -31,11 +33,15 @@ struct
     | LocalPackageCluster -> "local_package__"
     | OpamPackage package -> Opkg.Name.to_string package.name ^ "\n" ^ Opkg.Version.to_string package.version
     | SysPackage name -> name
+    | ExecutableCluster names -> String.concat ", " names
   let local_package_subgraph = string_of_int (Hashtbl.hash (show_package Local))
   let get_subgraph = function
     | VV.Module {parent; _} ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = Some local_package_subgraph}
-    | (Library {local = true; _} | Executable _) as v ->
+    | Library {local = true; _} as v ->
+      Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash v); sg_attributes = [`Label (vertex_name v)]; sg_parent = Some local_package_subgraph}
+    | Executable {cluster; _} ->
+      let v = VV.ExecutableCluster cluster in
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash v); sg_attributes = [`Label (vertex_name v)]; sg_parent = Some local_package_subgraph}
     | Library {local = false; package; _} ->
       begin match package with
@@ -48,6 +54,8 @@ struct
     | OpamPackage _
     | SysPackage _ ->
       None
+    | ExecutableCluster _ ->
+      assert false
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
   let edge_attributes (u, e, v) =
     let label =

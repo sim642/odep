@@ -70,8 +70,8 @@ let g_of_library_modules ~tred_modules library modules =
   else
     g
 
-let g_of_executable_modules ~tred_modules executable modules =
-  let parent: V.t = Executable executable in
+let g_of_executable_modules ~tred_modules executable_cluster modules =
+  let parent: V.t = ExecutableCluster executable_cluster in
   let g = g_of_modules parent modules in
   let g = G.remove_vertex g (Module {parent; name = "Dune__exe"}) in
   if tred_modules then
@@ -94,7 +94,7 @@ let g_of_libraries ~tred_libraries dune_describe =
       | Executables {names; requires; _} ->
         let package = Some Local in
         List.fold_left (fun g name ->
-            let exe: V.t = Executable {package; name} in
+            let exe: V.t = Executable {package; cluster = names; name} in
             let g = G.add_vertex g exe in
             List.fold_left (fun g require ->
                 G.add_edge g exe (Library (Digest_map.find require digest_map))
@@ -136,14 +136,14 @@ let g_of_string ~tred_modules ~tred_libraries s =
           g
       | Executables {names; modules; _} ->
         let package = Some Local in
-        let name = String.concat ", " names in
-        let executable: V.executable = {package; name} in
-        let g = GOper.union g (g_of_executable_modules ~tred_modules executable modules) in
+        let executable_cluster = names in
+        let g = GOper.union g (g_of_executable_modules ~tred_modules executable_cluster modules) in
         (* executable-module edges *)
+        let parent: V.t = ExecutableCluster executable_cluster in
         List.fold_left (fun g name ->
-            let parent: V.t = Executable {package; name} in
+            let executable: V.t = Executable {package; cluster = executable_cluster; name} in
             let executable_module_name = String.capitalize_ascii name in
-            G.add_edge g parent (Module {parent; name = executable_module_name})
+            G.add_edge g executable (Module {parent; name = executable_module_name})
           ) g names
       | _ ->
         g

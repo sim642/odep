@@ -14,8 +14,11 @@ let show_package = function
 
 module V =
 struct
+  type executable_cluster = string list [@@deriving eq, ord]
+
   type executable = {
     package: package option;
+    cluster: executable_cluster;
     name: string;
   }
   [@@deriving eq, ord]
@@ -29,6 +32,7 @@ struct
   [@@deriving eq, ord]
 
   type t =
+    | ExecutableCluster of executable_cluster (** Only for module parent, not used in dot output. *)
     | Executable of executable
     | Library of library
     | Module of {parent: t; name: string}
