@@ -20,7 +20,7 @@ let digest_map_of_dune_describe dune_describe =
     ) Digest_map.empty dune_describe
 
 let g_of_modules parent modules =
-  let fold_module g {name; module_deps} =
+  let fold_module g {name; module_deps; _} =
     let mod_: V.t = Module {parent; name} in
     let g = G.add_vertex g mod_ in
     match module_deps with
@@ -35,21 +35,35 @@ let g_of_modules parent modules =
   in
   List.fold_left fold_module G.empty modules
 
+let find_library_module_name _library modules: string option =
+  (* TODO: List.find_map isn't on OCaml 4.08 *)
+  List.find_map (fun (m: module_) ->
+      (* TODO: String.ends_with isn't on OCaml 4.08 *)
+      match m.impl with
+      | Some impl when String.ends_with ~suffix:".ml-gen" impl && String.ends_with ~suffix:"__" m.name ->
+        Some (String.sub m.name 0 (String.length m.name - 2))
+      | Some impl when String.ends_with ~suffix:".ml-gen" impl ->
+        Some m.name
+      | _ -> None
+    ) modules
+
 let g_of_library_modules ~tred_modules library modules =
   let parent: V.t = Library library in
   let g = g_of_modules parent modules in
   let g =
-    let library_module_name = String.capitalize_ascii library.name in
-    let dune_module_name = library_module_name ^ "__" in
-    if List.exists (fun (m: module_) -> m.name = dune_module_name) modules then
-      G.remove_vertex g (Module {parent; name = dune_module_name})
-    else
-      List.fold_left (fun g (m: module_) ->
-          if m.name <> library_module_name then
-            G.add_edge g (Module {parent; name = library_module_name}) (Module {parent; name = m.name})
-          else
-            g
-        ) g modules
+    match find_library_module_name library modules with
+    | Some library_module_name ->
+      let dune_module_name = library_module_name ^ "__" in
+      if List.exists (fun (m: module_) -> m.name = dune_module_name) modules then
+        G.remove_vertex g (Module {parent; name = dune_module_name})
+      else
+        List.fold_left (fun g (m: module_) ->
+            if m.name <> library_module_name then
+              G.add_edge g (Module {parent; name = library_module_name}) (Module {parent; name = m.name})
+            else
+              g
+          ) g modules
+    | None -> g
   in
   if tred_modules then
     GOper.transitive_reduction g
@@ -108,10 +122,15 @@ let g_of_string ~tred_modules ~tred_libraries s =
         let library: V.library = {package; name; digest = uid; local} in
         let g = GOper.union g (g_of_library_modules ~tred_modules library modules) in
         (* library-module edges *)
-        let parent: V.t = Library library in
         if local then (
-          let library_module_name = String.capitalize_ascii name in
-          G.add_edge g parent (Module {parent; name = library_module_name})
+          let parent: V.t = Library library in
+          match find_library_module_name library modules with
+          | Some library_module_name ->
+            G.add_edge g parent (Module {parent; name = library_module_name})
+          | None ->
+            List.fold_left (fun g (m: module_) ->
+                G.add_edge g parent (Module {parent; name = m.name})
+              ) g modules
         )
         else
           g
