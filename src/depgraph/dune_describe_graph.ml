@@ -1,5 +1,6 @@
 open Common
 open Dune_describe
+open Std
 
 module Digest_map = Map.Make (Digest)
 
@@ -36,13 +37,11 @@ let g_of_modules parent modules =
   List.fold_left fold_module G.empty modules
 
 let find_library_module_name _library modules: string option =
-  (* TODO: List.find_map isn't on OCaml 4.08 *)
-  List.find_map (fun (m: module_) ->
-      (* TODO: String.ends_with isn't on OCaml 4.08 *)
+  List_compat.find_map (fun (m: module_) ->
       match m.impl with
-      | Some impl when String.ends_with ~suffix:".ml-gen" impl && String.ends_with ~suffix:"__" m.name ->
+      | Some impl when String_compat.ends_with ~suffix:".ml-gen" impl && String_compat.ends_with ~suffix:"__" m.name ->
         Some (String.sub m.name 0 (String.length m.name - 2))
-      | Some impl when String.ends_with ~suffix:".ml-gen" impl ->
+      | Some impl when String_compat.ends_with ~suffix:".ml-gen" impl ->
         Some m.name
       | _ -> None
     ) modules
