@@ -63,6 +63,8 @@ struct
       | EE.None -> []
       | OpamFormula {optional = false; version_formula} -> [`Label (Version_formula.show version_formula)]
       | OpamFormula {optional = true; version_formula} -> [`Style `Dotted; `Label (Version_formula.show version_formula)]
+      | OpamCondition {optional = false; condition} -> [`Label (Condition.show condition)]
+      | OpamCondition {optional = true; condition} -> [`Style `Dotted; `Label (Condition.show condition)]
     in
     let ltail =
       match u with
