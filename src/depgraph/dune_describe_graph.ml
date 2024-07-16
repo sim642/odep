@@ -114,39 +114,44 @@ let g_of_string ~tred_modules ~tred_libraries ~with_modules s =
 
   let g = g_of_libraries ~tred_libraries ~with_modules dune_describe in
 
-  let g = List.fold_left (fun g entry ->
-      match entry with
-      | Library ({name; uid; local; modules; _} as library) when with_modules -> (* TODO: move check out *)
-        let package = find_dune_library_package library in
-        let library: V.library = {package; name; digest = uid; local; with_modules} in
-        let g = GOper.union g (g_of_library_modules ~tred_modules library modules) in
-        (* library-module edges *)
-        if local then (
-          let parent: V.t = Library library in
-          match find_library_module_name library modules with
-          | Some library_module_name ->
-            G.add_edge g parent (Module {parent; name = library_module_name})
-          | None ->
-            List.fold_left (fun g (m: module_) ->
-                G.add_edge g parent (Module {parent; name = m.name})
-              ) g modules
-        )
-        else
+  let g =
+    if with_modules then (
+      List.fold_left (fun g entry ->
+        match entry with
+        | Library ({name; uid; local; modules; _} as library) ->
+          let package = find_dune_library_package library in
+          let library: V.library = {package; name; digest = uid; local; with_modules} in
+          let g = GOper.union g (g_of_library_modules ~tred_modules library modules) in
+          (* library-module edges *)
+          if local then (
+            let parent: V.t = Library library in
+            match find_library_module_name library modules with
+            | Some library_module_name ->
+              G.add_edge g parent (Module {parent; name = library_module_name})
+            | None ->
+              List.fold_left (fun g (m: module_) ->
+                  G.add_edge g parent (Module {parent; name = m.name})
+                ) g modules
+          )
+          else
+            g
+        | Executables {names; modules; _} ->
+          let package = Some Local in
+          let executable_cluster = names in
+          let g = GOper.union g (g_of_executable_modules ~tred_modules executable_cluster modules) in
+          (* executable-module edges *)
+          let parent: V.t = ExecutableCluster executable_cluster in
+          List.fold_left (fun g name ->
+              let executable: V.t = Executable {package; cluster = executable_cluster; name; with_modules} in
+              let executable_module_name = String.capitalize_ascii name in
+              G.add_edge g executable (Module {parent; name = executable_module_name})
+            ) g names
+        | _ ->
           g
-      | Executables {names; modules; _} when with_modules -> (* TODO: move check out *)
-        let package = Some Local in
-        let executable_cluster = names in
-        let g = GOper.union g (g_of_executable_modules ~tred_modules executable_cluster modules) in
-        (* executable-module edges *)
-        let parent: V.t = ExecutableCluster executable_cluster in
-        List.fold_left (fun g name ->
-            let executable: V.t = Executable {package; cluster = executable_cluster; name; with_modules} in
-            let executable_module_name = String.capitalize_ascii name in
-            G.add_edge g executable (Module {parent; name = executable_module_name})
-          ) g names
-      | _ ->
-        g
-    ) g dune_describe
+      ) g dune_describe
+    )
+    else
+      g
   in
 
   G.add_vertex g LocalPackageCluster
