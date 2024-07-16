@@ -10,12 +10,12 @@ let find_dune_library_package = function
   | {local = true; _} -> Some Local
   | {name; local = false; _} -> Opam_findlib.find_library_package name
 
-let digest_map_of_dune_describe dune_describe =
+let digest_map_of_dune_describe ~with_modules dune_describe =
   List.fold_left (fun digest_map entry ->
       match entry with
       | Library ({name; uid; local; _} as library) ->
         let package = find_dune_library_package library in (* TODO: extract *)
-        Digest_map.add uid {V.package; name; digest = uid; local} digest_map
+        Digest_map.add uid {V.package; name; digest = uid; local; with_modules} digest_map
       | _ ->
         digest_map
     ) Digest_map.empty dune_describe
@@ -78,14 +78,14 @@ let g_of_executable_modules ~tred_modules executable_cluster modules =
   else
     g
 
-let g_of_libraries ~tred_libraries dune_describe =
-  let digest_map = digest_map_of_dune_describe dune_describe in
+let g_of_libraries ~tred_libraries ~with_modules dune_describe =
+  let digest_map = digest_map_of_dune_describe ~with_modules dune_describe in
 
   let g = List.fold_left (fun g entry ->
       match entry with
       | Library ({name; uid; local; requires; _} as library) ->
         let package = find_dune_library_package library in
-        let lib: V.t = Library {package; name; digest = uid; local} in
+        let lib: V.t = Library {package; name; digest = uid; local; with_modules} in
         let g = G.add_vertex g lib in
         List.fold_left (fun g require ->
             G.add_edge g lib (Library (Digest_map.find require digest_map))
@@ -93,7 +93,7 @@ let g_of_libraries ~tred_libraries dune_describe =
       | Executables {names; requires; _} ->
         let package = Some Local in
         List.fold_left (fun g name ->
-            let exe: V.t = Executable {package; cluster = names; name} in
+            let exe: V.t = Executable {package; cluster = names; name; with_modules} in
             let g = G.add_vertex g exe in
             List.fold_left (fun g require ->
                 G.add_edge g exe (Library (Digest_map.find require digest_map))
@@ -109,16 +109,16 @@ let g_of_libraries ~tred_libraries dune_describe =
   else
     g
 
-let g_of_string ~tred_modules ~tred_libraries s =
+let g_of_string ~tred_modules ~tred_libraries ~with_modules s =
   let dune_describe = Parsexp.Conv_single.parse_string_exn s t_of_sexp in
 
-  let g = g_of_libraries ~tred_libraries dune_describe in
+  let g = g_of_libraries ~tred_libraries ~with_modules dune_describe in
 
   let g = List.fold_left (fun g entry ->
       match entry with
-      | Library ({name; uid; local; modules; _} as library) ->
+      | Library ({name; uid; local; modules; _} as library) when with_modules -> (* TODO: move check out *)
         let package = find_dune_library_package library in
-        let library: V.library = {package; name; digest = uid; local} in
+        let library: V.library = {package; name; digest = uid; local; with_modules} in
         let g = GOper.union g (g_of_library_modules ~tred_modules library modules) in
         (* library-module edges *)
         if local then (
@@ -133,14 +133,14 @@ let g_of_string ~tred_modules ~tred_libraries s =
         )
         else
           g
-      | Executables {names; modules; _} ->
+      | Executables {names; modules; _} when with_modules -> (* TODO: move check out *)
         let package = Some Local in
         let executable_cluster = names in
         let g = GOper.union g (g_of_executable_modules ~tred_modules executable_cluster modules) in
         (* executable-module edges *)
         let parent: V.t = ExecutableCluster executable_cluster in
         List.fold_left (fun g name ->
-            let executable: V.t = Executable {package; cluster = executable_cluster; name} in
+            let executable: V.t = Executable {package; cluster = executable_cluster; name; with_modules} in
             let executable_module_name = String.capitalize_ascii name in
             G.add_edge g executable (Module {parent; name = executable_module_name})
           ) g names

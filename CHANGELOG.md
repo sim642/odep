@@ -1,3 +1,6 @@
+## Unreleased
+* Add `--with-modules` argument to dune dependencies.
+
 ## 0.2.1
 * Fix dune library main module names with dots from public names.
 * Fix non-singleton executables missing from dot output.

@@ -38,9 +38,9 @@ struct
   let get_subgraph = function
     | VV.Module {parent; _} ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash parent); sg_attributes = [`Label (vertex_name parent)]; sg_parent = Some local_package_subgraph}
-    | Library {local = true; _} as v ->
+    | Library {local = true; with_modules = true; _} as v ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash v); sg_attributes = [`Label (vertex_name v)]; sg_parent = Some local_package_subgraph}
-    | Executable {cluster; _} ->
+    | Executable {cluster; with_modules = true; _} ->
       let v = VV.ExecutableCluster cluster in
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (V.hash v); sg_attributes = [`Label (vertex_name v)]; sg_parent = Some local_package_subgraph}
     | Library {local = false; package; _} ->
@@ -49,6 +49,8 @@ struct
           Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = string_of_int (Hashtbl.hash package); sg_attributes = [`Label (show_package package)]; sg_parent = None}
         | None -> None
       end
+    | Library {local = true; with_modules = false; _}
+    | Executable {with_modules = false; _}
     | LocalPackageCluster ->
       Some {Ocamlgraph_extra.Graphviz.DotAttributes.sg_name = local_package_subgraph; sg_attributes = [`Label (show_package Local)]; sg_parent = None}
     | OpamPackage _
@@ -65,22 +67,25 @@ struct
       | OpamFormula {optional = true; version_formula} -> [`Style `Dotted; `Label (Version_formula.show version_formula)]
     in
     let ltail =
+      (* TODO: extract check *)
       match u with
-      | VV.Library {local = true; _} | Executable _ ->
+      | VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _} ->
         let su = Option.get (get_subgraph u) in
         [`Ltail su.sg_name]
       | _ -> []
     in
     let lhead =
+      (* TODO: extract check *)
       match v with
-      | VV.Library {local = true; _} | Executable _ ->
+      | VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _} ->
         let sv = Option.get (get_subgraph v) in
         [`Lhead sv.sg_name]
       | _ -> []
     in
     let minlen =
+      (* TODO: extract check *)
       match u, v with
-      | (VV.Library {local = true; _} | Executable _), (VV.Library {local = true; _} | Executable _) ->
+      | (VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _}), (VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _}) ->
         [`Minlen 2]
       | _ -> []
     in

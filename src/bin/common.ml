@@ -17,3 +17,7 @@ let tred_modules =
 let tred_libraries =
   let doc = "Transitively reduce library dependencies." in
   Arg.(term_map (fun b -> `Tred_libraries b) & value & opt bool true & info ["tred-libraries"] ~docv:"BOOL" ~doc)
+
+let with_modules =
+  let doc = "Include modules in dune libraries." in
+  Arg.(term_map (fun b -> `With_modules b) & value & opt bool true & info ["with-modules"] ~docv:"BOOL" ~doc)

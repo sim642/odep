@@ -20,6 +20,7 @@ struct
     package: package option;
     cluster: executable_cluster;
     name: string;
+    with_modules: bool;
   }
   [@@deriving eq, ord]
 
@@ -28,6 +29,7 @@ struct
     name: string;
     digest: Dune_describe.Digest.t;
     local: bool;
+    with_modules: bool;
   }
   [@@deriving eq, ord]
 

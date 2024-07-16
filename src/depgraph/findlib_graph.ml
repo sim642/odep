@@ -7,7 +7,7 @@ module GOper = Graph.Oper.P (G)
 
 let v_of_library library: V.t =
   let package = Opam_findlib.find_library_package library in
-  Library {name = library; digest = ""; local = false; package}
+  Library {name = library; digest = ""; local = false; package; with_modules = false}
 
 let g_of_depends depends =
   let libraries =
