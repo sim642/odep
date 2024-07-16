@@ -66,28 +66,32 @@ struct
       | OpamFormula {optional = false; version_formula} -> [`Label (Version_formula.show version_formula)]
       | OpamFormula {optional = true; version_formula} -> [`Style `Dotted; `Label (Version_formula.show version_formula)]
     in
+    let with_modules = function
+      | VV.Library {local = true; with_modules = true; _}
+      | Executable {with_modules = true; _} -> true
+      | _ -> false
+    in
     let ltail =
-      (* TODO: extract check *)
-      match u with
-      | VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _} ->
+      if with_modules u then (
         let su = Option.get (get_subgraph u) in
         [`Ltail su.sg_name]
-      | _ -> []
+      )
+      else
+        []
     in
     let lhead =
-      (* TODO: extract check *)
-      match v with
-      | VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _} ->
+      if with_modules v then (
         let sv = Option.get (get_subgraph v) in
         [`Lhead sv.sg_name]
-      | _ -> []
+      )
+      else
+        []
     in
     let minlen =
-      (* TODO: extract check *)
-      match u, v with
-      | (VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _}), (VV.Library {local = true; with_modules = true; _} | Executable {with_modules = true; _}) ->
+      if with_modules u && with_modules v then
         [`Minlen 2]
-      | _ -> []
+      else
+        []
     in
     match get_subgraph u, get_subgraph v with
     | Some su, Some sv when su = sv -> label @ minlen
