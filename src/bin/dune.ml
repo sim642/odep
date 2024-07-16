@@ -14,8 +14,7 @@ let run path (`Type type_) (`Tred_modules tred_modules) (`Tred_libraries tred_li
       Fpath.parent f
   in
   let+ s = OS.Dir.with_current dir (fun () ->
-      (* TODO: don't add --with-deps if with_modules = false *)
-      let dune_describe = Cmd.(v "dune" % "describe" % "workspace" % "--with-deps") in
+      let dune_describe = Cmd.(v "dune" % "describe" % "workspace" %% on with_modules (v "--with-deps")) in
       match with_pps with
       | None ->
         begin match OS.Cmd.(run_out Cmd.(dune_describe % "--with-pps") |> out_string) with
