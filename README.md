@@ -370,6 +370,7 @@ odep opam-installed --depends=dune-release --rdepends=fmt
 * [dune-deps](https://github.com/mjambon/dune-deps) — dune only, custom dune files parsing.
 * [not-ocamlfind](https://github.com/chetmurthy/not-ocamlfind) — findlib only.
 * [opam-dot](https://github.com/Drup/opam-dot) — opam only, outdated ([fork](https://github.com/sim642/opam-dot)).
+* [opam-0install](https://github.com/ocaml-opam/opam-0install-solver?tab=readme-ov-file#dependency-graph) — opam only.
 * [depgraph](https://github.com/rgrinberg/ocaml-depgraph) — modules only (via `ocamldep`), inactive.
 * [module-graph](https://github.com/ocamlpro/module-graph) — modules only, based on compiled object files.
 * [odoc-depgraph](https://github.com/zoggy/odoc_depgraph) — modules only (in `ocamldoc`), inactive.
