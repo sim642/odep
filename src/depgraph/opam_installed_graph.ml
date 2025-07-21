@@ -107,7 +107,7 @@ let g_of_rdepends ~st ~env rdepends =
 let g_of_installed ~tred_packages ?depends ?rdepends () =
   let root = OpamStateConfig.opamroot () in
   OpamFormatConfig.init ();
-  ignore (OpamStateConfig.load_defaults root);
+  ignore (OpamStateConfig.load_defaults ~lock_kind:`Lock_read root);
   OpamCoreConfig.init ();
   OpamRepositoryConfig.init ();
   OpamStateConfig.init ~root_dir:root ();
