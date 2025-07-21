@@ -3,16 +3,20 @@
 ; deps
 
 (rule
- (with-stdout-to deps.dot
-  (run odep dune-describe-file -t dot %{dep:deps.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps.dot
+   (run odep dune-describe-file -t dot %{dep:deps.sexp}))))
 
 (rule
  (alias sim642test)
  (action (diff deps.dot.expected deps.dot)))
 
 (rule
- (with-stdout-to deps.mermaid
-  (run odep dune-describe-file -t mermaid %{dep:deps.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps.mermaid
+   (run odep dune-describe-file -t mermaid %{dep:deps.sexp}))))
 
 (rule
  (alias sim642test)
@@ -21,16 +25,20 @@
 ; deps2
 
 (rule
- (with-stdout-to deps2.dot
-  (run odep dune-describe-file -t dot %{dep:deps2.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps2.dot
+   (run odep dune-describe-file -t dot %{dep:deps2.sexp}))))
 
 (rule
  (alias sim642test)
  (action (diff deps2.dot.expected deps2.dot)))
 
 (rule
- (with-stdout-to deps2.mermaid
-  (run odep dune-describe-file -t mermaid %{dep:deps2.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps2.mermaid
+   (run odep dune-describe-file -t mermaid %{dep:deps2.sexp}))))
 
 (rule
  (alias sim642test)
@@ -39,16 +47,20 @@
 ; deps3
 
 (rule
- (with-stdout-to deps3.dot
-  (run odep dune-describe-file -t dot %{dep:deps3.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps3.dot
+   (run odep dune-describe-file -t dot %{dep:deps3.sexp}))))
 
 (rule
  (alias sim642test)
  (action (diff deps3.dot.expected deps3.dot)))
 
 (rule
- (with-stdout-to deps3.mermaid
-  (run odep dune-describe-file -t mermaid %{dep:deps3.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps3.mermaid
+   (run odep dune-describe-file -t mermaid %{dep:deps3.sexp}))))
 
 (rule
  (alias sim642test)
@@ -57,16 +69,20 @@
 ; deps4
 
 (rule
- (with-stdout-to deps4.dot
-  (run odep dune-describe-file -t dot %{dep:deps4.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps4.dot
+   (run odep dune-describe-file -t dot %{dep:deps4.sexp}))))
 
 (rule
  (alias sim642test)
  (action (diff deps4.dot.expected deps4.dot)))
 
 (rule
- (with-stdout-to deps4.mermaid
-  (run odep dune-describe-file -t mermaid %{dep:deps4.sexp})))
+ (deps (universe))
+ (action
+  (with-stdout-to deps4.mermaid
+   (run odep dune-describe-file -t mermaid %{dep:deps4.sexp}))))
 
 (rule
  (alias sim642test)

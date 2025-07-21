@@ -3,6 +3,7 @@
  (target findlib-depends-dune-release.svg)
  (mode promote)
  (enabled_if %{bin-available:dot})
+ (deps (universe))
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -14,6 +15,7 @@
  (target findlib-rdepends-fmt.svg)
  (mode promote)
  (enabled_if %{bin-available:dot})
+ (deps (universe))
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -25,6 +27,7 @@
  (target findlib-depends-dune-release-rdepends-fmt.svg)
  (mode promote)
  (enabled_if %{bin-available:dot})
+ (deps (universe))
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -36,6 +39,7 @@
  (target opam-depends-dune-release.svg)
  (mode promote)
  (enabled_if %{bin-available:dot})
+ (deps (universe))
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -47,6 +51,7 @@
  (target opam-rdepends-fmt.svg)
  (mode promote)
  (enabled_if %{bin-available:dot})
+ (deps (universe))
  (action
   (with-stdout-to %{target}
    (pipe-stdout
@@ -58,6 +63,7 @@
  (target opam-depends-dune-release-rdepends-fmt.svg)
  (mode promote)
  (enabled_if %{bin-available:dot})
+ (deps (universe))
  (action
   (with-stdout-to %{target}
    (pipe-stdout
