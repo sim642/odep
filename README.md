@@ -37,289 +37,321 @@ odep dune -t mermaid
 copied into a `mermaid` language block in GitHub Flavored Markdown produces:
 ```mermaid
 flowchart TD
-  subgraph 1009034736 ["fmt 0.9.0"]
-    id614681436(["fmt"])
-    style id614681436 fill:#BBB
-  end
-  subgraph 1020731658 ["re 1.10.4"]
-    id817603210(["re"])
-    style id817603210 fill:#BBB
-  end
-  subgraph 104811802 ["opam-format 2.1.5"]
-    id178361781(["opam-format"])
-    style id178361781 fill:#BBB
+  subgraph 102480166 ["opam-format 2.4.0"]
+    id615726552(["opam-format"])
+    style id615726552 fill:#BBB
   end
   subgraph 105050893 ["ppx_derivers 1.2.1"]
-    id944076602(["ppx_derivers"])
-    style id944076602 fill:#BBB
-  end
-  subgraph 11357312 ["base v0.16.1"]
-    id1001087518(["base.shadow_stdlib"])
-    style id1001087518 fill:#BBB
-    id631192440(["base.caml"])
-    style id631192440 fill:#BBB
-    id920833612(["base.base_internalhash_types"])
-    style id920833612 fill:#BBB
-    id615168812(["base"])
-    style id615168812 fill:#BBB
+    id1023626359(["ppx_derivers"])
+    style id1023626359 fill:#BBB
   end
   subgraph 129913994 ["(compiler)"]
-    id266426620(["unix"])
-    style id266426620 fill:#BBB
-    id255847688(["compiler-libs.common"])
-    style id255847688 fill:#BBB
-    id612096776(["bigarray"])
-    style id612096776 fill:#BBB
+    id1315639(["unix"])
+    style id1315639 fill:#BBB
+    id316257320(["compiler-libs.common"])
+    style id316257320 fill:#BBB
+    id335749456(["compiler-libs"])
+    style id335749456 fill:#BBB
+    id544138070(["bigarray"])
+    style id544138070 fill:#BBB
   end
-  subgraph 136087330 ["ocamlgraph 2.0.0"]
-    id183162717(["ocamlgraph"])
-    style id183162717 fill:#BBB
+  subgraph 131039579 ["uutf 1.0.4"]
+    id105590012(["uutf"])
+    style id105590012 fill:#BBB
+  end
+  subgraph 152457554 ["ocamlfind 1.9.8"]
+    id461103549(["findlib.internal"])
+    style id461103549 fill:#BBB
+    id727423305(["findlib"])
+    style id727423305 fill:#BBB
+  end
+  subgraph 197557647 ["base v0.16.4"]
+    id586369146(["base.shadow_stdlib"])
+    style id586369146 fill:#BBB
+    id924125828(["base.caml"])
+    style id924125828 fill:#BBB
+    id1016984300(["base.base_internalhash_types"])
+    style id1016984300 fill:#BBB
+    id670488034(["base"])
+    style id670488034 fill:#BBB
+  end
+  subgraph 247067125 ["opam-core 2.4.0"]
+    id699261740(["opam-core"])
+    style id699261740 fill:#BBB
   end
   subgraph 250659719 ["parsexp v0.16.0"]
-    id1067593255(["parsexp"])
-    style id1067593255 fill:#BBB
+    id411232616(["parsexp"])
+    style id411232616 fill:#BBB
   end
   subgraph 292359173 ["astring 0.8.5"]
-    id727224986(["astring"])
-    style id727224986 fill:#BBB
+    id487532716(["astring"])
+    style id487532716 fill:#BBB
   end
-  subgraph 306932333 ["opam-repository 2.1.5"]
-    id979332654(["opam-repository"])
-    style id979332654 fill:#BBB
+  subgraph 349241649 ["jsonm 1.0.2"]
+    id1005923351(["jsonm"])
+    style id1005923351 fill:#BBB
   end
-  subgraph 353386239 ["opam-state 2.1.5"]
-    id261565931(["opam-state"])
-    style id261565931 fill:#BBB
+  subgraph 381082807 ["opam-file-format 2.2.0"]
+    id735894979(["opam-file-format"])
+    style id735894979 fill:#BBB
   end
-  subgraph 389527603 ["result 1.5"]
-    id577741237(["result"])
-    style id577741237 fill:#BBB
+  subgraph 423149259 ["fmt 0.10.0"]
+    id656295196(["fmt"])
+    style id656295196 fill:#BBB
   end
   subgraph 431173517 ["sexplib v0.16.0"]
-    id85613087(["sexplib"])
-    style id85613087 fill:#BBB
+    id462220983(["sexplib"])
+    style id462220983 fill:#BBB
+  end
+  subgraph 431295198 ["sha 1.15.4"]
+    id917875970(["sha"])
+    style id917875970 fill:#BBB
   end
   subgraph 438175530 ["fpath 0.7.3"]
-    id560603002(["fpath"])
-    style id560603002 fill:#BBB
+    id522271446(["fpath"])
+    style id522271446 fill:#BBB
   end
   subgraph 458205106 ["seq base"]
-    id184246828(["seq"])
-    style id184246828 fill:#BBB
+    id406642827(["seq"])
+    style id406642827 fill:#BBB
   end
-  subgraph 477870478 ["ppx_deriving 5.2.1"]
-    id958091540(["ppx_deriving.runtime"])
-    style id958091540 fill:#BBB
-    id834058755(["ppx_deriving.ord"])
-    style id834058755 fill:#BBB
-    id263623291(["ppx_deriving.eq"])
-    style id263623291 fill:#BBB
-    id953408392(["ppx_deriving.api"])
-    style id953408392 fill:#BBB
+  subgraph 497614195 ["opam-repository 2.4.0"]
+    id778760059(["opam-repository"])
+    style id778760059 fill:#BBB
   end
-  subgraph 541823983 ["ocamlfind 1.9.6"]
-    id886416438(["findlib.internal"])
-    style id886416438 fill:#BBB
-    id11445160(["findlib"])
-    style id11445160 fill:#BBB
+  subgraph 510801370 ["logs 0.9.0"]
+    id556151374(["logs"])
+    style id556151374 fill:#BBB
   end
-  subgraph 556777479 ["opam-file-format 2.1.6"]
-    id863133190(["opam-file-format"])
-    style id863133190 fill:#BBB
-  end
-  subgraph 586824428 ["opam-core 2.1.5"]
-    id935524513(["opam-core"])
-    style id935524513 fill:#BBB
+  subgraph 515813516 ["ocamlgraph 2.2.0"]
+    id52020057(["ocamlgraph"])
+    style id52020057 fill:#BBB
   end
   subgraph 591990434 ["bos 0.2.1"]
-    id745446969(["bos"])
-    style id745446969 fill:#BBB
+    id547135673(["bos"])
+    style id547135673 fill:#BBB
   end
   subgraph 619828698 ["sexplib0 v0.16.0"]
-    id845842863(["sexplib0"])
-    style id845842863 fill:#BBB
+    id15418542(["sexplib0"])
+    style id15418542 fill:#BBB
   end
-  subgraph 629932021 ["cmdliner 1.2.0"]
-    id500343217(["cmdliner"])
-    style id500343217 fill:#BBB
+  subgraph 641104511 ["cmdliner 1.3.0"]
+    id371225968(["cmdliner"])
+    style id371225968 fill:#BBB
+  end
+  subgraph 684657127 ["ppx_deriving 6.0.3"]
+    id146452769(["ppx_deriving.runtime"])
+    style id146452769 fill:#BBB
+    id674417156(["ppx_deriving.ord"])
+    style id674417156 fill:#BBB
+    id773464780(["ppx_deriving.eq"])
+    style id773464780 fill:#BBB
+    id240017912(["ppx_deriving.api"])
+    style id240017912 fill:#BBB
   end
   subgraph 747883779 ["stdlib-shims 0.3.0"]
-    id967083485(["stdlib-shims"])
-    style id967083485 fill:#BBB
+    id466892178(["stdlib-shims"])
+    style id466892178 fill:#BBB
+  end
+  subgraph 765420893 ["patch 3.0.0"]
+    id86267199(["patch"])
+    style id86267199 fill:#BBB
   end
   subgraph 766362805 ["rresult 0.7.0"]
-    id104639968(["rresult"])
-    style id104639968 fill:#BBB
+    id450043277(["rresult"])
+    style id450043277 fill:#BBB
   end
-  subgraph 814024879 ["ppxlib 0.30.0"]
-    id281869556(["ppxlib.traverse_builtins"])
-    style id281869556 fill:#BBB
-    id919310622(["ppxlib.stdppx"])
-    style id919310622 fill:#BBB
-    id131632995(["ppxlib.print_diff"])
-    style id131632995 fill:#BBB
-    id926788961(["ppxlib.metaquot_lifters"])
-    style id926788961 fill:#BBB
-    id360973787(["ppxlib.astlib"])
-    style id360973787 fill:#BBB
-    id562070456(["ppxlib.ast"])
-    style id562070456 fill:#BBB
-    id25427089(["ppxlib"])
-    style id25427089 fill:#BBB
+  subgraph 784829750 ["re 1.13.2"]
+    id898742252(["re"])
+    style id898742252 fill:#BBB
   end
   subgraph 837386068 ["ocaml-compiler-libs v0.12.4"]
-    id1048368575(["ocaml-compiler-libs.shadow"])
-    style id1048368575 fill:#BBB
-    id502843752(["ocaml-compiler-libs.common"])
-    style id502843752 fill:#BBB
+    id672046665(["ocaml-compiler-libs.shadow"])
+    style id672046665 fill:#BBB
+    id283361239(["ocaml-compiler-libs.common"])
+    style id283361239 fill:#BBB
+  end
+  subgraph 878175101 ["spdx_licenses 1.4.0"]
+    id287260738(["spdx_licenses"])
+    style id287260738 fill:#BBB
+  end
+  subgraph 8846408 ["opam-state 2.4.0"]
+    id56385167(["opam-state"])
+    style id56385167 fill:#BBB
   end
   subgraph 894937073 ["ppx_sexp_conv v0.16.0"]
-    id456126552(["ppx_sexp_conv.runtime-lib"])
-    style id456126552 fill:#BBB
-    id567549061(["ppx_sexp_conv.expander"])
-    style id567549061 fill:#BBB
-    id370539618(["ppx_sexp_conv"])
-    style id370539618 fill:#BBB
+    id437688897(["ppx_sexp_conv.runtime-lib"])
+    style id437688897 fill:#BBB
+    id153960813(["ppx_sexp_conv.expander"])
+    style id153960813 fill:#BBB
+    id999753992(["ppx_sexp_conv"])
+    style id999753992 fill:#BBB
   end
   subgraph 902546259 ["(local)"]
-    subgraph 122612022 ["depgraph"]
-      id439874552(Opam_installed_graph)
-      id882674132(Opam_findlib)
-      id890445863(Findlib_graph)
-      id130907115(Dune_describe_graph)
-      id658580835(Dot_graph)
-      id593996496(Depgraph)
-      id175675044(Common)
-      id122612022(["depgraph"])
+
+    subgraph 182590919 ["ocamlgraph_extra"]
+      id909167910(Ocamlgraph_extra)
+      id364200234(Mermaid)
+      id19961921(Graphviz)
+      id182590919(["ocamlgraph_extra"])
     end
-    subgraph 158492278 ["std"]
-      id1008512934(Std)
-      id916334710(Result_syntax)
-      id262221135(Option_syntax)
-      id768355202(Common_syntax)
-      id158492278(["std"])
+    subgraph 217239486 ["opam_state_compat_gen"]
+      id225401095(Opam_state_compat_gen)
+      id887042935{"opam_state_compat_gen"}
     end
-    subgraph 189591663 ["main"]
-      id591715563(Opam_installed)
-      id725600054(Main)
-      id1004882373(Findlib)
-      id8714191(Dune_describe_file)
-      id952370123(Dune)
-      id326418831(Common)
-      id189591663{"main"}
+    subgraph 251677328 ["std"]
+      id577348791(String_compat)
+      id154524232(Std)
+      id211704847(Result_syntax)
+      id739284559(Option_syntax)
+      id787477767(List_compat)
+      id913891041(Common_syntax)
+      id251677328(["std"])
     end
-    subgraph 305831830 ["opam_state_compat_gen"]
-      id323374370(Opam_state_compat_gen)
-      id305831830{"opam_state_compat_gen"}
+    subgraph 404911043 ["depgraph"]
+      id888013992(Opam_installed_graph)
+      id83337716(Opam_findlib)
+      id402513488(Findlib_graph)
+      id397688033(Dune_describe_graph)
+      id400143624(Dot_graph)
+      id778564616(Depgraph)
+      id945919667(Common)
+      id404911043(["depgraph"])
     end
-    subgraph 312718400 ["ocamlgraph_extra"]
-      id872997936(Ocamlgraph_extra)
-      id157893572(Mermaid)
-      id383119909(Graphviz)
-      id312718400(["ocamlgraph_extra"])
+    subgraph 416710505 ["dune_describe"]
+      id865590424(Dune_describe)
+      id416710505(["dune_describe"])
     end
-    subgraph 433051691 ["opam_state_compat"]
-      id80388000(Opam_state_compat)
-      id433051691(["opam_state_compat"])
+    subgraph 460641903 ["opam_state_compat"]
+      id370066574(Opam_state_compat)
+      id460641903(["opam_state_compat"])
     end
-    subgraph 557698697 ["dune_describe"]
-      id15495529(Dune_describe)
-      id557698697(["dune_describe"])
+    subgraph 775305508 ["main"]
+      id167761484(Opam_installed)
+      id253906758(Main)
+      id43597349(Findlib)
+      id636561608(Dune_describe_file)
+      id517256953(Dune)
+      id525249012(Common)
+      id71640535{"main"}
     end
   end
-  subgraph 903389259 ["logs 0.7.0"]
-    id45133392(["logs"])
-    style id45133392 fill:#BBB
+  subgraph 926200846 ["ppxlib 0.35.0"]
+    id1018932431(["ppxlib.traverse_builtins"])
+    style id1018932431 fill:#BBB
+    id77382500(["ppxlib.stdppx"])
+    style id77382500 fill:#BBB
+    id713939691(["ppxlib.print_diff"])
+    style id713939691 fill:#BBB
+    id1036258264(["ppxlib.metaquot_lifters"])
+    style id1036258264 fill:#BBB
+    id859130989(["ppxlib.astlib"])
+    style id859130989 fill:#BBB
+    id78357412(["ppxlib.ast"])
+    style id78357412 fill:#BBB
+    id1059118486(["ppxlib"])
+    style id1059118486 fill:#BBB
   end
-  189591663-->id745446969
-  189591663-->id500343217
-  189591663-->122612022
-  id189591663-->id725600054
-  305831830-->id261565931
-  id305831830-->id323374370
-  id615168812-->id920833612
-  id615168812-->id631192440
-  id615168812-->id1001087518
-  id615168812-->id845842863
-  id745446969-->id614681436
-  id745446969-->id560603002
-  id745446969-->id45133392
-  id745446969-->id104639968
-  id745446969-->id266426620
-  id560603002-->id727224986
-  id502843752-->id255847688
-  id11445160-->id886416438
-  id183162717-->id967083485
-  id935524513-->id183162717
-  id935524513-->id817603210
-  id935524513-->id612096776
-  id178361781-->id935524513
-  id178361781-->id863133190
-  id979332654-->id178361781
-  id261565931-->id979332654
-  id1067593255-->id845842863
-  id953408392-->id25427089
-  id953408392-->id577741237
-  id263623291-->id953408392
-  id834058755-->id953408392
-  id958091540-->id577741237
-  id370539618-->id567549061
-  id567549061-->id615168812
-  id567549061-->id926788961
-  id456126552-->id845842863
-  id25427089-->id1048368575
-  id25427089-->id944076602
-  id25427089-->id562070456
-  id25427089-->id131632995
-  id25427089-->id919310622
-  id25427089-->id281869556
-  id562070456-->id360973787
-  id562070456-->id967083485
-  id360973787-->id502843752
-  id926788961-->id25427089
-  id919310622-->id845842863
-  id919310622-->id967083485
-  id817603210-->id184246828
-  id85613087-->id1067593255
-  id85613087-->id612096776
-  id612096776-->id266426620
-  122612022-->id11445160
-  122612022-->557698697
-  122612022-->312718400
-  122612022-->433051691
-  122612022-->158492278
-  id122612022-->id593996496
-  557698697-->id958091540
-  557698697-->id456126552
-  557698697-->id85613087
-  id557698697-->id15495529
-  312718400-->id183162717
-  id312718400-->id872997936
-  433051691-->id261565931
-  id433051691-->id80388000
-  id158492278-->id1008512934
-  id952370123-->id326418831
-  id8714191-->id326418831
-  id1004882373-->id326418831
-  id725600054-->id952370123
-  id725600054-->id8714191
-  id725600054-->id1004882373
-  id725600054-->id591715563
-  id591715563-->id326418831
-  id593996496-->id658580835
-  id593996496-->id130907115
-  id593996496-->id890445863
-  id593996496-->id439874552
-  id658580835-->id175675044
-  id130907115-->id882674132
-  id890445863-->id882674132
-  id882674132-->id175675044
-  id439874552-->id175675044
-  id157893572-->id383119909
-  id872997936-->id157893572
-  id1008512934-->id768355202
-  id1008512934-->id262221135
-  id1008512934-->id916334710
+  subgraph 967655810 ["swhid_core 0.1"]
+    id461538233(["swhid_core"])
+    style id461538233 fill:#BBB
+  end
+  775305508-->id547135673
+  775305508-->id371225968
+  775305508-->404911043
+  id71640535-->id253906758
+  217239486-->id56385167
+  id887042935-->id225401095
+  id670488034-->id1016984300
+  id670488034-->id924125828
+  id670488034-->id586369146
+  id670488034-->id15418542
+  id547135673-->id656295196
+  id547135673-->id522271446
+  id547135673-->id556151374
+  id547135673-->id450043277
+  id547135673-->id1315639
+  id522271446-->id487532716
+  id1005923351-->id105590012
+  id283361239-->id316257320
+  id727423305-->id461103549
+  id699261740-->id1005923351
+  id699261740-->id52020057
+  id699261740-->id86267199
+  id699261740-->id898742252
+  id699261740-->id917875970
+  id699261740-->id461538233
+  id699261740-->id1315639
+  id615726552-->id699261740
+  id615726552-->id735894979
+  id778760059-->id615726552
+  id56385167-->id778760059
+  id56385167-->id287260738
+  id411232616-->id15418542
+  id240017912-->id1059118486
+  id773464780-->id240017912
+  id674417156-->id240017912
+  id999753992-->id153960813
+  id153960813-->id670488034
+  id153960813-->id1036258264
+  id437688897-->id15418542
+  id1059118486-->id672046665
+  id1059118486-->id1023626359
+  id1059118486-->id78357412
+  id1059118486-->id713939691
+  id1059118486-->id77382500
+  id1059118486-->id1018932431
+  id78357412-->id859130989
+  id78357412-->id466892178
+  id859130989-->id283361239
+  id1036258264-->id1059118486
+  id77382500-->id15418542
+  id77382500-->id466892178
+  id898742252-->id406642827
+  id462220983-->id411232616
+  id462220983-->id544138070
+  id917875970-->id466892178
+  id544138070-->id1315639
+  id316257320-->id335749456
+  404911043-->id727423305
+  404911043-->416710505
+  404911043-->182590919
+  404911043-->460641903
+  404911043-->251677328
+  id404911043-->id778564616
+  416710505-->id146452769
+  416710505-->id437688897
+  416710505-->id462220983
+  id416710505-->id865590424
+  182590919-->id52020057
+  id182590919-->id909167910
+  460641903-->id56385167
+  id460641903-->id370066574
+  id251677328-->id154524232
+  id517256953-->id525249012
+  id636561608-->id525249012
+  id43597349-->id525249012
+  id253906758-->id517256953
+  id253906758-->id636561608
+  id253906758-->id43597349
+  id253906758-->id167761484
+  id167761484-->id525249012
+  id778564616-->id400143624
+  id778564616-->id397688033
+  id778564616-->id402513488
+  id778564616-->id888013992
+  id400143624-->id945919667
+  id397688033-->id83337716
+  id402513488-->id83337716
+  id83337716-->id945919667
+  id888013992-->id945919667
+  id364200234-->id19961921
+  id909167910-->id364200234
+  id154524232-->id913891041
+  id154524232-->id787477767
+  id154524232-->id739284559
+  id154524232-->id211704847
+  id154524232-->id577348791
 ```
 
 ### findlib
