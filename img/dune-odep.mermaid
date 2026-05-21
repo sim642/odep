@@ -1,8 +1,8 @@
 flowchart TD
   
-  subgraph 102480166 ["opam-format 2.4.0"]
-    id615726552(["opam-format"])
-    style id615726552 fill:#BBB
+  subgraph 102179602 ["opam-core 2.5.1"]
+    id144677198(["opam-core"])
+    style id144677198 fill:#BBB
   end
   subgraph 105050893 ["ppx_derivers 1.2.1"]
     id1023626359(["ppx_derivers"])
@@ -38,13 +38,13 @@ flowchart TD
     id670488034(["base"])
     style id670488034 fill:#BBB
   end
-  subgraph 247067125 ["opam-core 2.4.0"]
-    id699261740(["opam-core"])
-    style id699261740 fill:#BBB
-  end
   subgraph 250659719 ["parsexp v0.16.0"]
     id411232616(["parsexp"])
     style id411232616 fill:#BBB
+  end
+  subgraph 25928587 ["opam-format 2.5.1"]
+    id225843221(["opam-format"])
+    style id225843221 fill:#BBB
   end
   subgraph 292359173 ["astring 0.8.5"]
     id487532716(["astring"])
@@ -78,10 +78,6 @@ flowchart TD
     id406642827(["seq"])
     style id406642827 fill:#BBB
   end
-  subgraph 497614195 ["opam-repository 2.4.0"]
-    id778760059(["opam-repository"])
-    style id778760059 fill:#BBB
-  end
   subgraph 510801370 ["logs 0.9.0"]
     id556151374(["logs"])
     style id556151374 fill:#BBB
@@ -112,6 +108,10 @@ flowchart TD
     id240017912(["ppx_deriving.api"])
     style id240017912 fill:#BBB
   end
+  subgraph 747616272 ["opam-state 2.5.1"]
+    id204542975(["opam-state"])
+    style id204542975 fill:#BBB
+  end
   subgraph 747883779 ["stdlib-shims 0.3.0"]
     id466892178(["stdlib-shims"])
     style id466892178 fill:#BBB
@@ -138,10 +138,6 @@ flowchart TD
     id287260738(["spdx_licenses"])
     style id287260738 fill:#BBB
   end
-  subgraph 8846408 ["opam-state 2.4.0"]
-    id56385167(["opam-state"])
-    style id56385167 fill:#BBB
-  end
   subgraph 894937073 ["ppx_sexp_conv v0.16.0"]
     id437688897(["ppx_sexp_conv.runtime-lib"])
     style id437688897 fill:#BBB
@@ -149,6 +145,10 @@ flowchart TD
     style id153960813 fill:#BBB
     id999753992(["ppx_sexp_conv"])
     style id999753992 fill:#BBB
+  end
+  subgraph 897017054 ["opam-repository 2.5.1"]
+    id415994841(["opam-repository"])
+    style id415994841 fill:#BBB
   end
   subgraph 902546259 ["(local)"]
     
@@ -223,7 +223,7 @@ flowchart TD
   775305508-->id371225968
   775305508-->404911043
   id71640535-->id253906758
-  217239486-->id56385167
+  217239486-->id204542975
   id887042935-->id225401095
   id670488034-->id1016984300
   id670488034-->id924125828
@@ -238,18 +238,18 @@ flowchart TD
   id1005923351-->id105590012
   id283361239-->id316257320
   id727423305-->id461103549
-  id699261740-->id1005923351
-  id699261740-->id52020057
-  id699261740-->id86267199
-  id699261740-->id898742252
-  id699261740-->id917875970
-  id699261740-->id461538233
-  id699261740-->id1315639
-  id615726552-->id699261740
-  id615726552-->id735894979
-  id778760059-->id615726552
-  id56385167-->id778760059
-  id56385167-->id287260738
+  id144677198-->id1005923351
+  id144677198-->id52020057
+  id144677198-->id86267199
+  id144677198-->id898742252
+  id144677198-->id917875970
+  id144677198-->id461538233
+  id144677198-->id1315639
+  id225843221-->id144677198
+  id225843221-->id735894979
+  id415994841-->id225843221
+  id204542975-->id415994841
+  id204542975-->id287260738
   id411232616-->id15418542
   id240017912-->id1059118486
   id773464780-->id240017912
@@ -288,7 +288,7 @@ flowchart TD
   id416710505-->id865590424
   182590919-->id52020057
   id182590919-->id909167910
-  460641903-->id56385167
+  460641903-->id204542975
   id460641903-->id370066574
   id251677328-->id154524232
   id517256953-->id525249012
