@@ -1,5 +1,6 @@
 ## Unreleased
 * Add `--with-modules` argument to dune dependencies.
+* Fix opam 2.4 compatibility.
 
 ## 0.2.1
 * Fix dune library main module names with dots from public names.
