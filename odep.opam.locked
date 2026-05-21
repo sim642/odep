@@ -40,11 +40,11 @@ depends: [
   "ocamlgraph" {= "2.2.0"}
   "odoc" {= "3.1.0" & with-doc}
   "odoc-parser" {= "3.1.0" & with-doc}
-  "opam-core" {= "2.4.0"}
+  "opam-core" {= "2.5.1"}
   "opam-file-format" {= "2.2.0"}
-  "opam-format" {= "2.4.0"}
-  "opam-repository" {= "2.4.0"}
-  "opam-state" {= "2.4.0"}
+  "opam-format" {= "2.5.1"}
+  "opam-repository" {= "2.5.1"}
+  "opam-state" {= "2.5.1"}
   "parsexp" {= "v0.16.0"}
   "patch" {= "3.0.0"}
   "ppx_derivers" {= "1.2.1"}
