@@ -1,4 +1,4 @@
-## Unreleased
+## 0.2.2
 * Add `--with-modules` argument to dune dependencies.
 * Fix opam 2.4 compatibility.
 * Fix vertex name conflict when dune library and executable have same name (#9).
