@@ -34,7 +34,7 @@ digraph G {
   "threads" [style="filled", ];
   "threads.posix" [style="filled", ];
   "unix" [style="filled", ];
-  "utop";
+  "utop__2" [label="utop", ];
   "modules__Modules" [label="Modules", shape=box, ];
   "myutop__Myutop" [label="Myutop", shape=box, ];
   "test_program__Test_program" [label="Test_program", shape=box, ];
@@ -88,7 +88,7 @@ digraph G {
   subgraph cluster_842817762 { label="uucp 17.0.0"; "uucp";
      };
   subgraph cluster_902546259 { label="(local)"; "local_package__";
-    subgraph cluster_116589860 { label="utop"; "utop__UTop_token";"utop__UTop_styles";"utop__UTop_private";"utop__UTop_main";"utop__UTop_lexer";"utop__UTop_history";"utop__UTop_complete";"utop__UTop_compat";"utop__UTop";"utop";
+    subgraph cluster_116589860 { label="utop"; "utop__UTop_token";"utop__UTop_styles";"utop__UTop_private";"utop__UTop_main";"utop__UTop_lexer";"utop__UTop_history";"utop__UTop_complete";"utop__UTop_compat";"utop__UTop";"utop__2";
        };
     subgraph cluster_243439007 { label="modules"; "modules__Modules";"modules";
        };
@@ -101,14 +101,14 @@ digraph G {
      };
   
   "modules" -> "modules__Modules";
-  "myutop" -> "utop" [minlen=2, lhead="cluster_116589860",
-                      ltail="cluster_784397166", ];
+  "myutop" -> "utop__2" [minlen=2, lhead="cluster_116589860",
+                         ltail="cluster_784397166", ];
   "myutop" -> "myutop__Myutop";
-  "test_program" -> "utop" [minlen=2, lhead="cluster_116589860",
-                            ltail="cluster_907735217", ];
+  "test_program" -> "utop__2" [minlen=2, lhead="cluster_116589860",
+                               ltail="cluster_907735217", ];
   "test_program" -> "test_program__Test_program";
-  "utop" -> "utop" [minlen=2, lhead="cluster_116589860",
-                    ltail="cluster_266712229", ];
+  "utop" -> "utop__2" [minlen=2, lhead="cluster_116589860",
+                       ltail="cluster_266712229", ];
   "utop" -> "utop__Utop";
   "lambda-term" -> "logs.lwt";
   "lambda-term" -> "lwt.unix";
@@ -142,19 +142,19 @@ digraph G {
   "compiler-libs.toplevel" -> "compiler-libs.bytecomp";
   "threads" -> "threads.posix";
   "threads.posix" -> "unix";
-  "utop" -> "lambda-term" [ltail="cluster_116589860", ];
-  "utop" -> "findlib.top" [ltail="cluster_116589860", ];
-  "utop" -> "xdg" [ltail="cluster_116589860", ];
-  "utop" -> "compiler-libs.toplevel" [ltail="cluster_116589860", ];
-  "utop" -> "utop__UTop";
-  "utop" -> "utop__UTop_compat";
-  "utop" -> "utop__UTop_complete";
-  "utop" -> "utop__UTop_history";
-  "utop" -> "utop__UTop_lexer";
-  "utop" -> "utop__UTop_main";
-  "utop" -> "utop__UTop_private";
-  "utop" -> "utop__UTop_styles";
-  "utop" -> "utop__UTop_token";
+  "utop__2" -> "lambda-term" [ltail="cluster_116589860", ];
+  "utop__2" -> "findlib.top" [ltail="cluster_116589860", ];
+  "utop__2" -> "xdg" [ltail="cluster_116589860", ];
+  "utop__2" -> "compiler-libs.toplevel" [ltail="cluster_116589860", ];
+  "utop__2" -> "utop__UTop";
+  "utop__2" -> "utop__UTop_compat";
+  "utop__2" -> "utop__UTop_complete";
+  "utop__2" -> "utop__UTop_history";
+  "utop__2" -> "utop__UTop_lexer";
+  "utop__2" -> "utop__UTop_main";
+  "utop__2" -> "utop__UTop_private";
+  "utop__2" -> "utop__UTop_styles";
+  "utop__2" -> "utop__UTop_token";
   "utop__UTop" -> "utop__UTop_compat";
   "utop__UTop" -> "utop__UTop_history";
   "utop__UTop" -> "utop__UTop_private";

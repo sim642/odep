@@ -58,6 +58,47 @@ struct
       None
     | ExecutableCluster _ ->
       assert false
+
+  (* TODO: Hashtbl.Make *)
+  let vertex_name_index = Hashtbl.create 13
+  let vertex_name_next_index = Hashtbl.create 13
+
+  (* ensure unique vertex_name for output graph *)
+  (* NB! get_subgraph above still uses original user-readable ones *)
+  let vertex_name v =
+    let s = vertex_name v in
+    let i =
+      match Hashtbl.find vertex_name_index v with
+      | i -> i
+      | exception Not_found ->
+        let i =
+          match Hashtbl.find vertex_name_next_index s with
+          | i ->
+            Hashtbl.replace vertex_name_next_index s (i + 1);
+            i
+          | exception Not_found ->
+            Hashtbl.replace vertex_name_next_index s 2;
+            1
+        in
+        Hashtbl.replace vertex_name_index v i;
+        i
+    in
+    match i with
+    | 1 -> s
+    | _ -> s ^ "__" ^ string_of_int i
+
+  let vertex_attributes v =
+    let attributes = vertex_attributes v in
+    match v with
+    | VV.Executable {name; _}
+    | Library {name; _} ->
+      let name' = vertex_name v in
+      if name <> name' then (* only add explicit `Label if really necessary *)
+        `Label name :: attributes
+      else
+        attributes
+    | _ -> attributes (* TODO: need explicit `Label? *)
+
   let vertex_name v = Printf.sprintf "\"%s\"" (vertex_name v)
   let edge_attributes (u, e, v) =
     let label =
