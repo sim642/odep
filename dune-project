@@ -18,7 +18,7 @@
   (ppx_sexp_conv (>= v0.13))
   parsexp
   (opam-core (>= 2.1.0))
-  (opam-state (>= 2.1.0))
+  (opam-state (and (>= 2.1.0) (or (< 2.2.0~beta3) (>= 2.2.0))))
   opam-format
   (ocamlfind (>= 1.8.1))
   (cmdliner (>= 1.1.0))
