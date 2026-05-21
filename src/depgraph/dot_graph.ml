@@ -73,13 +73,10 @@ struct
       | exception Not_found ->
         let i =
           match Hashtbl.find vertex_name_next_index s with
-          | i ->
-            Hashtbl.replace vertex_name_next_index s (i + 1);
-            i
-          | exception Not_found ->
-            Hashtbl.replace vertex_name_next_index s 2;
-            1
+          | i -> i
+          | exception Not_found -> 1
         in
+        Hashtbl.replace vertex_name_next_index s (i + 1);
         Hashtbl.replace vertex_name_index v i;
         i
     in
