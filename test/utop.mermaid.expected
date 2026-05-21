@@ -1,0 +1,192 @@
+flowchart TD
+  
+  subgraph 1010555960 ["zed 3.2.3"]
+    id97150299(["zed"])
+    style id97150299 fill:#BBB
+  end
+  subgraph 129913994 ["(compiler)"]
+    id1315639(["unix"])
+    style id1315639 fill:#BBB
+    id972473676(["threads.posix"])
+    style id972473676 fill:#BBB
+    id125670660(["threads"])
+    style id125670660 fill:#BBB
+    id160152728(["compiler-libs.toplevel"])
+    style id160152728 fill:#BBB
+    id316257320(["compiler-libs.common"])
+    style id316257320 fill:#BBB
+    id599617885(["compiler-libs.bytecomp"])
+    style id599617885 fill:#BBB
+    id335749456(["compiler-libs"])
+    style id335749456 fill:#BBB
+    id423584212(["bytes"])
+    style id423584212 fill:#BBB
+    id544138070(["bigarray"])
+    style id544138070 fill:#BBB
+  end
+  subgraph 131039579 ["uutf 1.0.4"]
+    id105590012(["uutf"])
+    style id105590012 fill:#BBB
+  end
+  subgraph 152457554 ["ocamlfind 1.9.8"]
+    id118240101(["findlib.top"])
+    style id118240101 fill:#BBB
+    id461103549(["findlib.internal"])
+    style id461103549 fill:#BBB
+  end
+  subgraph 238703147 ["mew_vi 0.5.0"]
+    id993314844(["mew_vi"])
+    style id993314844 fill:#BBB
+  end
+  subgraph 266484904 ["lambda-term 3.4.0"]
+    id465543944(["lambda-term"])
+    style id465543944 fill:#BBB
+  end
+  subgraph 280519269 ["lwt_react 1.2.0"]
+    id961885925(["lwt_react"])
+    style id961885925 fill:#BBB
+  end
+  subgraph 389527603 ["result 1.5"]
+    id229969259(["result"])
+    style id229969259 fill:#BBB
+  end
+  subgraph 510801370 ["logs 0.9.0"]
+    id665692215(["logs.lwt"])
+    style id665692215 fill:#BBB
+    id556151374(["logs"])
+    style id556151374 fill:#BBB
+  end
+  subgraph 511385127 ["mew 0.1.0"]
+    id991492331(["mew"])
+    style id991492331 fill:#BBB
+  end
+  subgraph 540289571 ["lwt 6.1.2"]
+    id308034524(["lwt.unix"])
+    style id308034524 fill:#BBB
+    id93580318(["lwt"])
+    style id93580318 fill:#BBB
+  end
+  subgraph 542427988 ["react 1.2.2"]
+    id440066890(["react"])
+    style id440066890 fill:#BBB
+  end
+  subgraph 643525411 ["ocplib-endian 1.2"]
+    id987277731(["ocplib-endian.bigstring"])
+    style id987277731 fill:#BBB
+    id998856109(["ocplib-endian"])
+    style id998856109 fill:#BBB
+  end
+  subgraph 676922294 ["uuseg 17.0.0"]
+    id207602661(["uuseg"])
+    style id207602661 fill:#BBB
+  end
+  subgraph 714572233 ["xdg 3.19.1"]
+    id977522015(["xdg"])
+    style id977522015 fill:#BBB
+  end
+  subgraph 799206904 ["trie 1.0.0"]
+    id54470835(["trie"])
+    style id54470835 fill:#BBB
+  end
+  subgraph 81019366 ["uchar 0.0.2"]
+    id416761503(["uchar"])
+    style id416761503 fill:#BBB
+  end
+  subgraph 842817762 ["uucp 17.0.0"]
+    id419171663(["uucp"])
+    style id419171663 fill:#BBB
+  end
+  subgraph 902546259 ["(local)"]
+    
+    subgraph 116589860 ["utop"]
+      id801451172(UTop_token)
+      id683302027(UTop_styles)
+      id441653409(UTop_private)
+      id610061359(UTop_main)
+      id48320529(UTop_lexer)
+      id982133627(UTop_history)
+      id797338815(UTop_complete)
+      id79070741(UTop_compat)
+      id628734472(UTop)
+      id116589860(["utop"])
+    end
+    subgraph 243439007 ["modules"]
+      id20355200(Modules)
+      id1019024401{"modules"}
+    end
+    subgraph 266712229 ["utop"]
+      id1001827376(Utop)
+      id862142362{"utop"}
+    end
+    subgraph 784397166 ["myutop"]
+      id725574099(Myutop)
+      id255534289{"myutop"}
+    end
+    subgraph 907735217 ["test_program"]
+      id938955284(Test_program)
+      id885113042{"test_program"}
+    end
+  end
+  id1019024401-->id20355200
+  784397166-->116589860
+  id255534289-->id725574099
+  907735217-->116589860
+  id885113042-->id938955284
+  266712229-->116589860
+  id862142362-->id1001827376
+  id465543944-->id665692215
+  id465543944-->id308034524
+  id465543944-->id961885925
+  id465543944-->id993314844
+  id465543944-->id97150299
+  id665692215-->id556151374
+  id665692215-->id93580318
+  id308034524-->id93580318
+  id308034524-->id987277731
+  id308034524-->id125670660
+  id961885925-->id93580318
+  id961885925-->id440066890
+  id991492331-->id229969259
+  id991492331-->id54470835
+  id993314844-->id991492331
+  id993314844-->id440066890
+  id118240101-->id461103549
+  id998856109-->id423584212
+  id987277731-->id998856109
+  id987277731-->id544138070
+  id207602661-->id419171663
+  id97150299-->id440066890
+  id97150299-->id229969259
+  id97150299-->id416761503
+  id97150299-->id207602661
+  id97150299-->id105590012
+  id544138070-->id1315639
+  id599617885-->id316257320
+  id316257320-->id335749456
+  id160152728-->id599617885
+  id125670660-->id972473676
+  id972473676-->id1315639
+  116589860-->id465543944
+  116589860-->id118240101
+  116589860-->id977522015
+  116589860-->id160152728
+  id116589860-->id628734472
+  id116589860-->id79070741
+  id116589860-->id797338815
+  id116589860-->id982133627
+  id116589860-->id48320529
+  id116589860-->id610061359
+  id116589860-->id441653409
+  id116589860-->id683302027
+  id116589860-->id801451172
+  id628734472-->id79070741
+  id628734472-->id982133627
+  id628734472-->id441653409
+  id797338815-->id628734472
+  id797338815-->id48320529
+  id48320529-->id801451172
+  id610061359-->id797338815
+  id610061359-->id683302027
+  id683302027-->id628734472
+  id683302027-->id801451172
+  

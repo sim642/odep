@@ -11,6 +11,7 @@ depends: [
   "astring" {= "0.8.5"}
   "base" {= "v0.16.4"}
   "base-bigarray" {= "base"}
+  "base-bytes" {= "base"}
   "base-threads" {= "base"}
   "base-unix" {= "base"}
   "bos" {= "0.2.1"}
@@ -25,6 +26,7 @@ depends: [
   "fpath" {= "0.7.3"}
   "jsonm" {= "1.0.2"}
   "logs" {= "0.9.0"}
+  "lwt" {= "6.1.2"}
   "menhir" {= "20240715"}
   "menhirCST" {= "20240715"}
   "menhirLib" {= "20240715"}
@@ -38,6 +40,7 @@ depends: [
   "ocamlbuild" {= "0.16.1"}
   "ocamlfind" {= "1.9.8"}
   "ocamlgraph" {= "2.2.0"}
+  "ocplib-endian" {= "1.2"}
   "odoc" {= "3.1.0" & with-doc}
   "odoc-parser" {= "3.1.0" & with-doc}
   "opam-core" {= "2.5.1"}
@@ -61,7 +64,7 @@ depends: [
   "spdx_licenses" {= "1.4.0"}
   "stdlib-shims" {= "0.3.0"}
   "swhid_core" {= "0.1"}
-  "topkg" {= "1.0.8"}
+  "topkg" {= "1.1.1"}
   "tyxml" {= "4.6.0" & with-doc}
   "uutf" {= "1.0.4"}
 ]

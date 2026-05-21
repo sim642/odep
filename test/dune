@@ -87,3 +87,25 @@
 (rule
  (alias sim642test)
  (action (diff deps4.mermaid.expected deps4.mermaid)))
+
+; utop
+
+(rule
+ (deps (universe))
+ (action
+  (with-stdout-to utop.dot
+   (run odep dune-describe-file -t dot %{dep:utop.sexp}))))
+
+(rule
+ (alias sim642test)
+ (action (diff utop.dot.expected utop.dot)))
+
+(rule
+ (deps (universe))
+ (action
+  (with-stdout-to utop.mermaid
+   (run odep dune-describe-file -t mermaid %{dep:utop.sexp}))))
+
+(rule
+ (alias sim642test)
+ (action (diff utop.mermaid.expected utop.mermaid)))
